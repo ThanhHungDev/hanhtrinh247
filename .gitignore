@@ -18,3 +18,4 @@ node_modules
 *.json
 /storage/uploads
 .htaccess
+BUILDER\readme.md
