@@ -5,20 +5,22 @@ var minify     = require('gulp-minify')
 var minifyCss  = require('gulp-minify-css')
 var path       = require('path')
 var rename     = require("gulp-rename")
-
-
-const SOURCE_JS = []
-
+var cache      = require('gulp-cached')
+ 
 
 gulp.task('sass', function () {
    return gulp.src('SCSS/app.scss')
       .pipe(sass())
       .pipe(minifyCss({ compatibility: 'ie8' }))
-      .pipe(gulp.dest(path.join(__dirname, '/../../public/css/')))
+      .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/css/')))
       .pipe(livereload())
 });
-gulp.task('script-app', function () {
-   return gulp.src([ "JAVASCRIPT/app.js" ])
+
+
+gulp.task('js', function( e ) {
+   
+   return gulp.src([ "JAVASCRIPT/*.js" ])
+      .pipe(cache('linting'))
       .pipe(minify({
          ext: {
             min: '.min.js'
@@ -26,9 +28,12 @@ gulp.task('script-app', function () {
          noSource: true
       }))
       // .pipe(rename({ suffix: '.min' }))
-      .pipe(gulp.dest(path.join(__dirname, '/../../public/js/')))
+      
+      .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/js/')))
       .pipe(livereload())
 });
+
+
  
 // Watch Files For Changes
 gulp.task('watch', function () {
@@ -37,6 +42,9 @@ gulp.task('watch', function () {
    gulp.watch('SCSS/*.scss', gulp.series('sass'))
    gulp.watch('SCSS/*/*/*.scss', gulp.series('sass'))
 
-   gulp.watch('JAVASCRIPT/app.js', gulp.series('script-app'))
-   gulp.watch('JAVASCRIPT/*/*.js', gulp.series('script-app'))
-});
+   gulp.watch([
+      'JAVASCRIPT/*.js',
+      'JAVASCRIPT/*/*.js'
+   ], gulp.series('js'));
+
+})

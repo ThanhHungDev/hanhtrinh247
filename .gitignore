@@ -19,3 +19,7 @@ node_modules
 /storage/uploads
 .htaccess
 BUILDER\readme.md
+node_modules
+dist
+node_modules
+SPA/dist
