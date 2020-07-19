@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FactoryModel\FactoryModelInterface;
+use App\Factory\FactoryModelInterface;
 use App\Http\Requests\ADMIN_VALIDATE_LOGIN;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

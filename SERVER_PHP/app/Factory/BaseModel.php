@@ -2,7 +2,7 @@
 
 namespace App\Factory;
 
-use App\FactoryModel\FactoryModelInterface;
+use App\Factory\FactoryModelInterface;
 use App\Repositories\Post\PostEloquentRepository;
 
 class BaseModel implements FactoryModelInterface{

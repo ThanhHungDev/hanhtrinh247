@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Admin login </title>
-    @include('genneral/css/admin/login') 
-    @include('genneral/css/animate') 
-    @include('genneral/css/main') 
-    @include('genneral/css/progress')
-    @include('genneral/css/alert') 
+    <title> login admin </title>
+    {{-- <meta name="robots" content="index, follow" /> --}}
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+
+    <meta http-equiv="content-language" content="vi" />
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ asset('/') }}" />
+    <meta property="og:image" content="@yield('image_seo')" />
+    <meta property="og:description" content="@yield('description')" />
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
+
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png') }}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css')}}">
+    @yield('stylesheets')
+
 </head>
 <body>
-    <div class="page-login blue-gradient-rgba animated fast fadeIn">
-        <div class="login-form-control animated fast fadeIn">
+
+    <div class="login-admin-page purple-gradient-rgba animated fast fadeIn">
+        <div class="login-form-wrapper">
             <form class="login-form" action="{{ Route('ADMIN_POST_LOGIN') }}" method="POST" >
                 {!! csrf_field() !!}
                 @if (Session::has('LOGIN_ERROR'))
@@ -28,14 +45,14 @@
                 @endif
                 <h1 class="title"> Welcome Admin </h1>
                 <div class="input-group">
-                    <span class="svg-icon"> @include ("genneral/svg/email") </span>
+                    <i class="hero-icon hero-email-check-outline"></i>
                     <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Email Address" />
                 </div>
                 @if($errors->has('email'))
                     <div class="text-danger text-left">{{ $errors->first('email') }}</div>
                 @endif
                 <div class="input-group">
-                    <span class="svg-icon"> @include ("genneral/svg/password") </span>
+                    <i class="hero-icon hero-lock-outline"></i>
                     <input name="password" ref="password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Password" />
                 </div>
                 @if($errors->has('password'))
@@ -49,3 +66,5 @@
     </div>
 </body>
 </html>
+
+    

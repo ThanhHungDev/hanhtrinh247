@@ -9,7 +9,7 @@ var cache      = require('gulp-cached')
  
 
 gulp.task('sass', function () {
-   return gulp.src('SCSS/app.scss')
+   return gulp.src('SCSS/admin.scss')
       .pipe(sass())
       .pipe(minifyCss({ compatibility: 'ie8' }))
       .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/css/')))
@@ -19,7 +19,7 @@ gulp.task('sass', function () {
 
 gulp.task('js', function() {
    
-   return gulp.src([ "JAVASCRIPT/client/*.js" ])
+   return gulp.src([ "JAVASCRIPT/admin/*.js" ])
       .pipe(cache('linting'))
       .pipe(minify({
          ext: {
@@ -42,9 +42,6 @@ gulp.task('watch', function () {
    gulp.watch('SCSS/*.scss', gulp.series('sass'))
    gulp.watch('SCSS/*/*/*.scss', gulp.series('sass'))
 
-   gulp.watch([
-      'JAVASCRIPT/client/*.js',
-      'JAVASCRIPT/client/*/*.js'
-   ], gulp.series('js'));
+   gulp.watch('JAVASCRIPT/admin/*.js' , gulp.series('js'));
 
 })

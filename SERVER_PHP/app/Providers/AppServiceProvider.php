@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Factory\BaseModel;
+use App\Factory\FactoryModelInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
