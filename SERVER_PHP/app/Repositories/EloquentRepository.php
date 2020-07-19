@@ -2,11 +2,18 @@
 
 namespace App\Repositories;
 
-abstract class EloquentRepository
+use App\Repositories\RepositoryInterface;
+
+abstract class EloquentRepository implements RepositoryInterface
 {
-    
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
     protected $_model;
 
+    /**
+     * EloquentRepository constructor.
+     */
     public function __construct()
     {
         $this->setModel();

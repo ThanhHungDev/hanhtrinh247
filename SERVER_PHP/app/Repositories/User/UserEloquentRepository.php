@@ -1,18 +1,17 @@
 <?php
-namespace App\Repositories;
+namespace App\Repositories\User;
 
-use App\Model\PostModel;
 use App\Repositories\EloquentRepository;
 
-class PostRepository extends EloquentRepository
+class UserEloquentRepository extends EloquentRepository
 {
-
     /**
      * get model
      * @return string
      */
     public function getModel()
     {
-        return PostModel::class;
+        return \App\Models\User::class;
     }
+    
 }
