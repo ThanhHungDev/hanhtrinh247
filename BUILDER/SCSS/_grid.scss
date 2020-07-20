@@ -12,12 +12,10 @@ $containers-min-width : (
 ) !default;
 
 $containers-max-width : (
-  XXL: 1320px,
-  XL : 1010px,
-  LG : 960px,
-  MD: 720px,
   SM: 720px,
-  XS: 540px
+  MD: 960px,
+  LG : 1170px,
+  XL : 1320px
 ) !default;
 
 
@@ -40,6 +38,29 @@ $containers-max-width : (
     }
   }
 }
+
+
+// .container {
+//   padding-right: 15px;
+//   padding-left: 15px;
+//   margin-right: auto;
+//   margin-left: auto;
+// }
+// @media (min-width: 768px) {
+//   .container {
+//     width: 750px;
+//   }
+// }
+// @media (min-width: 992px) {
+//   .container {
+//     width: 970px;
+//   }
+// }
+// @media (min-width: 1200px) {
+//   .container {
+//     width: 1170px;
+//   }
+// }
 
 .row{
   margin-right: 0 - $padding-grid-x;

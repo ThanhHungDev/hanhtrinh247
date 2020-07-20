@@ -4,7 +4,7 @@
 
 @section('content_admin')
 <div class="wrapper-admin-page">
-    @include ("layout/admin/partial/sidebar")
+    @include ("admin/_sidebar")
     <div class="admin-main-content">
         <div class="page-title">
             <div class="clear">

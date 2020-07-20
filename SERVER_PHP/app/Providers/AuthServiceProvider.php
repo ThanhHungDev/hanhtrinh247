@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use Config;
+// use Illuminate\Support\Facades\Gate;
+// use Config;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('IS_ADMIN', function ($user) {
-            return $user->email == Config::get('system.mail.admin');
-        });
+        // Gate::define('IS_ADMIN', function ($user) {
+        //     return $user->email == Config::get('system.mail.admin');
+        // });
     }
 }

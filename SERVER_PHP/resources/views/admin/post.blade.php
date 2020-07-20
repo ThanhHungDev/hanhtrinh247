@@ -4,7 +4,7 @@
 
 @section('content_admin')
 <div class="wrapper-admin-page">
-    @include ("layout/admin/partial/sidebar")
+    @include ("admin._sidebar")
     <div class="admin-main-content">
         <div class="page-title">
             <div class="clear">
@@ -30,7 +30,7 @@
             </div>
             <form class="row js-validate-form" action="{{ Route('ADMIN_POST_INSERT_POST') }}" method="POST">
                 {!! csrf_field() !!}
-                <div class="col-8 col-lg-12">
+                <div class="col-md-8">
                     <div class="row block-content">
                         <div class="col-12 bg-white shadows-1 px-4 py-4" id="js-check-slug">
                             <h2 class="title">title post</h2>
@@ -80,13 +80,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-lg-12">
+                <div class="col-md-4">
                     <div class="row block-content">
                         <div class="col-12 bg-white shadows-1 px-4 py-4">
                             <section class="pb-4">
                                 <h2 class="title text-center">bấm lưu mới 1 post</h2>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-success-color-dark text-white">
+                                    <button type="submit" class="btn btn-save-data">
                                         Save
                                     </button>
                                 </div>
@@ -97,44 +97,13 @@
                         <div class="col-12 bg-white shadows-1 px-4 py-4">
                             <section class="pb-4">
                                 <h2 class="title text-center">chọn category</h2>
-                                @if($categories)
-                                <select name="category" class="js-multi-select js-category" 
+                                @if($topics)
+                                <select name="topic" class="js-multi-select js-category" 
                                 onchange="changeCategory('js-category-type', 'js-category-style', this)">
                                     <option value="">chọn thể loại</option>
-                                    @foreach($categories as $category)
-                                    <option @if(old('category') == $category->id) {{ 'selected' }} @endif
-                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                @endif
-                            </section>
-                        </div>
-                    </div>
-                    <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
-                            <section class="pb-4">
-                                <h2 class="title text-center">chọn type</h2>
-                                @if($types)
-                                <select name="category_type_id" class="js-multi-select js-category-type"
-                                onchange="changeCategoryType('js-category', 'js-category-style', this)">
-                                    <option value="">chọn loại bài đăng</option>
-                                    @foreach($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @endforeach
-                                </select>
-                                @endif
-                            </section>
-                        </div>
-                    </div>
-                    <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
-                            <section class="pb-4">
-                                <h2 class="title text-center">chọn style</h2>
-                                @if($styles)
-                                <select name="category_style_id[]" class="js-multi-select js-category-style" multiple="multiple">
-                                    <option value="">không chọn</option>
-                                    @foreach($styles as $style)
-                                    <option value="{{ $style->id }}">{{ $style->name }}</option>
+                                    @foreach($topics as $topic)
+                                    <option @if(old('topic') == $topic->id) {{ 'selected' }} @endif
+                                    value="{{ $topic->id }}">{{ $topic->name }}</option>
                                     @endforeach
                                 </select>
                                 @endif
@@ -148,7 +117,7 @@
                                 <h2 class="title text-center">setup thumbnail</h2>
                                 <div class="text-center">
                                     <button type="button" onclick="selectThumbnailWithCKFinder('thumbnail-topic')"
-                                        class="btn bg-primary text-white">
+                                        class="btn btn-select-thumb">
                                         Select Thumbnail
                                     </button>
                                 </div>

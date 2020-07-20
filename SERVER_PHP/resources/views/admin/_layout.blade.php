@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +26,31 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css')}}">
     @yield('stylesheets')
 
+    <script>
+        const ACTION_CHECK_SLUG = "{{ Route('ADMIN_GET_SLUG', ['slug' => '/'] ) }}";
+    </script>
 </head>
 <body>
-
+    <div class="wrapper-page">
+        <div class="wrapper-header-page">
+            @include ('admin._header')
+        </div>
+        <div class="wrapper-main-page">
+            @yield('content_admin')
+        </div>
+        <div class="wrapper-footer-page">
+            @include ('admin._footer')
+        </div>
+    </div>
+    <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/library/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/library/select2.min.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+    @yield('js_custom_page')
 </body>
 </html>

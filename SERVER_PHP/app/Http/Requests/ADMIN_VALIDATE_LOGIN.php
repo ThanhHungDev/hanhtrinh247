@@ -13,7 +13,7 @@ class ADMIN_VALIDATE_LOGIN extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class ADMIN_VALIDATE_LOGIN extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email'    => 'required|email',
+            'password' => 'required|min:6'
+        ];
+    }
+
+    public function messages(){
+        return [
+            'email.required'    => 'email phải được nhập',
+            'email.email'       => 'email không phải là định dạng email',
+            'password.required' => 'password phải được nhập',
+            'password.min'      => 'password phải chứa ít nhất 6 kí tự',
         ];
     }
 }

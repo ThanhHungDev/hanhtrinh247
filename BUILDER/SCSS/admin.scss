@@ -2,7 +2,7 @@
 @import "reboot.scss";
 @import "alert.scss";
 @import "button.scss";
-// @import "grid.scss";
+@import "grid.scss";
 @import "proress.scss";
 @import "animate.scss";
 // @import "spinner.scss";
@@ -13,4 +13,5 @@
 // Layout & components
 @import "select2/core.scss"; 
 
-@import "_admin/login.scss"
+@import "_admin/template.scss";
+@import "_admin/login.scss";

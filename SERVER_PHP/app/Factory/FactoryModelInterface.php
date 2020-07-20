@@ -9,4 +9,5 @@ interface FactoryModelInterface
     public function createUserModel();
     public function createRatingModel();
     public function createDBModel();
+    public function createTopicModel();
 }
