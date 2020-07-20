@@ -32,7 +32,7 @@
                 {!! csrf_field() !!}
                 <div class="col-md-8">
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
                             <h2 class="title">title post</h2>
                             <input name="title" type="text" value="{{ old('title') }}" onblur="isExistSlug('js-check-slug')" />
                             <input name="slug" type="hidden" value="{{ old('slug') }}" />
@@ -40,25 +40,25 @@
                     </div>
                     
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">excerpt -- đoạn trích</h2>
                             <textarea  class="height-150px" name="excerpt" cols="30" rows="10">{{ old('excerpt') }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">content</h2>
                             <textarea name="content" id="editor1" class="h-100">{{ old('content') }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
                             <h2 class="title">site name SEO</h2>
                             <input name="site_name" type="text" value="{{ old('site_name') }}" />
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
                             <h2 class="title">hình ảnh SEO</h2>
                             <div class="position-relative">
                                 <input name="image_seo" type="text" value="{{ old('image_seo') }}" />
@@ -68,13 +68,13 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">meta keyword</h2>
                             <textarea class="height-150px" name="keyword_seo" cols="30" rows="10">{{ old('keyword_seo') }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">meta description</h2>
                             <textarea class="height-150px" name="description_seo" cols="30" rows="10">{{ old('description_seo') }}</textarea>
                         </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <section class="pb-4">
                                 <h2 class="title text-center">bấm lưu mới 1 post</h2>
                                 <div class="text-center">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <section class="pb-4">
                                 <h2 class="title text-center">chọn category</h2>
                                 @if($topics)
@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="row block-content">
-                        <div class="col-12 bg-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <section class="pb-4">
                                 <h2 class="title text-center">setup thumbnail</h2>
                                 <div class="text-center">
