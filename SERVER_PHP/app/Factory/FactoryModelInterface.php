@@ -5,9 +5,19 @@ namespace App\Factory;
 interface FactoryModelInterface
 {
     
-    public function createPostModel();
-    public function createUserModel();
-    public function createRatingModel();
     public function createDBModel();
+
+    public function createPostModel();
+
+    public function createPostTagActiveModel();
+
+    public function createRatingModel();
+
+    public function createTagModel();
+
+    public function createThemeModel();
+
     public function createTopicModel();
+
+    public function createUserModel();
 }

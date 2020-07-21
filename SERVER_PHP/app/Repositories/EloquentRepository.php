@@ -69,6 +69,24 @@ abstract class EloquentRepository implements RepositoryInterface
     }
 
     /**
+     * save
+     * @param array $attributes
+     * @return mixed
+     */
+    public function save(array $attributes)
+    {
+
+        if( isset( $attributes['id'] ) ){
+            $id = $attributes['id'];
+            unset($attributes['id']);
+            if( $id ){
+                return $this->update($id, $attributes);
+            }
+        }
+        return $this->_model->save($attributes);
+    }
+
+    /**
      * Update
      * @param $id
      * @param array $attributes
