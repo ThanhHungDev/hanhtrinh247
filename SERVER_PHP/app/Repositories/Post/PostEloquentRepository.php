@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Post;
 
+use App\Models\Post;
 use App\Repositories\EloquentRepository;
 
 class PostEloquentRepository extends EloquentRepository implements PostRepositoryInterface
@@ -11,16 +12,16 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
      */
     public function getModel()
     {
-        return \App\Models\Post::class;
+        return Post::class;
     }
 
     /**
-     * Get 5 posts hot in a month the last
+     * Get object post have properti null
      * @return mixed
      */
-    public function getPostHost(){
-        // return $this->_model::
-        return 1;
+    public function getPostNull(){
+        
+        return new Post();
     }
     
 }

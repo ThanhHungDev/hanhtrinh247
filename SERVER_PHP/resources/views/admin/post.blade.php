@@ -32,17 +32,17 @@
                 {!! csrf_field() !!}
                 <div class="col-md-8">
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">title post</h2>
-                            <input name="title" type="text" value="{{ old('title') }}" onblur="isExistSlug('js-check-slug')" />
-                            <input name="slug" type="hidden" value="{{ old('slug') }}" />
+                            <input name="title" type="text" value="{{ old('title', $post->title ) }}" onblur="isExistSlug(this.value)" />
+                            <input name="slug" type="hidden" value="{{ old('slug', $post->slug ) }}" />
                         </div>
                     </div>
                     
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <h2 class="title">excerpt -- đoạn trích</h2>
-                            <textarea  class="height-150px" name="excerpt" cols="30" rows="10">{{ old('excerpt') }}</textarea>
+                            <textarea  class="height-150px" name="excerpt" cols="30" rows="10">{{ old('excerpt', $post->excerpt) }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
@@ -96,11 +96,10 @@
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <section class="pb-4">
-                                <h2 class="title text-center">chọn category</h2>
+                                <h2 class="title text-center">chọn topic</h2>
                                 @if($topics)
-                                <select name="topic" class="js-multi-select js-category" 
-                                onchange="changeCategory('js-category-type', 'js-category-style', this)">
-                                    <option value="">chọn thể loại</option>
+                                <select name="topic_id" class="js-multi-select">
+                                    <option value="">chọn topic</option>
                                     @foreach($topics as $topic)
                                     <option @if(old('topic') == $topic->id) {{ 'selected' }} @endif
                                     value="{{ $topic->id }}">{{ $topic->name }}</option>
@@ -110,7 +109,23 @@
                             </section>
                         </div>
                     </div>
-
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                            <section class="pb-4">
+                                <h2 class="title text-center">thiết lập background</h2>
+                                <div class="text-center">
+                                    <button type="button" onclick="selectThumbnailWithCKFinder('thumbnail-topic')"
+                                        class="btn btn-select-thumb">
+                                        Select background
+                                    </button>
+                                </div>
+                                <div id="thumbnail-topic">
+                                    <input name="thumbnail" class="thumbnail-topic pb-2" 
+                                        type="text" value="{{ old('thumbnail') }}" />
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-4 py-4">
                             <section class="pb-4">

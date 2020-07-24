@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Factory\FactoryModelInterface;
 use App\Http\Requests\ADMIN_VALIDATE_LOGIN;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_POST;
+use App\Libraries\Catalogue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -41,7 +42,7 @@ class AdminController extends Controller
             'password' => $request->input('password') 
         );
         /// luôn ghi nhớ password trong session
-        if (Auth::attempt( $dataLogin, true ))
+        if (Auth::attempt( $dataLogin, false ))
         {
             $request->session()->flash(Config::get('constant.LOGIN_ADMIN_SUCCESS'), true);
             return redirect()->route("ADMIN_DASHBOARD");
@@ -55,12 +56,20 @@ class AdminController extends Controller
 
     public function viewInsertPost(){
 
-        $topicModel = $this->model->createTopicModel();
-        $topics     = $topicModel->all();
-        return view('admin.post', compact([ 'topics' ]));
+        $topics     = $this->model->createTopicModel()->getAll();
+        $post       = $this->model->createPostModel()->getPostNull();
+        return view('admin.post', compact([ 'topics', 'post' ]));
     }
 
-    
+    public function getEditPost( $id = 0 ){
+
+        $topics = $this->model->createTopicModel()->getAll();
+        $post   = $this->model->createPostModel()->find($id);
+        if( !$post ){
+            $post = $this->model->createPostModel()->first();
+        }
+        return view('admin.post', compact([ 'topics', 'post' ]));
+    }
 
     public function savePost(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
 
@@ -68,8 +77,12 @@ class AdminController extends Controller
         $postInput = $request->only('topic_id', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'like', 'view', 'rate_value', 
         'public', 'site_name', 'image_seo', 'keyword_seo', 'description_seo');
+
         /// create catalogue
-        $postInput['catalogue'] = '324242 catalogue';
+                   $catalogue   = Catalogue::generate($postInput['content']);
+        $postInput['content']   = $catalogue->text;
+        $postInput['catalogue'] = $catalogue->catalogue;
+
         /// set id save post 
         $postInput['id'] = $id;
         
@@ -97,20 +110,6 @@ class AdminController extends Controller
         }catch (\Exception $e){
             return redirect()->back()->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage());
         }
-    }
-
-    public function getEditPost($id){
-        if(!is_numeric($id)){
-            $post = $this->model->createPostModel()->first();
-        }else{
-            $post = $this->model->createPostModel()->find($id);
-        }
-
-        if($post == null){
-            return redirect()->route('ADMIN_DASHBOARD');
-        }
-        
-        return view('admin.post-edit', compact(['post', 'categories', 'types', 'styles']));
     }
 
     public function posts(Request $request){

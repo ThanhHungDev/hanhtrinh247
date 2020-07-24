@@ -33,20 +33,42 @@ $config['authentication'] = function () {
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
 $license = [
-    [   'licenseName' => 'ttstore.com',
-        'licenseKey'  => 'U7Y77PW554VWS6RH1VEYNQJDKCCPU'],
-    [   'licenseName' => 'webe.com',
-        'licenseKey'  => 'S383GBFDYDD1MZURPMXXKYAN98RE6'],
-    [   'licenseName' => 'herowebe.com',
-        'licenseKey'  => 'YJCJY4V9PCJLTQ8BDHP8FQAP6XJQD'],
-    [   'licenseName' => 'herowebex.com',
-        'licenseKey'  => '8ACAXYCWTWA2CUWXL9RP272PXMYJN'],
-    [   'licenseName' => 'heroweb.vn',
-        'licenseKey'  => 'KTTTYG4FBVA95C3E22M4PBB7BU2HR'],
-    [   'licenseName' => 'herowee.vn',
-        'licenseKey'  => '7W7W7DAAUES9QVCYY8QHSQYYPPPPB'],
-    [   'licenseName' => 'ebudezain.com',
-        'licenseKey'  => 'E636G5GV316DY4W5XJQ1H9865QSMT'],
+    [   
+        'licenseName' => 'ttstore.com',
+        'licenseKey'  => 'U7Y77PW554VWS6RH1VEYNQJDKCCPU'
+    ],
+    [   
+        'licenseName' => 'webe.com',
+        'licenseKey'  => 'S383GBFDYDD1MZURPMXXKYAN98RE6'
+    ],
+    [   
+        'licenseName' => 'herowebe.com',
+        'licenseKey'  => 'YJCJY4V9PCJLTQ8BDHP8FQAP6XJQD'
+    ],
+    [   
+        'licenseName' => 'herowebex.com',
+        'licenseKey'  => '8ACAXYCWTWA2CUWXL9RP272PXMYJN'
+    ],
+    [   
+        'licenseName' => 'heroweb.vn',
+        'licenseKey'  => 'KTTTYG4FBVA95C3E22M4PBB7BU2HR'
+    ],
+    [   
+        'licenseName' => 'herowee.vn',
+        'licenseKey'  => '7W7W7DAAUES9QVCYY8QHSQYYPPPPB'
+    ],
+    [   
+        'licenseName' => 'ebudezain.com',
+        'licenseKey'  => 'E636G5GV316DY4W5XJQ1H9865QSMT'
+    ],
+    [   
+        'licenseName' => 'hanhtrinh247.dev.com',
+        'licenseKey'  => '1H7H46NRDV7P7EBDTRS9KPCX436HU'
+    ],
+    [   
+        'licenseName' => 'hanhtrinh247.com',
+        'licenseKey'  => '28C8RA874E7TR5ETX5XCMYCSLX3K2'
+    ],
 ];
 $activeLicense = [   'licenseName' => '', 'licenseKey'  => ''];
 foreach($license as $key=>$value){

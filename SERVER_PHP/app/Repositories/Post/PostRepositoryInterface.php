@@ -4,5 +4,5 @@ namespace App\Repositories\Post;
 interface PostRepositoryInterface
 {
     
-    public function getPostHost();
+    public function getPostNull();
 }
