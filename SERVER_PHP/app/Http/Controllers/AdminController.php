@@ -107,12 +107,12 @@ class AdminController extends Controller
             $postTagActive->removeByPostId($postId);
 
             $tagsInput      = $request->tag_id;
-            $tagsDataInsert = [];
-            foreach( $tagsInput as $tag ){
-                $tagsDataInsert[] = [ 'post_id' => $postId, 'tag_id' => $tag ];
-            }
-            if(!empty($tagsDataInsert)){
-                
+            if( $tagsInput ){
+                $tagsDataInsert = array_map( 
+                    function( $tag ) use ( $postId ){ 
+                        return  ['post_id' => $postId, 'tag_id' => $tag ]; 
+                    }, $tagsInput
+                );
                 $postTagActive->insert($tagsDataInsert);
             }
 
