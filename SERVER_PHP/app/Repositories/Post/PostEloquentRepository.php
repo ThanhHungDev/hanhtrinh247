@@ -31,5 +31,6 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
         
         return $this->_model->where('slug', $slug )->first();
     }
+
     
 }

@@ -127,8 +127,8 @@ class AdminController extends Controller
     }
 
     public function posts(Request $request){
-        $limit = 20;
-        $posts = $this->model->createPostModel()->paginate($limit);
+        $limit = 10;
+        $posts = $this->model->createPostModel()->paginate( $limit );
         return view('admin.post-list', compact(['posts']));
     }
 
