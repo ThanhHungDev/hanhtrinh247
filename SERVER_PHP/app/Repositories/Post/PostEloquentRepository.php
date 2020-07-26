@@ -12,6 +12,9 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
      */
     public function getModel()
     {
+        if( $this->_model ){
+            return $this->_model;
+        }
         return Post::class;
     }
 
@@ -22,6 +25,11 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     public function getPostNull(){
         
         return new Post();
+    }
+
+    public function getPostBySlug( $slug ){
+        
+        return $this->_model->where('slug', $slug )->first();
     }
     
 }

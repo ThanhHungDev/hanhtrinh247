@@ -21,4 +21,8 @@ class PostTagActiveEloquentRepository extends EloquentRepository
         return $this->_model->where('post_id', $id)->delete();
     }
     
+    public function getByPost( $postId = 0 ){
+
+        return $this->_model->where('post_id', $postId)->pluck('tag_id');
+    }
 }

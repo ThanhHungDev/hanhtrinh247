@@ -26,76 +26,58 @@ function deleteSlug( slug, table, element ){
         });
     }
 }
-function showImageToBrowser( imageSrc, elementId ){
+
+function showImage__InputCKFinder( imageSrc, btnOrInputDom ){
     //. remove img class output-image-finder is exist
-    var img_exist = document.getElementsByClassName("output-image-finder");
-    if( img_exist.length ){
-        img_exist[0].remove()
+    var DF_ID_RESULT_IMAGE_CK            = "output-image-finder",
+        DF_CLASS_INPUT_OUTPUT_IMAGE      = "img__outputCKFinder",
+        DF_CLASS_GROUP_CKFINDER_SELECTOR = "wrapper__selectImageWithCKFinder"
+
+    var groupJQUERY = $(btnOrInputDom).closest( "." + DF_CLASS_GROUP_CKFINDER_SELECTOR ),
+        img_result  = groupJQUERY.find( "." + DF_ID_RESULT_IMAGE_CK )
+
+    if( img_result ){
+
+        img_result.remove()
     }
-    var blockShow = document.getElementsByClassName( elementId )[0];
-    // console.log(blockShow);
-    // blockShow.click();
-    blockShow.value = imageSrc;
-    // blockShow.blur();
-    var img_finder           = document.createElement("img");
-        img_finder.src       = imageSrc;
-        img_finder.className = "output-image-finder"
-        
-    var wrapper              = document.getElementById( elementId );
-    wrapper.appendChild(img_finder);
+    
+    var input = groupJQUERY.find("input." + DF_CLASS_INPUT_OUTPUT_IMAGE)
+    if( input ){
+        input.val(imageSrc)
+        input.valid()
+    }
+    
+    var img_output_show           = document.createElement("img")
+        img_output_show.id        = DF_ID_RESULT_IMAGE_CK
+        img_output_show.className = DF_ID_RESULT_IMAGE_CK
+        img_output_show.src       = imageSrc
+
+    groupJQUERY.find("input." + DF_CLASS_INPUT_OUTPUT_IMAGE).parent().append( img_output_show )
 }
 
-function showImageToInput( imageSrc, elementId ){
-
-    var img_finder           = document.createElement("img");
-        img_finder.src       = imageSrc;
-        img_finder.className = "img-input-append"
-    var wrapperInput = elementId.parentElement;
-    var images = wrapperInput.getElementsByClassName('img-input-append');
-    for(var index = 0; index < images.length; index ++ ){
-        images[index].remove();
-    }
-    wrapperInput.appendChild(img_finder);
-    var input = wrapperInput.getElementsByTagName('INPUT')[0];
-    input.value = imageSrc;
-}
-
-function selectThumbnailWithCKFinder( elementId ) {
+function selectImageWithCKFinder( ele ) {
+    
     CKFinder.popup( {
         chooseFiles: true,
         width: 800,
         height: 600,
         onInit: function( finder ) {
             finder.on( 'files:choose', function( evt ) {
-                var file = evt.data.files.first();
-                var imageSrc = file.getUrl();
-                showImageToBrowser( imageSrc, elementId );
+
+                var file     = evt.data.files.first(),
+                    imageSrc = file.getUrl()
+                showImage__InputCKFinder( imageSrc, ele )
             });
             finder.on( 'file:choose:resizedImage', function( evt ) {
-                var imageSrc = evt.data.resizedUrl;
-                showImageToBrowser( imageSrc, elementId );
+
+                var imageSrc = evt.data.resizedUrl
+                showImage__InputCKFinder( imageSrc, ele )
             });
         }
     } );
 }
-function selectImageInputWithCKFinder(element) {
-    CKFinder.popup( {
-        chooseFiles: true,
-        width: 800,
-        height: 600,
-        onInit: function( finder ) {
-            finder.on( 'files:choose', function( evt ) {
-                var file = evt.data.files.first();
-                var imageSrc = file.getUrl();
-                showImageToInput( imageSrc, element );
-            });
-            finder.on( 'file:choose:resizedImage', function( evt ) {
-                var imageSrc = evt.data.resizedUrl;
-                showImageToInput( imageSrc, element );
-            });
-        }
-    } );
-}
+
+
 function createSlug( str ){
 
     str = str.toLowerCase()
@@ -133,48 +115,60 @@ function isExistSlug( title ){
 
     /// reset slug input
     $( "input[name=slug]").val( slug )
-    document.getElementById(DF_ID_RESULT).remove()
+    $("#"+DF_ID_RESULT).remove()
     $("button[type=submit]").attr('disabled', true )
 
-    $.ajax({
-        type: "GET",
-        url: ACTION_CHECK_SLUG + "/" + slug,
-        dataType:"JSON",
-        success: function(response){
-            showResultSlugExisted(response.data, slug)
+    fetch( ACTION_CHECK_SLUG + "/" + slug, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
         }
-    });
+    })
+    .then(res => {
+        console.log( res )
+        if( !res.ok ){
+            return showResultSlugExisted( false )
+        }else{
+            return showResultSlugExisted( true )
+        }
+    })
+    .catch(error => {
+        alert("có lỗi")
+    })
 }
-function showResultSlugExisted(result, slug){
-    var DF_MESSAGE_SLUG_EXISTED     = "slug đã tồn tại"
-    var DF_MESSAGE_SLUG_NOT_EXISTED = "slug chưa tồn tại"
+function showResultSlugExisted(result){
 
-    var DF_ID_RESULT      = 'result-slug'
-    var DF_ERROR_RESULT   = 'text-danger px-2 py-2'
-    var DF_SUCCESS_RESULT = 'text-success px-2 py-2'
-    
+    var DF_MESSAGE        = "slug đã tồn tại",
+        DF_CLASS_RESULT   = 'text-color-danger',
+        DF_ID_RESULT      = 'result-slug'
+    if( !result ){
+
+        DF_MESSAGE = "slug chưa tồn tại"
+        DF_CLASS_RESULT = 'text-color-success-color-dark'
+    }
+
     var parag             = document.createElement("p")
-    parag.id = DF_ID_RESULT
-        parag.className   = result ? DF_ERROR_RESULT : DF_SUCCESS_RESULT
-        parag.textContent = result ? DF_MESSAGE_SLUG_EXISTED : DF_MESSAGE_SLUG_NOT_EXISTED
-        $( "input[name=slug]").parent().append( parag )
+        parag.id          = DF_ID_RESULT
+        parag.className   = DF_CLASS_RESULT
+        parag.textContent = DF_MESSAGE
 
-    // if( !result || document.getElementsByClassName('js-form-edit').length) {
-    //     var oldSlug = document.getElementsByName('old-slug');
-    //     if(oldSlug.length){
-    //         var valueOldSlug = oldSlug[0].value;
-    //         if(valueOldSlug != slug){
-    //             return false;
-    //         }
-    //     }
-    //     $("button[type=submit]").attr('disabled', false );
-    // }
+    $( "input[name=slug]").parent().append( parag )
+    $("button[type=submit]").attr('disabled', result )
 }
 
-function createOptionSelect( value, text, isSelect ){
-    return "<option value='"+ value + "' " + (isSelect ? 'selected' : '' ) + ">" + text + " </option>"
+
+function runSelect2Single(dom){
+    dom.select2(
+        { 
+            language: {
+                noResults: function(){
+                    return "không có kết quả trùng khớp";
+                }
+            },
+        }
+    );
 }
-function runSelect2(dom){
+function runSelect2Multi(dom){
     dom.select2(
         { 
             language: {
@@ -186,16 +180,34 @@ function runSelect2(dom){
     );
 }
 
+function showAllImagesCkfinderOnload( imgs ){
+
+    imgs.each(function( indexInputImg ){
+        var imageSrc = $( this ).val()
+        console.log( imageSrc )
+        if( imageSrc ){
+            showImage__InputCKFinder( imageSrc, this )
+        }
+    })
+}
+
 /// dom load success
 $(document).ready(function() {
 
-    var multiSelect = $('.js-multi-select');
-    if(multiSelect.length){
-        runSelect2(multiSelect);
+    //// load select 2 
+    var singleSelect = $('.js__single-select'),
+        multiSelect  = $(".js__multi-select")
+    if(singleSelect.length){
+        runSelect2Single(singleSelect)
     }
-    var DF_FORM_VALIDATE = $(".js-validate-form");
-    if(DF_FORM_VALIDATE.length){
-        validateForm(DF_FORM_VALIDATE);
+    if(multiSelect.length){
+        runSelect2Multi(multiSelect)
+    }
+    //// load image of ckfinder input to dom show image
+    var imgsCkfinder = $(".img__outputCKFinder")
+    if(imgsCkfinder.length){
+        
+        showAllImagesCkfinderOnload(imgsCkfinder)
     }
 });
 

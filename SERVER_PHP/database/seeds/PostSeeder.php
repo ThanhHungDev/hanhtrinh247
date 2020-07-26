@@ -15,7 +15,7 @@ class PostSeeder extends Seeder
         DB::table('post')->insert(
             [
                 [
-                    'topic_id'         => 1,
+                    'topic_id'        => 1,
                     'title'           => 'mẫu ưeb thương mại diẹn tử chuyên nghiệp',
                     'slug'            => 'mau-web-thuong-mai-dien-tu',
                     'excerpt'         => 'mẫu ưeb site bán hàng',

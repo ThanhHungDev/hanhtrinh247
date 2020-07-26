@@ -27,10 +27,10 @@ class CreatePostTable extends Migration
             $table->integer('view')->default(1);
             $table->float('rate_value')->default(3.5);
             $table->integer('public')->default(1);
-            $table->string('site_name', 510)->nullable();
-            $table->string('image_seo')->nullable();
-            $table->string('keyword_seo', 510)->nullable();
-            $table->string('description_seo', 510)->nullable();
+            $table->string('site_name', 150)->nullable();
+            $table->string('image_seo', 510)->nullable();
+            $table->string('keyword_seo', 255)->nullable();
+            $table->string('description_seo', 255)->nullable();
             $table->timestamps();
         });
     }

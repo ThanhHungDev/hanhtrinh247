@@ -45,12 +45,6 @@
             @include ('admin._footer')
         </div>
     </div>
-    <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/library/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('js/library/select2.min.js') }}"></script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/main.min.js') }}"></script>
-    @yield('js_custom_page')
+    @yield('javascripts')
 </body>
 </html>

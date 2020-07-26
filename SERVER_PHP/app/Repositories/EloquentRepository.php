@@ -9,7 +9,7 @@ abstract class EloquentRepository implements RepositoryInterface
     /**
      * @var \Illuminate\Database\Eloquent\Model
      */
-    protected $_model;
+    protected $_model = null;
 
     /**
      * EloquentRepository constructor.
@@ -80,10 +80,26 @@ abstract class EloquentRepository implements RepositoryInterface
             $id = $attributes['id'];
             unset($attributes['id']);
             if( $id ){
-                return $this->update($id, $attributes);
+                $this->_model = $this->_model->find($id);
             }
         }
-        return $this->_model->save($attributes);
+        
+        foreach ($attributes as $key => $value){
+
+            $this->_model->$key = $value;
+        }
+        
+        return $this->_model->save();
+    }
+    /**
+     * Insert
+     * @param $id
+     * @param array $attributes
+     * @return bool|mixed
+     */
+    public function insert(array $attributes)
+    {
+        return $this->_model->insert($attributes);
     }
 
     /**

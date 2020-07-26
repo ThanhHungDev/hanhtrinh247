@@ -223,9 +223,7 @@ i.hero-icon{
     fill: #770710;
     cursor: pointer;
 }
-.output-image-finder{
-    padding-top: 15px;
-}
+
 .hminpx-200{
     min-height: 200px;
 }
@@ -264,12 +262,23 @@ i.hero-icon{
 .error{
     color: #770710;
 }
-.img-input-append{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: auto;
-    height: 38px;
+.wrapper__selectImageWithCKFinder{
+
+
+    &.output-image-finder{
+        padding-top: 15px;
+    }
+
+    &.type-select-ckfinder__inline {
+    
+        .output-image-finder{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: auto;
+            height: 38px;
+        }
+    }
 }
 
 .btn{
@@ -282,6 +291,11 @@ i.hero-icon{
 .btn-save-data{
     background-color: #007e33!important;
     color: $gray-100;
+    cursor: pointer;
+
+    &:disabled{
+        cursor: unset
+    }
 }
 .btn-input-append.btn {
     position: absolute;

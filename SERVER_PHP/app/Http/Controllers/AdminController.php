@@ -6,10 +6,11 @@ use App\Factory\FactoryModelInterface;
 use App\Http\Requests\ADMIN_VALIDATE_LOGIN;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_POST;
 use App\Libraries\Catalogue;
+use App\Models\Post;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\MessageBag;
 
 class AdminController extends Controller
 {
@@ -56,27 +57,31 @@ class AdminController extends Controller
 
     public function viewInsertPost(){
 
-        $topics     = $this->model->createTopicModel()->getAll();
-        $post       = $this->model->createPostModel()->getPostNull();
-        return view('admin.post', compact([ 'topics', 'post' ]));
+        $topics = $this->model->createTopicModel()->getAll();
+        $tags   = $this->model->createTagModel()->getAll();
+        $post   = $this->model->createPostModel()->getPostNull();
+        return view('admin.post', compact([ 'topics', 'tags', 'post' ]));
     }
 
     public function getEditPost( $id = 0 ){
 
-        $topics = $this->model->createTopicModel()->getAll();
-        $post   = $this->model->createPostModel()->find($id);
+        $topics  = $this->model->createTopicModel()->getAll();
+        $tags    = $this->model->createTagModel()->getAll();
+        $post    = $this->model->createPostModel()->find($id);
+        $tags_id = $this->model->createPostTagActiveModel()->getByPost($id);
         if( !$post ){
-            $post = $this->model->createPostModel()->first();
+            //// redirect 404
+            return abort(404);
         }
-        return view('admin.post', compact([ 'topics', 'post' ]));
+        return view('admin.post', compact([ 'topics', 'tags', 'tags_id', 'post' ]));
     }
 
     public function savePost(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
 
         ///setting data insert table post
         $postInput = $request->only('topic_id', 'title', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'like', 'view', 'rate_value', 
-        'public', 'site_name', 'image_seo', 'keyword_seo', 'description_seo');
+        'content', 'background', 'thumbnail', 'public', 'site_name', 
+        'image_seo', 'keyword_seo', 'description_seo');
 
         /// create catalogue
                    $catalogue   = Catalogue::generate($postInput['content']);
@@ -87,18 +92,25 @@ class AdminController extends Controller
         $postInput['id'] = $id;
         
         try{
+            if( !$id && $this->checkSlugExist( $postInput['slug'] )){
+                
+                throw new Exception('thêm mới nhưng slug đã tồn tại');
+            }
             /// create instance Post Model 
             $post          = $this->model->createPostModel();
             $postTagActive = $this->model->createPostTagActiveModel();
 
             $post->save($postInput);
 
-            $postId = $post->id;
+            $postId = $post->getModel()->id;
             /// save tag of post 
             $postTagActive->removeByPostId($postId);
 
             $tagsInput      = $request->tag_id;
-            $tagsDataInsert = array_map(function( $item ) use ( $postId ) { return [ 'post_id' => $postId, 'tag_id' => $item ]; }, $tagsInput );
+            $tagsDataInsert = [];
+            foreach( $tagsInput as $tag ){
+                $tagsDataInsert[] = [ 'post_id' => $postId, 'tag_id' => $tag ];
+            }
             if(!empty($tagsDataInsert)){
                 
                 $postTagActive->insert($tagsDataInsert);
@@ -108,7 +120,9 @@ class AdminController extends Controller
             return redirect()->route('ADMIN_GET_EDIT_POST',  ['id' => $postId]);
 
         }catch (\Exception $e){
-            return redirect()->back()->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage());
+            return redirect()->back()
+            ->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage())
+            ->withInput($request->all());
         }
     }
 
@@ -127,6 +141,46 @@ class AdminController extends Controller
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );
         return response()->json( $response );
+    }
+
+    private function checkSlugExist( $slug = '' ){
+
+        $exist = false;
+        
+        $exist = $this->model->createPostModel()->getPostBySlug( $slug );
+        
+        if( !$exist ){
+            
+            $exist = $this->model->createTopicModel()->getTopicBySlug($slug);
+        }
+        if( !$exist ){
+            
+            $exist = $this->model->createTagModel()->getTagBySlug($slug);
+        }
+        if( !$exist ){
+            
+            $exist = $this->model->createThemeModel()->getThemeBySlug($slug);
+        }
+        return $exist;
+    }
+
+    public function slug($slug = null ){
+
+        $exist = $this->checkSlugExist( $slug );
+        
+        $status = 404;
+        $data = array(
+            'message'   => 'chưa tồn tại slug: ' . $slug,
+            'internal'  => 'chưa tồn tại slug'
+        );
+        if( $exist ){
+            $status = 200;
+            $data = array(
+                'message'   => 'exist slug: ' . $slug,
+                'internal'  => 'exist slug'
+            );
+        }
+        return response()->json($data, $status);
     }
 
 }
