@@ -103,7 +103,7 @@ function isExistSlug( title ){
         }
     })
     .then(res => {
-        console.log( res )
+        
         if( !res.ok ){
             return showResultSlugExisted( false )
         }else{
@@ -162,7 +162,7 @@ function showAllImagesCkfinderOnload( imgs ){
 
     imgs.each(function( indexInputImg ){
         var imageSrc = $( this ).val()
-        console.log( imageSrc )
+        
         if( imageSrc ){
             showImage__InputCKFinder( imageSrc, this )
         }
