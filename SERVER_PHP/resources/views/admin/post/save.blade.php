@@ -25,9 +25,13 @@
         <div class="admin-wrapper-content-field">
             <div class="row">
                 <div class="col-12">
-                    @if (Session::has('SAVE_ERROR'))
+                    @if (Session::has(Config::get('constant.SAVE_ERROR')))
                     <div class="alert alert-warning">
-                        {{ Session::get('SAVE_ERROR') }}
+                        {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
+                    </div>
+                    @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
+                    <div class="alert alert-success">
+                        lưu bài viết thành công
                     </div>
                     @endif
                     @if(!empty($errors->all()))

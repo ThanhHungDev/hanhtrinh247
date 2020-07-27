@@ -363,6 +363,29 @@ ul.pagination li.disabled {
     margin: 4px;
 }
 
+.table-list {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+.thead-list>div {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.trow-list>div, .thead-list>div {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.thead-list>div {
+    text-align: inherit;
+}
+
+.trow-list:hover {
+    background-color: rgba(0,0,0,.075);
+}
+
 @media screen and (max-width: 1199.98px){
     .PageTitle {
         text-align: center;

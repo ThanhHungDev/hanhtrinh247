@@ -3,29 +3,7 @@ function showErrorSystem(text){
     alert(" có lỗi ")
     console.log(text) 
 }
-function deleteSlug( slug, table, element ){
-    var result = confirm("Có chắc muốn xóa không?");
-    if(typeof SYSTEM_DELETE_SLUG_ACTION == 'undefined'){
-        
-        showErrorSystem("SYSTEM_DELETE_SLUG_ACTION")
-    }
-    if (result) {
-        /// delete
-        $.ajax({
-            type: "DELETE",
-            url: SYSTEM_DELETE_SLUG_ACTION,
-            data : { slug , table },
-            dataType:"JSON",
-            success: function(response){
-                if(response.status == 200){
-                    $( element ).closest('tr').remove();
-                }else{
-                    alert( response.message )
-                }
-            }
-        });
-    }
-}
+
 
 function showImage__InputCKFinder( imageSrc, btnOrInputDom ){
     //. remove img class output-image-finder is exist

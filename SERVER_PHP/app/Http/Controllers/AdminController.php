@@ -60,7 +60,7 @@ class AdminController extends Controller
         $topics = $this->model->createTopicModel()->getAll();
         $tags   = $this->model->createTagModel()->getAll();
         $post   = $this->model->createPostModel()->getPostNull();
-        return view('admin.post', compact([ 'topics', 'tags', 'post' ]));
+        return view('admin.post.save', compact([ 'topics', 'tags', 'post' ]));
     }
 
     public function getEditPost( $id = 0 ){
@@ -73,7 +73,7 @@ class AdminController extends Controller
             //// redirect 404
             return abort(404);
         }
-        return view('admin.post', compact([ 'topics', 'tags', 'tags_id', 'post' ]));
+        return view('admin.post.save', compact([ 'topics', 'tags', 'tags_id', 'post' ]));
     }
 
     public function savePost(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
@@ -129,7 +129,7 @@ class AdminController extends Controller
     public function posts(Request $request){
         $limit = 10;
         $posts = $this->model->createPostModel()->paginate( $limit );
-        return view('admin.post-list', compact(['posts']));
+        return view('admin.post.load', compact(['posts']));
     }
 
     
