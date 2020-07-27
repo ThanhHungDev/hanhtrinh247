@@ -77,6 +77,8 @@ i.hero-icon{
     bottom: 0;
     z-index: 3;
     width: 280px;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-image: -webkit-gradient(linear, left top, right top, from(#141e30), to(#243b55)) !important;
     background-image: -webkit-linear-gradient(left, #141e30, #243b55) !important;
     background-image: -o-linear-gradient(left, #141e30, #243b55) !important;

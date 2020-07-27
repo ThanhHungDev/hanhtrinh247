@@ -23,19 +23,24 @@ class Controller extends BaseController
 
         $exist = false;
         
-        $exist = $this->model->createPostModel()->getPostBySlug( $slug );
+        $exist = $this->model->createPostModel()->getBySlug( $slug );
         
         if( !$exist ){
             
-            $exist = $this->model->createTopicModel()->getTopicBySlug($slug);
+            $exist = $this->model->createTopicModel()->getBySlug($slug);
         }
         if( !$exist ){
             
-            $exist = $this->model->createTagModel()->getTagBySlug($slug);
+            $exist = $this->model->createTagModel()->getBySlug($slug);
         }
         if( !$exist ){
             
-            $exist = $this->model->createThemeModel()->getThemeBySlug($slug);
+            $exist = $this->model->createThemeModel()->getBySlug($slug);
+        }
+
+        if( !$exist ){
+            
+            $exist = $this->model->createTagThemeModel()->getBySlug($slug);
         }
         return $exist;
     }

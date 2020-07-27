@@ -166,6 +166,11 @@ abstract class EloquentRepository implements RepositoryInterface
         return $this->_model->paginate($limit);
     }
     
+
+    public function getBySlug( $slug ){
+        
+        return $this->_model->where('slug', $slug )->first();
+    }
     
 
 }

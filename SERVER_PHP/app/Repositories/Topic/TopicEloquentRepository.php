@@ -13,10 +13,5 @@ class TopicEloquentRepository extends EloquentRepository
     {
         return \App\Models\Topic::class;
     }
-
-    public function getTopicBySlug( $slug ){
-        
-        return $this->_model->where('slug', $slug )->first();
-    }
     
 }

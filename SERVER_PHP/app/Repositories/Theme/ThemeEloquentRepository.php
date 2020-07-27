@@ -13,10 +13,5 @@ class ThemeEloquentRepository extends EloquentRepository
     {
         return \App\Models\Theme::class;
     }
-
-    public function getThemeBySlug( $slug ){
-        
-        return $this->_model->where('slug', $slug )->first();
-    }
     
 }

@@ -14,9 +14,5 @@ class TagEloquentRepository extends EloquentRepository
         return \App\Models\Tag::class;
     }
 
-    public function getTagBySlug( $slug ){
-        
-        return $this->_model->where('slug', $slug )->first();
-    }
 
 }

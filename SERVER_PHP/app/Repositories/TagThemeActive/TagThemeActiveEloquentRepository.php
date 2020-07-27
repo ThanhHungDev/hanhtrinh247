@@ -14,5 +14,16 @@ class TagThemeActiveEloquentRepository extends EloquentRepository
         return \App\Models\TagThemeActive::class;
     }
 
+    public function removeByThemeId( $id ){
+        if( !$id ){
+            return false;
+        }
+        return $this->_model->where('theme_id', $id)->delete();
+    }
     
+    public function getByTheme( $postId = 0 ){
+
+        return $this->_model->where('theme_id', $postId)->pluck('tag_theme_id');
+    }
+
 }
