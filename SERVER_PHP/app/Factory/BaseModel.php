@@ -7,6 +7,8 @@ use App\Repositories\Post\PostEloquentRepository;
 use App\Repositories\PostTagActive\PostTagActiveEloquentRepository;
 use App\Repositories\Rating\RatingEloquentRepository;
 use App\Repositories\Tag\TagEloquentRepository;
+use App\Repositories\TagTheme\TagThemeEloquentRepository;
+use App\Repositories\TagThemeActive\TagThemeActiveEloquentRepository;
 use App\Repositories\Theme\ThemeEloquentRepository;
 use App\Repositories\Topic\TopicEloquentRepository;
 use App\Repositories\User\UserEloquentRepository;
@@ -22,6 +24,8 @@ class BaseModel implements FactoryModelInterface{
     public static $ThemeModel;
     public static $TopicModel;
     public static $UserModel;
+    public static $TagThemeModel;
+    public static $TagThemeActiveModel;
 
 
 
@@ -89,5 +93,20 @@ class BaseModel implements FactoryModelInterface{
             self::$UserModel = new UserEloquentRepository();
         }
         return self::$UserModel;
+    }
+
+    public function createTagThemeModel(){
+        
+        if(!self::$TagThemeModel){
+            self::$TagThemeModel = new TagThemeEloquentRepository();
+        }
+        return self::$TagThemeModel;
+    }
+    public function createTagThemeActiveModel(){
+        
+        if(!self::$TagThemeActiveModel){
+            self::$TagThemeActiveModel = new TagThemeActiveEloquentRepository();
+        }
+        return self::$TagThemeActiveModel;
     }
 }

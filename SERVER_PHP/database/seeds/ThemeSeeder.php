@@ -15,7 +15,6 @@ class ThemeSeeder extends Seeder
         DB::table('theme')->insert(
             [
                 [
-                    'post_id'         => 1,
                     'title'           => 'mẫu ưeb công ty trútgrowth ',
                     'slug'            => 'mau-web-cong-ty-trust-growth',
                     'excerpt'         => 'mẫu ưeb site bán hàng',

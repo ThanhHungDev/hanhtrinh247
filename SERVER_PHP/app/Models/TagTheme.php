@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Helpers\SupportString;
 use Illuminate\Database\Eloquent\Model;
 
-class Topic extends Model
+class TagTheme extends Model
 {
-    protected $table = 'topic';
+    protected $table = 'tag_theme';
 
     protected $fillable = ['id', 'name', 'slug', 'excerpt', 
     'content', 'background', 'thumbnail', 'site_name', 
     'image_seo', 'keyword_seo', 'description_seo'];
+
 
     public function getName( $limit = 10, $ellipsis = '...' ){
 

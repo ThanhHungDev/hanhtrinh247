@@ -15,7 +15,6 @@ class CreateThemeTable extends Migration
     {
         Schema::create('theme', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('post_id')->unsigned();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
             $table->string('excerpt')->nullable();

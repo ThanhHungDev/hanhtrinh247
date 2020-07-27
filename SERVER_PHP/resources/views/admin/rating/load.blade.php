@@ -5,13 +5,13 @@
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
     <script>
-        var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_TOPIC', ['id' => null ])}}";
+        var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_RATING', ['id' => null ])}}";
         function deleteComponent( id, element ){
 
             var result = confirm("Có chắc muốn xóa không?")
             if(typeof ADMIN_DELETE_POST == 'undefined'){
                 
-                showErrorSystem("ADMIN_DELETE_TOPIC")
+                showErrorSystem("ADMIN_DELETE_RATING")
             }
             if (result) {
                 /// delete
@@ -42,30 +42,28 @@
     <div class="admin-main-content">
         <div class="page-title">
             <div class="clear">
-                <h2 class="headding float-left">danh sách topic</h2>
+                <h2 class="headding float-left">danh sách rating</h2>
             </div>
         </div>
         <div class="admin-wrapper-content-field">
             <div class="row block-content">
                 <div class="col-12 bg-white shadows-1 px-4 py-4 table-list">
                     <div class="row thead-list">
-                        <div class="col-4">name</div>
-                        <div class="col-4">keyword</div>
-                        <div class="col-3">description</div>
+                        <div class="col-4">username</div>
+                        <div class="col-7">avatar</div>
                         <div class="col-1">#remove#</div>
                     </div>
-                    @foreach( $topics as $topic)
+                    @foreach( $ratings as $rating)
                     <div class="row trow-list">
                         <div class="col-4">
-                            <a href="{{ Route("ADMIN_STORE_TOPIC", ['id' =>  $topic->id]) }}">
-                                {{ $topic->getName(30) }}
+                            <a href="{{ Route("ADMIN_STORE_RATING", ['id' =>  $rating->id]) }}">
+                                {{ $rating->username }}
                             </a>
                         </div>
-                        <div class="col-4">{{ $topic->getKeywordSeo(30) }}</div>
-                        <div class="col-3">{{ $topic->getDescriptionSeo(30) }}</div>
+                        <div class="col-7">{{ $rating->avatar }}</div>
                         <div class="col-1">
                             <button type="button"
-                            onclick="deleteComponent('{{ $topic->id }}', this)"
+                            onclick="deleteComponent('{{ $rating->id }}', this)"
                             class="bg-transparent btn-remove-row">
                                 <i class="hero-icon hero-delete-variant"></i>
                             </button>
@@ -74,7 +72,7 @@
                     @endforeach
 
                     <div class="pagi">
-                        {{ $topics->onEachSide(3)->links() }}
+                        {{ $ratings->onEachSide(3)->links() }}
                     </div>
 
                 </div>

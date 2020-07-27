@@ -34,6 +34,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/topics','Admin\TopicController@load')->name('ADMIN_LOAD_TOPIC');
         Route::delete('/topic/{id?}','Admin\TopicController@delete')->name('ADMIN_DELETE_TOPIC');
 
+        /// component tag theme
+        Route::get('/tag-theme/{id?}','Admin\TagThemeController@store')->name('ADMIN_STORE_TAG_THEME');
+        Route::post('/tag-theme/{id?}','Admin\TagThemeController@save')->name('ADMIN_SAVE_TAG_THEME');
+        Route::get('/tags-theme','Admin\TagThemeController@load')->name('ADMIN_LOAD_TAG_THEME');
+        Route::delete('/tag-theme/{id?}','Admin\TagThemeController@delete')->name('ADMIN_DELETE_TAG_THEME');
+
+        /// component rating
+        Route::get('/rating/{id?}','Admin\RatingController@store')->name('ADMIN_STORE_RATING');
+        Route::post('/rating/{id?}','Admin\RatingController@save')->name('ADMIN_SAVE_RATING');
+        Route::get('/ratings','Admin\RatingController@load')->name('ADMIN_LOAD_RATING');
+        Route::delete('/rating/{id?}','Admin\RatingController@delete')->name('ADMIN_DELETE_RATING');
+
 
         Route::get('/slug/{slug?}','AdminController@slug')->name('ADMIN_GET_SLUG');
     });

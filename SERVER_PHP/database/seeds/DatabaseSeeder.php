@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTagActiveSeeder::class);
         $this->call(RatingSeeder::class);
         $this->call(TagSeeder::class);
-        
+        $this->call(TagThemeSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(UserSeeder::class);
         

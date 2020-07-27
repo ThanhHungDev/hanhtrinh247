@@ -20,4 +20,8 @@ interface FactoryModelInterface
     public function createTopicModel();
 
     public function createUserModel();
+
+    public function createTagThemeModel();
+
+    public function createTagThemeActiveModel();
 }
