@@ -21,6 +21,7 @@ class CreateThemeTable extends Migration
             $table->string('excerpt')->nullable();
             $table->text('description')->nullable();
             $table->text('content')->nullable();
+            $table->text('catalogue')->nullable();
             $table->string('background', 510)->nullable();
             $table->string('image_laptop', 510)->nullable();
             $table->string('image_tablet', 510)->nullable();

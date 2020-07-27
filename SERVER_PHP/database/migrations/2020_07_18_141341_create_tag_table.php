@@ -18,9 +18,10 @@ class CreateTagTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('excerpt')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('background')->nullable();
             $table->text('content')->nullable();
+            $table->text('catalogue')->nullable();
+            $table->string('background')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('site_name')->nullable();
             $table->string('image_seo')->nullable();
             $table->string('keyword_seo')->nullable();

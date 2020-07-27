@@ -9,7 +9,8 @@ abstract class EloquentRepository implements RepositoryInterface
     /**
      * @var \Illuminate\Database\Eloquent\Model
      */
-    protected $_model = null;
+    protected $_model         = null;
+    private   $_instanceModel = null;
 
     /**
      * EloquentRepository constructor.
@@ -26,6 +27,22 @@ abstract class EloquentRepository implements RepositoryInterface
     abstract public function getModel();
 
     /**
+     * Get object instance have properti null
+     * @return mixed
+     */
+    public function getInstanceNull(){
+        
+        return $this->_instanceModel;
+    }
+    /**
+     * Get object instance
+     * @return mixed
+     */
+    public function getModelInstance(){
+        
+        return $this->_model;
+    }
+    /**
      * Set model
      */
     public function setModel()
@@ -33,6 +50,7 @@ abstract class EloquentRepository implements RepositoryInterface
         $this->_model = app()->make(
             $this->getModel()
         );
+        $this->_instanceModel = $this->_model;
     }
 
     /**
@@ -147,6 +165,7 @@ abstract class EloquentRepository implements RepositoryInterface
     {
         return $this->_model->paginate($limit);
     }
+    
     
 
 }

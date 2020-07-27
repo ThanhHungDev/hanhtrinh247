@@ -12,19 +12,7 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
      */
     public function getModel()
     {
-        if( $this->_model ){
-            return $this->_model;
-        }
         return Post::class;
-    }
-
-    /**
-     * Get object post have properti null
-     * @return mixed
-     */
-    public function getPostNull(){
-        
-        return new Post();
     }
 
     public function getPostBySlug( $slug ){

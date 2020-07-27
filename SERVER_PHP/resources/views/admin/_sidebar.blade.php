@@ -13,19 +13,36 @@
             <a class="block-session">Post</a>
             <ul class="submenu">
                 <li>
-                    <a class="{{ Route::is("ADMIN_INSERT_POST") ? 'active' : null}}"
-                        href="{{ route('ADMIN_INSERT_POST') }}">
-                        Thêm bài viết
+                    <a class="{{ Route::is("ADMIN_STORE_POST") ? 'active' : null}}"
+                        href="{{ route('ADMIN_STORE_POST') }}">
+                        lưu trữ bài viết
                     </a>
                 </li>
                 <li>
-                    <a class="{{ Route::is("ADMIN_GET_LIST_POST") ? 'active' : null}}"
-                    href="{{ route('ADMIN_GET_LIST_POST') }}">
+                    <a class="{{ Route::is("ADMIN_LOAD_POST") ? 'active' : null}}"
+                    href="{{ route('ADMIN_LOAD_POST') }}">
                         Xem danh sách post
                     </a>
                 </li>
             </ul>
         </li>
-        
+
+        <li>
+            <a class="block-session">Tag</a>
+            <ul class="submenu">
+                <li>
+                    <a class="{{ Route::is("ADMIN_STORE_TAG") ? 'active' : null}}"
+                        href="{{ route('ADMIN_STORE_TAG') }}">
+                        lưu trữ tag
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ Route::is("ADMIN_LOAD_TAG") ? 'active' : null}}"
+                    href="{{ route('ADMIN_LOAD_TAG') }}">
+                        Xem danh sách tag
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>

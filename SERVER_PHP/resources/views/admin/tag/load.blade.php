@@ -5,13 +5,13 @@
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
     <script>
-        var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_POST', ['id' => null ])}}";
+        var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_TAG', ['id' => null ])}}";
         function deleteComponent( id, element ){
 
             var result = confirm("Có chắc muốn xóa không?")
             if(typeof ADMIN_DELETE_POST == 'undefined'){
                 
-                showErrorSystem("ADMIN_DELETE_POST")
+                showErrorSystem("ADMIN_DELETE_TAG")
             }
             if (result) {
                 /// delete
@@ -42,30 +42,30 @@
     <div class="admin-main-content">
         <div class="page-title">
             <div class="clear">
-                <h2 class="headding float-left">danh sách bài đăng</h2>
+                <h2 class="headding float-left">danh sách tag</h2>
             </div>
         </div>
         <div class="admin-wrapper-content-field">
             <div class="row block-content">
                 <div class="col-12 bg-white shadows-1 px-4 py-4 table-list">
                     <div class="row thead-list">
-                        <div class="col-4">title</div>
+                        <div class="col-4">name</div>
                         <div class="col-4">keyword</div>
                         <div class="col-3">description</div>
                         <div class="col-1">#remove#</div>
                     </div>
-                    @foreach( $posts as $post)
+                    @foreach( $tags as $tag)
                     <div class="row trow-list">
                         <div class="col-4">
-                            <a href="{{ Route("ADMIN_STORE_POST", ['id' =>  $post->id]) }}">
-                                {{ $post->getTitle(30) }}
+                            <a href="{{ Route("ADMIN_STORE_TAG", ['id' =>  $tag->id]) }}">
+                                {{ $tag->getName(30) }}
                             </a>
                         </div>
-                        <div class="col-4">{{ $post->getKeywordSeo(30) }}</div>
-                        <div class="col-3">{{ $post->getDescriptionSeo(30) }}</div>
+                        <div class="col-4">{{ $tag->getKeywordSeo(30) }}</div>
+                        <div class="col-3">{{ $tag->getDescriptionSeo(30) }}</div>
                         <div class="col-1">
                             <button type="button"
-                            onclick="deleteComponent('{{ $post->id }}', this)"
+                            onclick="deleteComponent('{{ $tag->id }}', this)"
                             class="bg-transparent btn-remove-row">
                                 <i class="hero-icon hero-delete-variant"></i>
                             </button>
@@ -74,7 +74,7 @@
                     @endforeach
 
                     <div class="pagi">
-                        {{ $posts->onEachSide(3)->links() }}
+                        {{ $tags->onEachSide(3)->links() }}
                     </div>
 
                 </div>

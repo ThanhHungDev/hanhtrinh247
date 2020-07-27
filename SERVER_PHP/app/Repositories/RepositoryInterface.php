@@ -38,4 +38,11 @@ interface RepositoryInterface
      * @return mixed
      */
     public function delete($id);
+
+
+    /**
+     * Get object instance have properti null
+     * @return mixed
+     */
+    public function getInstanceNull();
 }
