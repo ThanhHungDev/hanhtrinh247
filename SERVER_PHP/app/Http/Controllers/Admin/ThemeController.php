@@ -18,7 +18,7 @@ class ThemeController extends Controller
      */
     public function store( $id = 0 ){
 
-        $tagsTheme = $this->model->createTagThemeModel()->getAll();
+        $tags = $this->model->createTagThemeModel()->getAll();
         if( !$id ){
             /// thêm mới
             $theme   = $this->model->createThemeModel()->getInstanceNull();
@@ -48,7 +48,7 @@ class ThemeController extends Controller
         $themeInput['content']   = $catalogue->text;
         $themeInput['catalogue'] = $catalogue->catalogue;
 
-        /// set id save post 
+        /// set id save theme 
         $themeInput['id'] = $id;
         
         try{
@@ -63,7 +63,7 @@ class ThemeController extends Controller
             $theme->save($themeInput);
 
             $themeId = $theme->getInstanceNull()->id;
-            /// save tag of post 
+            /// save tag of theme 
             $tagThemeActive->removeByThemeId($themeId);
 
             $tagsInput      = $request->tag_id;
@@ -93,8 +93,8 @@ class ThemeController extends Controller
      */
     public function load(){
         $limit = 10;
-        $posts = $this->model->createPostModel()->paginate( $limit );
-        return view('admin.post.load', compact(['posts']));
+        $themes = $this->model->createThemeModel()->paginate( $limit );
+        return view('admin.theme.load', compact(['themes']));
     }
 
     /**
@@ -109,14 +109,14 @@ class ThemeController extends Controller
     }
     
     /**
-     * Delete 1 post
+     * Delete 1 theme
      *
      * @param  int  $id
      * @return View
      */
     public function delete($id = 0){
 
-        $this->model->createPostModel()->find($id)->delete();
+        $this->model->createThemeModel()->find($id)->delete();
 
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );

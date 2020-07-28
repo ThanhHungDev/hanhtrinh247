@@ -5,13 +5,13 @@
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
     <script>
-        var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_POST', ['id' => null ])}}";
+        var ADMIN_DELETE_THEME = "{{ Route('ADMIN_DELETE_THEME', ['id' => null ])}}";
         function deleteComponent( id, element ){
 
             var result = confirm("Có chắc muốn xóa không?")
-            if(typeof ADMIN_DELETE_POST == 'undefined'){
+            if(typeof ADMIN_DELETE_THEME == 'undefined'){
                 
-                showErrorSystem("ADMIN_DELETE_POST")
+                showErrorSystem("ADMIN_DELETE_THEME")
             }
             if (result) {
                 /// delete
@@ -22,7 +22,7 @@
                 });
                 $.ajax({
                     type: "DELETE",
-                    url: ADMIN_DELETE_POST + '/' +id , 
+                    url: ADMIN_DELETE_THEME + '/' +id , 
                     data : {},
                     dataType:"JSON",
                     success: function(response){
@@ -54,18 +54,18 @@
                         <div class="col-3">description</div>
                         <div class="col-1">#remove#</div>
                     </div>
-                    @foreach( $posts as $post)
+                    @foreach( $themes as $theme)
                     <div class="row trow-list">
                         <div class="col-4">
-                            <a href="{{ Route("ADMIN_STORE_POST", ['id' =>  $post->id]) }}">
-                                {{ $post->getTitle(30) }}
+                            <a href="{{ Route("ADMIN_STORE_THEME", ['id' =>  $theme->id]) }}">
+                                {{ $theme->getTitle(30) }}
                             </a>
                         </div>
-                        <div class="col-4">{{ $post->getKeywordSeo(30) }}</div>
-                        <div class="col-3">{{ $post->getDescriptionSeo(30) }}</div>
+                        <div class="col-4">{{ $theme->getKeywordSeo(30) }}</div>
+                        <div class="col-3">{{ $theme->getDescriptionSeo(30) }}</div>
                         <div class="col-1">
                             <button type="button"
-                            onclick="deleteComponent('{{ $post->id }}', this)"
+                            onclick="deleteComponent('{{ $theme->id }}', this)"
                             class="bg-transparent btn-remove-row">
                                 <i class="hero-icon hero-delete-variant"></i>
                             </button>
@@ -74,7 +74,7 @@
                     @endforeach
 
                     <div class="pagi">
-                        {{ $posts->onEachSide(3)->links() }}
+                        {{ $themes->onEachSide(3)->links() }}
                     </div>
 
                 </div>

@@ -189,6 +189,13 @@ $(document).ready(function() {
     }
 });
 
-if( document.getElementById('editor1') ){
-    CKEDITOR.replace( 'editor1' );
+if( $("textarea[id^='editor']").length ){
+    $("textarea[id^='editor']").each( function( index ) {
+        
+        CKEDITOR.replace( $(this).attr('id') );
+    })
 }
+
+// if( document.getElementById('editor1') ){
+    
+// }
