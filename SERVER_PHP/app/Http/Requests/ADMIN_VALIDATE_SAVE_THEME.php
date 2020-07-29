@@ -27,6 +27,7 @@ class ADMIN_VALIDATE_SAVE_THEME extends FormRequest
 
             'title'           => 'required|max:150',
             'slug'            => 'required|max:150',
+            'url'             => 'required|max:255',
             'excerpt'         => 'required|max:255',
             'description'     => 'required',
             'content'         => 'required',
@@ -47,6 +48,8 @@ class ADMIN_VALIDATE_SAVE_THEME extends FormRequest
             'title.max'                => ':attribute vượt quá :max kí tự',
             'slug.required'            => ':attribute phải được nhập',
             'slug.max'                 => ':attribute vượt quá :max kí tự',
+            'url.required'             => ':attribute phải được nhập',
+            'url.max'                  => ':attribute vượt quá :max kí tự',
             'excerpt.required'         => ':attribute phải được nhập',
             'excerpt.max'              => ':attribute vượt quá :max kí tự',
             'description.required'     => ':attribute phải được nhập',

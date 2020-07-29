@@ -9,7 +9,7 @@ class Theme extends Model
 {
     protected $table = 'theme';
 
-    protected $fillable = ['id', 'title', 'slug', 'excerpt', 'description',
+    protected $fillable = ['id', 'title', 'slug', 'url', 'excerpt', 'description',
     'content', 'background', 'image_laptop', 'image_tablet', 'image_mobile', 
     'site_name', 'image_seo', 'keyword_seo', 'description_seo'];
 

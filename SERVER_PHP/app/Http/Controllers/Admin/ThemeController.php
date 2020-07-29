@@ -40,7 +40,7 @@ class ThemeController extends Controller
     public function save(ADMIN_VALIDATE_SAVE_THEME $request, $id = 0){
 
         ///setting data insert table theme
-        $themeInput = $request->only( 'title', 'slug', 'excerpt', 'description',
+        $themeInput = $request->only( 'title', 'slug', 'url', 'excerpt', 'description',
         'content', 'background', 'image_laptop', 'image_tablet', 'image_mobile', 
         'site_name', 'image_seo', 'keyword_seo', 'description_seo');
         /// create catalogue
@@ -62,7 +62,7 @@ class ThemeController extends Controller
 
             $theme->save($themeInput);
 
-            $themeId = $theme->getInstanceNull()->id;
+            $themeId = $theme->getModelInstance()->id;
             /// save tag of theme 
             $tagThemeActive->removeByThemeId($themeId);
 

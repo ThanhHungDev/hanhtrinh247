@@ -11,6 +11,10 @@ function validateForm(formJquery){
                 required : true,
                 maxlength: 150
             },
+            url: {
+                required : true,
+                maxlength: 255
+            },
             excerpt : {
                 required : true,
                 maxlength: 255
@@ -62,6 +66,10 @@ function validateForm(formJquery){
             slug: {
                 required : "bắt buộc nhập title để tạo slug",
                 maxlength: "độ dài slug được tạo ra không vượt quá {0} kí tự"
+            },
+            url: {
+                required : "bắt buộc phải nhập url",
+                maxlength: "title có độ dài lớn nhất là {0}"
             },
             excerpt : {
                 required : "bắt buộc nhập đoạn trích(excerpt)",

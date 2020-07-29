@@ -17,6 +17,7 @@ class CreateThemeTable extends Migration
             $table->id();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
+            $table->string('url', 255)->nullable();
             $table->string('excerpt')->nullable();
             $table->text('description')->nullable();
             $table->text('content')->nullable();

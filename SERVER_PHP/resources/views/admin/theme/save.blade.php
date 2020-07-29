@@ -53,6 +53,13 @@
                             <input name="slug" type="hidden" value="{{ old('slug', $theme->slug ) }}" />
                         </div>
                     </div>
+
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <h2 class="title">url</h2>
+                            <input name="url" type="text" value="{{ old('url', $theme->url ) }}" />
+                        </div>
+                    </div>
                     
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">

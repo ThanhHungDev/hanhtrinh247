@@ -66,7 +66,7 @@ class PostController extends Controller
 
             $post->save($postInput);
 
-            $postId = $post->getInstanceNull()->id;
+            $postId = $post->getModelInstance()->id;
             /// save tag of post 
             $postTagActive->removeByPostId($postId);
 
