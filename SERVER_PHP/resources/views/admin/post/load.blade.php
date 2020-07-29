@@ -47,7 +47,7 @@
         </div>
         <div class="admin-wrapper-content-field">
             <div class="row block-content">
-                <div class="col-12 bg-white shadows-1 px-4 py-4 table-list">
+                <div class="col-12 bg-white shadows-1 px-3 py-3 table-list">
                     <div class="row thead-list">
                         <div class="col-4">title</div>
                         <div class="col-4">keyword</div>

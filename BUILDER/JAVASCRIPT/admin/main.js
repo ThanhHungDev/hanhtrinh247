@@ -169,6 +169,15 @@ function showAllImagesCkfinderOnload( imgs ){
     })
 }
 
+function toggleSidebar(){
+    // $(".admin-sidebar .submenu .active").closest('.submenu').closest('li').addClass("open")
+    $(".admin-sidebar .block-session").click(function(){
+
+        $(".admin-sidebar>ul>li").removeClass("open")
+        $(this).closest("li").addClass("open")
+    })
+}
+
 /// dom load success
 $(document).ready(function() {
 
@@ -187,6 +196,7 @@ $(document).ready(function() {
         
         showAllImagesCkfinderOnload(imgsCkfinder)
     }
+    toggleSidebar()
 });
 
 if( $("textarea[id^='editor']").length ){
@@ -196,6 +206,3 @@ if( $("textarea[id^='editor']").length ){
     })
 }
 
-// if( document.getElementById('editor1') ){
-    
-// }

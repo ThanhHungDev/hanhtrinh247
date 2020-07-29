@@ -1,6 +1,10 @@
 @extends('admin._layout')
 
 @section('title', 'Trang Quản Trị')
+@section('javascripts')
+    <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+@endsection
 
 @section('content_admin')
 <div class="wrapper-admin-page">

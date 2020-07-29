@@ -47,7 +47,7 @@
                 {!! csrf_field() !!}
                 <div class="col-md-8">
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">title theme</h2>
                             <input name="title" type="text" value="{{ old('title', $theme->title ) }}" onblur="isExistSlug(this.value)" />
                             <input name="slug" type="hidden" value="{{ old('slug', $theme->slug ) }}" />
@@ -55,32 +55,32 @@
                     </div>
                     
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">excerpt -- đoạn trích</h2>
-                            <textarea  class="height-150px" name="excerpt" cols="30" rows="10">{{ old('excerpt', $theme->excerpt) }}</textarea>
+                            <textarea  class="height-80px" name="excerpt" cols="30" rows="10">{{ old('excerpt', $theme->excerpt) }}</textarea>
                         </div>
                     </div>
 
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">description</h2>
                             <textarea name="description" id="editor2" class="h-100">{{ old('description', $theme->description) }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">content</h2>
                             <textarea name="content" id="editor1" class="h-100">{{ old('content', $theme->content) }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
                             <h2 class="title">site name SEO</h2>
                             <input name="site_name" type="text" value="{{ old('site_name', $theme->site_name) }}" />
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
                             <h2 class="title">hình ảnh SEO</h2>
                             <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
                                 <input name="image_seo" class="img__outputCKFinder" type="text" value="{{ old('image_seo', $theme->image_seo) }}" />
@@ -90,21 +90,21 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">meta keyword</h2>
-                            <textarea class="height-150px" name="keyword_seo" cols="30" rows="10">{{ old('keyword_seo', $theme->keyword_seo) }}</textarea>
+                            <textarea class="height-80px" name="keyword_seo" cols="30" rows="10">{{ old('keyword_seo', $theme->keyword_seo) }}</textarea>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">meta description</h2>
-                            <textarea class="height-150px" name="description_seo" cols="30" rows="10">{{ old('description_seo', $theme->description_seo) }}</textarea>
+                            <textarea class="height-80px" name="description_seo" cols="30" rows="10">{{ old('description_seo', $theme->description_seo) }}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4">
                                 <h2 class="title text-center">bấm lưu mới theme</h2>
                                 <div class="text-center">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4">
                                 <h2 class="title text-center">chọn tag</h2>
                                 @if($tags)
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4 wrapper__selectImageWithCKFinder">
                                 <h2 class="title text-center">thiết lập background</h2>
                                 <div class="text-center">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4 wrapper__selectImageWithCKFinder">
                                 <h2 class="title text-center">setup image laptop</h2>
                                 <div class="text-center">
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4 wrapper__selectImageWithCKFinder">
                                 <h2 class="title text-center">setup image tablet</h2>
                                 <div class="text-center">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4 wrapper__selectImageWithCKFinder">
                                 <h2 class="title text-center">setup image mobile</h2>
                                 <div class="text-center">

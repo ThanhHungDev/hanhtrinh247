@@ -47,13 +47,13 @@
                 {!! csrf_field() !!}
                 <div class="col-md-8">
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">tên rating</h2>
                             <input name="username" type="text" value="{{ old('username', $rating->username ) }}"/>
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
                             <h2 class="title">avatar</h2>
                             <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
                                 <input name="avatar" class="img__outputCKFinder" type="text" value="{{ old('avatar', $rating->avatar) }}" />
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-4 py-4">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4">
                                 <h2 class="title text-center">bấm lưu mới rating</h2>
                                 <div class="text-center">
