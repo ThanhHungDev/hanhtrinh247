@@ -152,9 +152,16 @@
             }
 
             .submenu{
-                display: none;
+                height: 0!important;
+                opacity: 0;
+                visibility: hidden;
                 background-color: #3b5071;
-
+                -webkit-transition: all 0.25s ease-in-out;
+                -moz-transition: all 0.25s ease-in-out;
+                -o-transition: all 0.25s ease-in-out;
+                -ms-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+                
                 a{
                     padding-left: 15px;
                     font-size: 12px;
@@ -164,6 +171,10 @@
             &.open{
                 .submenu{
                     display: block;
+                    height: 100%!important;
+                    opacity: 1;
+                    visibility: unset;
+                    
                 }
             }
         }

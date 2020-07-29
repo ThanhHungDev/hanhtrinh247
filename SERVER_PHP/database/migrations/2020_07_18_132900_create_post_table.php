@@ -16,6 +16,7 @@ class CreatePostTable extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('topic_id')->unsigned();
+            $table->unsignedInteger('rating_id')->unsigned()->nullable();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
             $table->string('excerpt')->nullable();

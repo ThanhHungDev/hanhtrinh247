@@ -21,6 +21,7 @@ class PostController extends Controller
 
         $topics  = $this->model->createTopicModel()->getAll();
         $tags    = $this->model->createTagModel()->getAll();
+        $rates   = $this->model->createRatingModel()->getAll();
 
         if( !$id ){
             /// thêm mới
@@ -36,14 +37,14 @@ class PostController extends Controller
             }
         }
         
-        return view('admin.post.save', compact([ 'topics', 'tags', 'tags_id', 'post' ]));
+        return view('admin.post.save', compact([ 'topics', 'tags', 'rates', 'tags_id', 'post' ]));
     }
 
 
     public function save(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
 
         ///setting data insert table post
-        $postInput = $request->only('topic_id', 'title', 'slug', 'excerpt', 
+        $postInput = $request->only('topic_id', 'rating_id', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'public', 'site_name', 
         'image_seo', 'keyword_seo', 'description_seo');
 

@@ -153,6 +153,22 @@
                     </div>
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <section class="pb-4">
+                                <h2 class="title text-center">chọn rating</h2>
+                                @if($rates)
+                                <select name="rating_id" class="js__single-select">
+                                    <option value="">chọn rating</option>
+                                    @foreach($rates as $rate)
+                                    <option @if(old('rating_id', $post->rating_id) == $rate->id) {{ 'selected' }} @endif
+                                    value="{{ $rate->id }}">{{ $rate->username }}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <section class="pb-4 wrapper__selectImageWithCKFinder">
                                 <h2 class="title text-center">thiết lập background</h2>
                                 <div class="text-center">
