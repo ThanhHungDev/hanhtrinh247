@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         
         'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
+        'HTML_MINIFIER' => \App\Http\Middleware\HtmlMifier::class,
     ];
 }

@@ -4,83 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> @yield('title') </title>
-    {{-- <meta name="robots" content="index, follow" /> --}}
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />
+    <title> {{ Config::get("app.name") }} </title>
+    <meta name="robots" content="index, follow" />
 
     <meta http-equiv="content-language" content="vi" />
-    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:title" content="{{ Config::get("app.name") }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ asset('/') }}" />
     <meta property="og:image" content="@yield('image_seo')" />
-    <meta property="og:description" content="@yield('description')" />
-    <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
+    <meta property="og:description" content="{{ Config::get("app.description") }}" />
+    <meta name="description" content="{{ Config::get("app.description") }}">
+    <meta name="keywords" content="{{ Config::get("app.keywords") }}">
 
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png') }}"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png' . Config::get('app.version')) }}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png' . Config::get('app.version')) }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png' . Config::get('app.version')) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png' . Config::get('app.version')) }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css' . Config::get('app.version'))}}">
+
+    <script type='application/ld+json'>
+        {
+            "@context":"https://schema.org/",
+            "@type":"WebSite",
+            "@id":"#website",
+            "url":"{{ asset('/') }}",
+            "name":"{{ Config::get("app.name") }}",
+            "alternateName":"Công ty thiết kế web chuyên nghiệp - Expro Việt Nam",
+            "potentialAction":{"@type":"SearchAction","target":"https://thietkewebnhanh247.com/?post_type=products?s={search_term_string}","query-input":"required name=search_term_string"}
+        }
+    </script> 
+    <script type="application/ld+json">
+        {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Expro Việt Nam",
+      "alternateName": "Công Ty Thiết kế Web Chuyên Nghiệp - Expro Việt Nam",
+      "url": "https://thietkewebnhanh247.com",
+      "telephone": "[+84987468234,+84989069632]",
+      "description": "Công Ty Thiết Kế Website uy tín Chuyên Nghiệp Tại Hồ Chí Minh (TPHCM) và Hà Nội, Thời gian làm web nhanh, giá rẻ nhất hàng đầu Việt Nam",
+      "priceRange": "4700000đ-19900000đ",
+      "logo": "https://thietkewebnhanh247.com/wp-content/uploads/2016/11/white-new-logo.png",
+      "image":"https://thietkewebnhanh247.com/wp-content/uploads/2017/02/dich-vu-thiet-ke-website-gia-re-tai-quan-5_s1309.jpg",
+      "hasMap": "https://www.google.com/maps/place/C%C3%B4ng+ty+TNHH+Gi%E1%BA%A3i+Ph%C3%A1p+S%E1%BB%91+Expro+Vi%E1%BB%87t+Nam/@10.7308828,106.7353163,15z/data=!4m12!1m6!3m5!1s0x0:0x655e2ac7bf13f262!2zQ8O0bmcgdHkgVE5ISCBHaeG6o2kgUGjDoXAgU-G7kSBFeHBybyBWaeG7h3QgTmFt!8m2!3d10.7308828!4d106.7353163!3m4!1s0x0:0x655e2ac7bf13f262!8m2!3d10.7308828!4d106.7353163", 
+      "email": "mailto:thietkewebnhanh247@gmail.com",
+        "founder": "Nguyễn Như Minh",
+        "address": {
+          "@type": "PostalAddress", 
+          "addressLocality": "Ho Chi Minh City",
+            "addressCountry": "VIỆT NAM",
+          "addressRegion": "Dakao",
+          "postalCode":"700000",
+          "streetAddress": "6B Nguyễn Thành Ý"
+        },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 10.7308828,
+        "longitude": 106.7353163
+      } ,
+      "sameAs": [
+        "https:\/\/www.facebook.com\/thietkewebnhanh247\/",
+        "https:\/\/www.linkedin.com\/in\/thiet-ke-web-nhanh\/",
+        "https:\/\/plus.google.com\/u\/0\/communities\/103757250998763928825",
+        "https:\/\/www.youtube.com\/channel\/UCPtsZOB2bwf6nUyuFaN4mCw",
+        "https:\/\/twitter.com\/minhnn250385"
+      ]
+    }
+</script> 
+<script type='application/ld+json'>
+    {
+        "@context":"https://schema.org/",
+        "@type":"Book",
+        "name":"Công ty TNHH giải pháp số Expro Việt Nam",
+        "description":"Công Ty Thiết Kế Website uy tín Chuyên Nghiệp Tại Hồ Chí Minh (TPHCM) và Hà Nội, Thời gian làm web nhanh, giá rẻ nhất",
+        "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","ratingCount":"89"}
+    }
+</script>
+
+
+
+<title>Công ty thiết kế web nhanh chuyên nghiệp, ✅ Làm website giá rẻ chuẩn SEO</title>
+<meta name="description" content="Công ty thiết kế web Expro ✅ thiết kế website 
+chuyên nghiệp, cao cấp, chuẩn SEO ✅. Bảo hành và hỗ trợ trọn đời. 
+Không làm web giá rẻ kém chất lượng."/>
+<link rel="canonical" href="https://thietkewebnhanh247.com/" />
+<link rel="next" href="https://thietkewebnhanh247.com/page/2/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Thiết kế web nhanh uy tín chuyên nghiệp chuẩn SEO, 
+Tương thích Mobile" />
+<meta property="og:description" content="Thiết kế web nhanh chuyên nghiệp theo chuẩn SEO, 
+sử dụng công nghệ HTML5, CSS3 Mobile Responsive tương thích Di động, Giá rẻ nhất" />
+<meta property="og:url" content="https://thietkewebnhanh247.com/" />
+<meta property="og:site_name" content="Thiết kế web chuyên nghiệp chuẩn SEO, 
+Tương thích Mobile" />
+<meta property="fb:app_id" content="1827321970886345" />
+<meta property="og:image" content="https://thietkewebnhanh247.com/wp-content/uploads/2017/
+01/thiet-ke-website-tai-tuyen-quang.jpg" />
+<meta property="og:image:secure_url" content="https://thietkewebnhanh247.com/
+wp-content/uploads/2017/01/thiet-ke-website-tai-tuyen-quang.jpg" />
+<meta property="og:image:width" content="680" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Công ty thiết kế web Expro ✅ 
+thiết kế website chuyên nghiệp, cao cấp, chuẩn SEO ✅. Bảo hành và hỗ trợ trọn đời. 
+Không làm web giá rẻ kém chất lượng." />
+<meta name="twitter:title" content="Công ty thiết kế web nhanh chuyên nghiệp, ✅ 
+Làm website giá rẻ chuẩn SEO" />
+<meta name="twitter:site" content="@minhnn250385" />
+<meta name="twitter:image" content="https://thietkewebnhanh247.com/wp-content/uploads/20
+17/01/thiet-ke-website-tai-tuyen-quang.jpg" />
+<meta name="msvalidate.01" content="FD383F4DBB2596ABA50323D671399646" />
+<meta name="google-site-verification" content="3WBnde_0RwyVdJg0hwq0d-
+5Y3ZIcI5cu1ivOReKywsk" />
+<meta name="yandex-verification" content="5355f63e7bdc617e" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Thiết kế web chuyên nghiệp ch
+uẩn SEO, Tương thích Mobile &raquo; Feed" href="https://thietkewebnhanh247.com/feed/" />
+
+
+
 </head>
 <body>
     
-    <div class="wrapper-page">
-        <div class="component-header wrapper-header-home-page bg-gradient-home-page position-relative">
-            <div class="component-menu menu-home-page">
-                <ul class="wrapper-link">
-                    <li>
-                        <a aria-current="page" class="active" href="/">ホームページ</a>
-                    </li>
-                    <li>
-                        <a href="/service">サービス</a>
-                    </li>
-                    <li>
-                        <a href="/chat">チャット</a>
-                    </li>
-                    <li>
-                        <a href="/theme">意匠</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6 col-sm-12 js-nomal-height">
-                        <div class="component-logo">
-                            <h2 class="logo">
-                                <a aria-current="page" class="active" href="/">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="layer-group" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa"><g class="fa-group"><path fill="currentColor" d="M12.41 236.31L70.51 210l161.63 73.27a57.64 57.64 0 0 0 47.72 0L441.5 210l58.09 26.33c16.55 7.5 16.55 32.5 0 40L266.64 381.9a25.68 25.68 0 0 1-21.29 0L12.41 276.31c-16.55-7.5-16.55-32.5 0-40z" class="fa-secondary"></path><path fill="currentColor" d="M12.41 148l232.94 105.7a25.61 25.61 0 0 0 21.29 0L499.58 148c16.55-7.51 16.55-32.52 0-40L266.65 2.32a25.61 25.61 0 0 0-21.29 0L12.41 108c-16.55 7.5-16.55 32.52 0 40zm487.18 216.11l-57.87-26.23-161.86 73.37a57.64 57.64 0 0 1-47.72 0L70.29 337.88l-57.88 26.23c-16.55 7.5-16.55 32.5 0 40L245.35 509.7a25.68 25.68 0 0 0 21.29 0l233-105.59c16.5-7.5 16.5-32.5-.05-40z" class="fa-primary"></path></g></svg> 
-                                    EBUDEZAIN
-                                </a>
-                            </h2>
-                        </div>
-                        <h1 class="des-create-explore position-relative">
-                            あなたのウェブサイトを作成
-                            <div class="decor-element animated fadeIn">
-                                <svg class="rotate-circle polygon-svg-rotate" viewBox="0 0 176 198" fill="none"><path opacity="0.05" d="M85.5 10.9904C87.047 10.0972 88.953 10.0972 90.5 10.9904L162.969 52.8301C164.516 53.7233 165.469 55.3739 165.469 57.1603V140.84C165.469 142.626 164.516 144.277 162.969 145.17L90.5 187.01C88.953 187.903 87.047 187.903 85.5 187.01L13.0314 145.17L8.03143 153.83L13.0314 145.17C11.4844 144.277 10.5314 142.626 10.5314 140.84V57.1603C10.5314 55.3739 11.4844 53.7233 13.0314 52.8301L85.5 10.9904Z" stroke="#020549" stroke-width="20"></path></svg>
-                            </div>
-                        </h1>
-                        <div class="button-click-interactive">
-                            <a class="btn btn-success btn-create-service animate-support animated tada" href="/service">利用サービス</a>
-                            <a class="link-create-explore" href="/theme">探検する</a>
-                        </div>
-                        <h4 class="service-description">私たちはプロのウェブサイトデザインユニットです。 エブデザインは、日本企業の成長に対応できることをうれしく思います。</h4>
-                        <a class="text-bordered" href="/chat">クリックしてチャット</a>
-                    </div>
-                    <div class="col-6 col-sm-12 pc">
-                        <div class="component-web-design-image  position-relative" style="height: 612px;">
-                            <img class="img-classic box-samples-img-1 animated jackInTheBox" src="image/general/img-sample-1-413x566.jpg" alt="" width="413" height="566" style="top: 20%;">
-                            <img class="img-classic box-samples-img-2 animated rollIn" src="image/general/img-sample-2-413x566.jpg" alt="" width="413" height="566" style="top: 10%;">
-                            <img class="img-classic box-samples-img-3 animated zoomIn" src="image/general/img-sample-3-413x566.jpg" alt="" width="413" height="566" style="bottom: 10%; right: 20%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="wrapper-page bg-gradient-home-page">
+        <div class="header">
+            hung
         </div>
+        hug
     </div>
-    <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.min.js') }}"></script>
+    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
 </body>
 </html>

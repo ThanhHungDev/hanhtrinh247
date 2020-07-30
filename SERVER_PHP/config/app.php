@@ -13,7 +13,11 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Hành trình 247'),
+    'name' => env('APP_NAME', 'Laravel'),
+
+    'keywords' => env('APP_KEYWORD', ''),
+
+    'description' => env('APP_DESCRIPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -120,6 +124,8 @@ return [
     */
 
     'key' => env('APP_KEY'),
+
+    'version' => env('APP_VERSION'),
 
     'cipher' => 'AES-256-CBC',
 

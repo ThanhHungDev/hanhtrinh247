@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helpers\SupportString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Post extends Model
 {
@@ -36,4 +37,23 @@ class Post extends Model
         return null;
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($instance) {
+            // update cache content
+            Cache::put('posts.'.$instance->slug,$instance);
+        });
+
+        static::deleting(function ($instance) {
+            // delete post cache
+            Cache::forget('posts.'.$instance->slug);
+        });
+        // $post = Cache::rememberForever('posts.'.$slug, function($slug) use($slug) {
+        //     return Post::where('slug',$slug)->first();
+        // });
+
+        // return view('frontend.posts.post-details',['post'=>$post]);
+    }
 }

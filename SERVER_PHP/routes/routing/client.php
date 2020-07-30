@@ -6,4 +6,6 @@ Route::get('/404', function(){
 })->name('CLIENT_404');
 
 
-Route::get('/','ClientController@index')->name('TOP_PAGE');
+Route::group(['prefix' => '/','middleware' => 'HTML_MINIFIER'], function () {
+    Route::get('/','ClientController@index')->name('TOP_PAGE');
+});
