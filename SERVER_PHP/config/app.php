@@ -19,6 +19,34 @@ return [
 
     'description' => env('APP_DESCRIPTION', ''),
 
+    'og_name'        => env('APP_OG_NAME', ''),
+    'og_keywords'    => env('APP_OG_KEYWORD', ''),
+    'og_description' => env('APP_OG_DESCRIPTION', ''),
+    'alternate_name' => env('APP_ALTERNATE_NAME', ''),
+    'version'        => env('APP_VERSION'),
+    'company'        => env('COMPANY'),
+    'company_name'   => env('COMPANY_NAME'),
+    'price_range'    => env('PRICE_RANGE'),
+    'logo'           => env('LOGO'),
+    'image'          => env('IMAGE'),
+    'map_link'       => env('MAP_LINK'),
+    'founder'        => env('FOUNDER'),
+    'company_mail'   => env('COMPANY_MAIL'),
+    'phone_one'      => env('PHONE_ONE'),
+    'phone_two'      => env('PHONE_TWO'),
+    'map_lat'        => env('MAP_LAT'),
+    'map_long'       => env('MAP_LONG'),
+    'rate_value'     => env('RATE_VALUE'),
+    'rate_max'       => env('RATE_MAX'),
+    'rate_view'      => env('RATE_VIEW'),
+
+    'company_postcode'         => env('COMPANY_POSTCODE'),
+    'company_address_street'   => env('COMPANY_ADDRESS_STREET'),
+    'company_address_region'   => env('COMPANY_ADDRESS_REGION'),
+    'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
+    'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
+    
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -124,8 +152,6 @@ return [
     */
 
     'key' => env('APP_KEY'),
-
-    'version' => env('APP_VERSION'),
 
     'cipher' => 'AES-256-CBC',
 

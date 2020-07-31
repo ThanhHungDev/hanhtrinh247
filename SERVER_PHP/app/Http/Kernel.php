@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         
         'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
         'HTML_MINIFIER' => \App\Http\Middleware\HtmlMifier::class,
+        'READ_CACHE' => \App\Http\Middleware\READ_CACHE::class,
     ];
 }

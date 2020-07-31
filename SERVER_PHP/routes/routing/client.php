@@ -6,6 +6,11 @@ Route::get('/404', function(){
 })->name('CLIENT_404');
 
 
-Route::group(['prefix' => '/','middleware' => 'HTML_MINIFIER'], function () {
-    Route::get('/','ClientController@index')->name('TOP_PAGE');
+Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
+    Route::get('/','ClientController@index')->name('HOME_PAGE');
+
+    Route::get('/search/{q?}','ClientController@index')->name('SEARCH');
+    Route::get('/services','ClientController@index')->name('SERVICE');
+    Route::get('/chats','ClientController@index')->name('CHAT');
+    Route::get('/themes','ClientController@index')->name('THEME');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Cache;
 
 class HtmlMifier
 {
@@ -21,6 +22,7 @@ class HtmlMifier
         // if (strpos($contentType, 'text/html') !== false) {
         //     $response->setContent($this->minify($response->getContent()));
         // }
+        $url = $request->url();
         $response = $next($request);
         $buffer = $response->getContent();
         if(strpos($buffer,'<pre>') !== false)
@@ -47,6 +49,9 @@ class HtmlMifier
             );
         }
         $buffer = preg_replace(array_keys($replace), array_values($replace), $buffer);
+        // $buffer = Cache::rememberForever($url, function() use ($buffer){
+        //     return $buffer;
+        // });
         $response->setContent($buffer);
         ini_set('zlib.output_compression', 'On'); // If you like to enable GZip, too!
         return $response;
