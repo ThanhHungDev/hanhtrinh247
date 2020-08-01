@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(OptionSeeder::class);
         $this->call(TopicSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(PostTagActiveSeeder::class);

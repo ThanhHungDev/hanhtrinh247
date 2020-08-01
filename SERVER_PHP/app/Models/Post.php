@@ -37,20 +37,20 @@ class Post extends Model
         return null;
     }
 
-    public static function boot(){
+    // public static function boot(){
         
-        parent::boot();
+    //     parent::boot();
 
-        static::updating(function ($instance) {
-            // update cache content
-            $keys = [ static::class , $instance->slug ];
-            Cache::put(implode(".", $keys ),$instance);
-        });
+    //     static::updating(function ($instance) {
+    //         // update cache content
+    //         $keys = [ static::class , $instance->slug ];
+    //         Cache::put(implode(".", $keys ),$instance);
+    //     });
 
-        static::deleting(function ($instance) {
-            // delete post cache
-            $keys = [ static::class , $instance->slug ];
-            Cache::forget(implode(".", $keys ));
-        });
-    }
+    //     static::deleting(function ($instance) {
+    //         // delete post cache
+    //         $keys = [ static::class , $instance->slug ];
+    //         Cache::forget(implode(".", $keys ));
+    //     });
+    // }
 }

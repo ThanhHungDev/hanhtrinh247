@@ -16,7 +16,7 @@ class TopicController extends Controller
      *
      * @return View
      */
-    public function store( $id = 0 ){
+    public function index( $id = 0 ){
 
         if( !$id ){
             /// thêm mới

@@ -8,5 +8,9 @@ return [
     'TYPE_SAVE'           => [
         'PUBLIC'     => 1,
         'ADMIN_READ' => 2,
+    ],
+    'TYPE_OPTION'   => [
+        'SINGLE' => 1,
+        'TEXT-HTML' => 2
     ]
 ];

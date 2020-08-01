@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Factory\FactoryModelInterface;
+use App\Repositories\Option\OptionEloquentRepository;
 use App\Repositories\Post\PostEloquentRepository;
 use App\Repositories\PostTagActive\PostTagActiveEloquentRepository;
 use App\Repositories\Rating\RatingEloquentRepository;
@@ -26,6 +27,7 @@ class BaseModel implements FactoryModelInterface{
     public static $UserModel;
     public static $TagThemeModel;
     public static $TagThemeActiveModel;
+    public static $OptionModel;
 
 
 
@@ -108,5 +110,13 @@ class BaseModel implements FactoryModelInterface{
             self::$TagThemeActiveModel = new TagThemeActiveEloquentRepository();
         }
         return self::$TagThemeActiveModel;
+    }
+
+    public function createOptionModel(){
+        
+        if(!self::$OptionModel){
+            self::$OptionModel = new OptionEloquentRepository();
+        }
+        return self::$OptionModel;
     }
 }

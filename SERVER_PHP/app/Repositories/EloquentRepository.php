@@ -172,5 +172,9 @@ abstract class EloquentRepository implements RepositoryInterface
         return $this->_model->where('slug', $slug )->first();
     }
     
+    public function truncate(){
+        
+        return $this->_model->truncate();
+    }
 
 }

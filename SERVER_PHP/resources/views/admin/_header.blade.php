@@ -1,9 +1,9 @@
 <a class="logo-brand" href="{{ Route('ADMIN_DASHBOARD') }}">
     <img src="{{ asset('/icon-logo-fav.png') }}" alt="admin">
 </a>
-<a class="top-page-goto" href="{{ Route('TOP_PAGE') }}">
+<a class="top-page-goto" href="{{ Route('HOME_PAGE') }}">
     <i class="hero-icon hero-home-import-outline"></i>
-    <span>{{ Route('TOP_PAGE') }}</span>
+    <span>{{ Route('HOME_PAGE') }}</span>
 </a>
 <div class="admin-setting">
     <a class="avatar">

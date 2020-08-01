@@ -22,6 +22,10 @@
         &:hover{
             border: 1px solid #c0ffdc;
         }
+
+        img{
+            vertical-align: unset;
+        }
     }
     .top-page-goto{
         display: inline-block;
@@ -49,6 +53,7 @@
                 width: 28px;
                 height: auto;
                 border-radius: 50%;
+                vertical-align: unset;
             }
             .icon-angle-down{
                 width: 15px;
@@ -294,33 +299,47 @@
     }
 }
 
-.wrapper-main-page .select2-container--default {
-    .select2-selection--multiple .select2-selection__rendered li{
-        width: 100%
-    }
-
+.wrapper-main-page 
+{
+    .page-edit-option .select2-container--default 
     .select2-selection--single{
-        min-height: 46px;
-        border-radius: 0;
-        border-color: $gray-300;
+        min-height: 38px!important;
 
+        .select2-selection__rendered{
+            padding-top: 5px;
+        }
         .select2-selection__arrow{
-            top: 10px;
+            top: 5px;
         }
     }
-
-    .select2-selection--multiple{
-        border-radius: 0;
-        border-color: $gray-300;
+    .select2-container--default {
+        .select2-selection--multiple .select2-selection__rendered li{
+            width: 100%
+        }
+    
+        .select2-selection--single{
+            min-height: 46px;
+            border-radius: 0;
+            border-color: $gray-300;
+    
+            .select2-selection__arrow{
+                top: 10px;
+            }
+        }
+    
+        .select2-selection--multiple{
+            border-radius: 0;
+            border-color: $gray-300;
+        }
+    
+        .select2-results>.select2-results__options,
+        .select2-results>.select2-results__options li{
+            border-radius: 0;
+            border-color: $gray-300
+        }
     }
-
-    .select2-results>.select2-results__options,
-    .select2-results>.select2-results__options li{
-        border-radius: 0;
-        border-color: $gray-300
-    }
+    
 }
-
 
 .wrapper__selectImageWithCKFinder{
 

@@ -14,11 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
     'keywords' => env('APP_KEYWORD', ''),
-
     'description' => env('APP_DESCRIPTION', ''),
-
     'og_name'        => env('APP_OG_NAME', ''),
     'og_keywords'    => env('APP_OG_KEYWORD', ''),
     'og_description' => env('APP_OG_DESCRIPTION', ''),
@@ -39,12 +36,11 @@ return [
     'rate_value'     => env('RATE_VALUE'),
     'rate_max'       => env('RATE_MAX'),
     'rate_view'      => env('RATE_VIEW'),
-
     'company_postcode'         => env('COMPANY_POSTCODE'),
     'company_address_street'   => env('COMPANY_ADDRESS_STREET'),
     'company_address_region'   => env('COMPANY_ADDRESS_REGION'),
-    'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
     'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
+    'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
     
 
     /*

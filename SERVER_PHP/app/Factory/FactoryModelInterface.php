@@ -24,4 +24,6 @@ interface FactoryModelInterface
     public function createTagThemeModel();
 
     public function createTagThemeActiveModel();
+
+    public function createOptionModel();
 }

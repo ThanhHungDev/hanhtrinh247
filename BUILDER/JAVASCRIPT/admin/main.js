@@ -178,9 +178,80 @@ function toggleSidebar(){
     })
 }
 
+function listenChangeTypeOption(e){
+
+    var group = $( e ).closest('.js-group-option')
+
+    var input    = group.find('input[name="value_text[]"]'),
+        textarea = group.find('textarea[name="value_html[]"]'),
+        cke = group.find('.cke')
+        
+    if( e.value == 1 ){
+        input.removeClass('d-none')
+        textarea.addClass('d-none')
+        cke.addClass('d-none')
+    }else{
+        input.addClass('d-none')
+        textarea.removeClass('d-none')
+        if( cke.length ){
+            cke.removeClass('d-none')
+        }else{
+            CKEDITOR.replace( textarea.attr('id') );
+        }
+    }
+}
+
+function addMoreBlock(e){
+
+    var blocks = document.getElementsByClassName("js-group-option"),
+        block  = null
+    if( blocks.length ){
+        block = blocks[0]
+    }
+    if( block ){
+        $(block).find('select').select2("destroy")
+        var groupInputValue  = $(block).find(".js-clone-value-option"),
+            inputValueText   = groupInputValue.find('input').clone(),
+            inputValueHtml   = groupInputValue.find('textarea').clone(),
+            selectTypeOption = $(block).find('select').clone()
+            inputValueText.val('')
+            inputValueText.removeClass('d-none')
+            inputValueHtml.attr('id', 'ckeditor-' + blocks.length)
+            inputValueHtml.attr('style','')
+            inputValueHtml.addClass('d-none')
+            selectTypeOption.attr('id', 'select2-' + blocks.length)
+            selectTypeOption.val('1')
+            
+        //// clone
+        var domClone = $(block).clone()
+        /// initial select2 remove 
+        runSelect2Single($(block).find('select'))
+        /// reset input data 
+        domClone.find("input, textarea").val('')
+        domClone.find(".js-clone-value-option").html('')
+        domClone.find(".js-clone-value-option").append(inputValueText)
+        domClone.find(".js-clone-value-option").append(inputValueHtml)
+        domClone.find(".js-clone-select-option").html('')
+        domClone.find(".js-clone-select-option").append(selectTypeOption)
+        /// initial select2 new 
+        runSelect2Single(domClone.find('select'))
+        /// setter input data 
+        $(blocks).last().after(domClone)
+    }
+}
+
 /// dom load success
 $(document).ready(function() {
 
+    $(".js__select_option_type_format").each(function(){
+        var value = $( this ).val()
+        if( value == 2 ){
+            var group = $( this ).closest(".js-group-option").find(".js-clone-value-option")
+            group.find('input').addClass('d-none')
+            group.find('textarea').removeClass('d-none')
+            CKEDITOR.replace( group.find('textarea').attr('id') );
+        }
+    })
     //// load select 2 
     var singleSelect = $('.js__single-select'),
         multiSelect  = $(".js__multi-select")

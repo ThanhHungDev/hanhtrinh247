@@ -5,7 +5,9 @@
 				<h3 class="footer-title">
                     チャットシステムでお客様を年中無休でサポート 
 					<br>
-                    <a class="footer-go-to-chat" href="/chat">クリックしてチャット</a>
+                    <a class="footer-go-to-chat" href="{{ Route('CHAT') }}">
+                        クリックしてチャット
+                    </a>
                 </h3>
                 <p class="des-footer">
                     経験豊富なスタッフのチームにより、ウェブサイトから問題を導き対処するだけでなく、

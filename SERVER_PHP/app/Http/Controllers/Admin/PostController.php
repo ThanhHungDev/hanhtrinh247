@@ -17,7 +17,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function store( $id = 0 ){
+    public function index( $id = 0 ){
 
         $topics  = $this->model->createTopicModel()->getAll();
         $tags    = $this->model->createTagModel()->getAll();
