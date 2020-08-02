@@ -14,4 +14,8 @@ class OptionEloquentRepository extends EloquentRepository
         return \App\Models\Option::class;
     }
     
+    public function findOptionKey( $key ){
+
+        return $this->_model->where('key', trim($key))->first();
+    }
 }

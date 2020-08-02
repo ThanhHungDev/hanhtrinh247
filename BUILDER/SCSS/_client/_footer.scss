@@ -125,18 +125,8 @@
 			vertical-align: middle;
 			float: left;
 			font-family: $font-archivo-medium;
-			.company-name,
-			.tax-code,
-			.tax-code-date,
-			.address,
-			.phone,
-			.email,
-			.seo-standard,
-			.chat-realtime,
-			.recruit,
-			.news,
-			.marketing-sale-online,
-			.responsive {
+			
+			p {
 				margin-bottom: 10px;
 				cursor: pointer;
 				&:hover {

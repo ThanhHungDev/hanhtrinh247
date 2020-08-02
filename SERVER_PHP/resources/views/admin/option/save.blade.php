@@ -2,14 +2,24 @@
 
 @section('title', 'Thêm option')
 
+
+@section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/library/jquery-ui.min.css')}}">
+@endsection
+
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/library/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/library/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/library/select2.min.js') }}"></script>
     <script src="{{ asset('js/library/wanakana.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script src="{{ asset('js/main.min.js') }}"></script>
+
+    <script>
+        $( "#sortable" ).sortable();
+    </script>
 @endsection
 
 @section('content_admin')
@@ -44,10 +54,11 @@
             </div>
             <form class="row js-validate-form page-edit-option" action="{{ Route('ADMIN_SAVE_OPTION') }}" method="POST">
                 {!! csrf_field() !!}
-                <div class="col-md-8">
+                <div class="col-md-8" id="sortable">
                     @if($options)
                     @foreach ($options as $index => $option)
                         <div class="row block-content js-group-option">
+                            <i onclick="removeBlockParent(this)" class="hero-icon hero-close"></i>
                             <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                                 <div class="row py-1">
                                     <div class="col-6" id="js-input-key-option-{{ $index }}">

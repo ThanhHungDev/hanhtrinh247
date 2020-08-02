@@ -34,7 +34,7 @@ class OptionController extends Controller
             for ($i=0; $i < count($optionInput['key']); $i++) { 
                 
                 $optionInputs[] = [
-                    'key' => $optionInput['key'][$i],
+                    'key' => trim($optionInput['key'][$i]),
                     'type' => $optionInput['type'][$i],
                     'value_text' => $optionInput['value_text'][$i],
                     'value_html' => $optionInput['value_html'][$i]

@@ -158,6 +158,11 @@ function runSelect2Multi(dom){
     );
 }
 
+function removeBlockParent(e){
+
+    $( e ).closest('.js-group-option').remove()
+}
+
 function showAllImagesCkfinderOnload( imgs ){
 
     imgs.each(function( indexInputImg ){

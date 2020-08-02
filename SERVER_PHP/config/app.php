@@ -42,6 +42,9 @@ return [
     'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
     'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
     
+    'tax_code_date'   => env('TAX_CODE_DATE'),
+    'text_about_us'   => env('TEXT_ABOUT_US'),
+    'text_my_service' => env('TEXT_MY_SERVICE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -256,7 +259,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'SupportString' => App\Helpers\SupportString::class,
-
+        'SupportDB' => App\Helpers\SupportDB::class,
     ],
 
 ];

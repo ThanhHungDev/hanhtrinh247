@@ -489,7 +489,21 @@ ul.pagination{
     color: #fff !important;
 }
 
+.js-group-option{
+    
+    position: relative;
 
-
-
-
+    .hero-close{
+        position: absolute;
+        right: 0;
+        top: 0;
+        // @include render-transform(translateY(-50%));
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        padding: 1px;
+        font-size: 24px;
+        background-color: $black;
+        color: $gray-500;
+    }
+}
