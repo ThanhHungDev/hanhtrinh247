@@ -117,14 +117,9 @@
 <body>
     
     <div class="wrapper-page bg-gradient-home-page">
-        <div class="header">
-            <h2 class="logo">
-                <a href="{{ Route('HOME_PAGE') }}" class="link-logo">
-                    @include('client.partial.icon-logo') {{ Config::get('app.company') }}
-                </a>
-            </h2>
-            @include('client.partial.menu-mini')
-        </div>
+        @include('client.partial.menu-mini')
+        @include('client.partial.service-intro')
+        @include('client.partial.theme-intro')
         @include('client.partial.footer')
         @include('client.partial.backtop')
         @include('client.partial.alo-now')

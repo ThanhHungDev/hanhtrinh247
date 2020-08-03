@@ -5,10 +5,10 @@ $column-max : 12;
 $containers-min-width : (
   XS : 320px,
   SM : 540px,
-  MD : 720px,
-  LG : 720px,
-  XL : 960px,
-  XXL: 1010px
+  MD : 767px,
+  LG : 792px,
+  XL : 1200px,
+  XXL: 1400px
 ) !default;
 
 $containers-max-width : (

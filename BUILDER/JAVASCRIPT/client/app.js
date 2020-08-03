@@ -8,7 +8,19 @@ $(document).ready(function () {
     jQuery(window).on("resize", function (e) {
         drawGoogleMap();
     });
+
+    formatHeightHeader()
+    window.addEventListener("resize", function(){
+        formatHeightHeader();
+    });
+    
+    formatPositionHomePage()
+    window.addEventListener("scroll", function () {
+    
+        formatPositionHomePage()
+    });
 })
+
 
 function backToTop() {
 
@@ -19,6 +31,39 @@ function backToTop() {
     }
     
 }
+
+function formatPositionHomePage(){
+    var DF_SCALE_PERCENT = 0.5;
+    var scroll = this.scrollY;
+    var wrapperComponent = document.getElementsByClassName(
+      "component-web-design-image"
+    );
+    if (wrapperComponent.length) {
+      var positionScroll = wrapperComponent[0].clientHeight;
+
+      var scale = 0;
+      if (scroll > positionScroll) {
+        scale = 100;
+      } else {
+        scale = parseInt((scroll * 100 * 100) / positionScroll) / 100.0;
+      }
+      scale *= DF_SCALE_PERCENT;
+
+      document.getElementsByClassName("box-samples-img-1")[0]['style']['top'] = 20 + scale + '%';
+      document.getElementsByClassName("box-samples-img-2")[0]['style']['top'] = 10 - scale + '%';
+      document.getElementsByClassName("box-samples-img-3")[0]['style']['bottom'] = 10 - scale + '%';
+      document.getElementsByClassName("box-samples-img-3")[0]['style']['right'] = 20 - scale + '%';
+    }
+}
+
+function formatHeightHeader(){
+
+    if (document.getElementsByClassName('js-nomal-height').length) {
+        var heightPrevColumn = document.getElementsByClassName('js-nomal-height')[0].clientHeight;
+        document.getElementsByClassName('component-web-design-image')[0]['style']['height'] = heightPrevColumn + "px";
+    }
+}
+
 
 function drawGoogleMap(){
     var styles = [

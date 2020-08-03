@@ -1,4 +1,4 @@
-<div class="component-footer wrapper-footer-page bg-gradient-home-page">
+<div class="component-footer wrapper-footer-page">
 	<div class="container head-footer">
 		<div class="row">
 			<div class="col-12">

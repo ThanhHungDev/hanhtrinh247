@@ -56,6 +56,13 @@
 
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <h2 class="title">tên người design</h2>
+                            <input name="author" type="text" value="{{ old('author', $theme->author ) }}" />
+                        </div>
+                    </div>
+
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">url</h2>
                             <input name="url" type="text" value="{{ old('url', $theme->url ) }}" />
                         </div>

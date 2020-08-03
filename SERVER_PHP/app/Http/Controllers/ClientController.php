@@ -11,6 +11,8 @@ class ClientController extends Controller
      */
     public function index(){
 
-        return view('client.index');
+        $themes   = $this->model->createThemeModel()->getThemesHomePage();
+
+        return view('client.index', compact('themes'));
     }
 }

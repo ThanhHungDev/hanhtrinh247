@@ -497,3 +497,10 @@ input, select, textarea, option{
     outline: none;
   }
 }
+.pc {
+  display: block;
+  @include Responsive(SM) {
+
+    display: none;
+	}
+}
