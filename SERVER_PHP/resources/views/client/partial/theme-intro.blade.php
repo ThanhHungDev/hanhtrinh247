@@ -13,7 +13,7 @@
                 <figcaption class="box-modern-title">
                     <h5 class="name">{{ $theme->title }}</h5>
                     <h6 class="author">by {{ $theme->author }}</h6>
-                    <a class="btn-trial" href="{{ $theme->url }}">view</a>
+                    <a class="btn-trial" href="{{ $theme->url }}">裁判</a>
                 </figcaption>
             </figure>
         </div>
