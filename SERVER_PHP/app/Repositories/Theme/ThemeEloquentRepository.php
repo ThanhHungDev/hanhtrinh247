@@ -18,4 +18,9 @@ class ThemeEloquentRepository extends EloquentRepository
         $limit = 9;
         return $this->_model->take( $limit )->get();
     }
+
+    public function getThemeBySlug($slug = ''){
+        
+        return $this->_model->where('slug', $slug )->first();
+    }
 }

@@ -1,7 +1,8 @@
 
 
 $(document).ready(function () {
-    console.log("hùng đẹp trai sửa lần 3")
+    console.log("hùng đẹp trai sửa lần 3", detectDevice())
+    handleDevice(detectDevice())
 
     drawGoogleMap();
 
@@ -25,6 +26,9 @@ $(document).ready(function () {
 
         checkInViewPosition($(".animate-support"))
     });
+
+
+    
 })
 
 
@@ -37,6 +41,60 @@ function backToTop() {
     }
     
 }
+
+function detectDevice(){
+    var winWidth = window.innerWidth,
+    _device = "laptop-device"
+    if( winWidth < 767 ){
+      _device = "mobile-device"
+    }
+    if( winWidth > 767 && winWidth <= 960){
+      _device = "tablet-device"
+    }
+    if( winWidth > 960 ){
+      _device = "laptop-device"
+    }
+    
+    return _device
+
+}
+function handleDevice( device ){
+    if( typeof device == 'undefined' ){
+        device = detectDevice()
+    }
+
+    
+    var domStyle = document.getElementById("js-style-device")
+    if( domStyle ){
+        if( device == "laptop-device" ){
+            var iframe = document.getElementById("js-iframe-review-template")
+            var menuThemeDetail = document.getElementById("js-menu-theme-detail")
+            if( iframe && menuThemeDetail ){
+            var height = menuThemeDetail.clientHeight;
+            domStyle.style.height = ( window.innerHeight - height - 5 ) + "px";
+            }else{
+            domStyle.style.height = null;
+            }
+        }else if( device == "tablet-device" ){
+            domStyle.style.height = "768px";
+        }else if( device == "mobile-device" ){
+            domStyle.style.height = "540px";
+        }
+        if(domStyle.classList.contains(device)){
+            return;
+        }
+        domStyle.classList.remove("laptop-device")
+        domStyle.classList.remove("tablet-device")
+        domStyle.classList.remove("mobile-device")
+        domStyle.classList.add(device)
+    }
+    
+    $("#js-icon-laptop-device").removeClass('active')
+    $("#js-icon-tablet-device").removeClass('active')
+    $("#js-icon-mobile-device").removeClass('active')
+    $("#js-icon-" + device).addClass('active')
+}
+
 
 function checkInViewPosition ($animations) {
 
