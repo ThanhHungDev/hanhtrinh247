@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{ Config::get("app.name") }} </title>
+    <title> {{ $theme->title . " | " .Config::get("app.name") }} </title>
     <meta name="robots" content="index, follow" />
-
+    <meta property="author" content="{{ $theme->author }}" />
     <meta http-equiv="content-language" content="vi" />
-    <meta property="og:title" content="{{ Config::get("app.name") }}" />
+    <meta property="og:title" content="{{ $theme->title . " | " . Config::get("app.name") }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:image" content="@yield('image_seo')" />
-    <meta property="og:description" content="{{ Config::get("app.description") }}" />
-    <meta name="description" content="{{ Config::get("app.description") }}">
-    <meta name="keywords" content="{{ Config::get("app.keywords") }}">
+    <meta property="og:url" content="{{ asset($theme->url) }}" />
+    <meta property="og:image" content="{{ $theme->image_seo }}" />
+    <meta property="og:description" content="{{ $theme->description }}" />
+    <meta name="description" content="{{ $theme->description_seo }}">
+    <meta name="keywords" content="{{ $theme->keyword_seo }}">
 
     
     <link rel="canonical" href="{{ asset('/') }}" />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:description" content="{{ Config::get("app.og_description") }}" />
+    <meta property="og:title" content="{{ $theme->title . " | " . Config::get("app.og_name") }}" />
+    <meta property="og:description" content="{{ $theme->description_seo }}" />
     <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:site_name" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:image" content="{{ Config::get("app.image") }}" />
+    <meta property="og:site_name" content="{{ $theme->site_name . " | " . Config::get("app.og_name") }}" />
+    <meta property="og:image" content="{{ $theme->image_seo }}" />
     <meta property="og:image:secure_url" content="{{ Config::get("app.image") }}" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="{{ Config::get("app.description") }}" />
-    <meta name="twitter:title" content="{{ Config::get("app.og_name") }}" />
-    <meta name="twitter:site" content="@minhnn250385" />
-    <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
+    <meta name="twitter:description" content="{{ $theme->description_seo }}" />
+    <meta name="twitter:title" content="{{ $theme->site_name }}" />
+    <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
+    <meta name="twitter:image" content="{{ $theme->image_seo }}" />
 
     <meta name="msvalidate.01" content="" />
     <meta name="google-site-verification" content="" />
@@ -92,20 +92,6 @@
             }
         }
     </script> 
-    <script type='application/ld+json'>
-    {
-        "@context":"https://schema.org/",
-        "@type":"Book",
-        "name":"{{ Config::get("app.name") }}",
-        "description":"{{ Config::get("app.description") }}",
-        "aggregateRating":{
-            "@type":"AggregateRating",
-            "ratingValue":"{{ Config::get("app.rate_value") }}",
-            "bestRating":"{{ Config::get("app.rate_max") }}",
-            "ratingCount":"{{ Config::get("app.rate_view") }}"
-        }
-    }
-    </script>
 
 
 
@@ -120,7 +106,7 @@
         <div class="component-detail-theme">
             <div id="js-menu-theme-detail" class="wrapper-component-menu">
                 <div class="component-menu-theme">
-                    <a activeclass="active" exact to="/">
+                    <a href="{{ Route('HOME_PAGE') }}">
                         @include('client.partial.icon-logo')
                     </a>
                     <ul id="js-handle-device" class="component-menu-detail-theme-responsive">
@@ -131,13 +117,13 @@
                     </ul>
                     <div class="selector-theme">
                         <span>
-                            <a to='/chat' class="btn-goto-chat-detail-theme">
+                            <a href="{{ Route('CHAT') }}" class="btn-goto-chat-detail-theme">
                                 <i class="hero-icon hero-cellphone-message"></i>
                                 管理者とチャットする
                             </a>
                         </span>
                         <span>
-                            <a to="/contact" class="btn-select-design-here">
+                            <a href="{{ Route('CONTACT_PAGE') }}" class="btn-select-design-here">
                                 <i class="hero-icon hero-hand-pointing-right"></i> 
                                 このデザインを選択 
                             </a>
@@ -147,7 +133,7 @@
             </div>
             <div id="js-iframe-review-template" class="wrapper-theme-detail-iframe">
                 <div id="js-style-device">
-                    <iframe src="http://velikorodnov.com/dev/homeshop_preview/" 
+                    <iframe src="http://hanhtrinh247.dev.com/" 
                     frameBorder="0" width="100%" height="100%"></iframe>
                 </div>
             </div>

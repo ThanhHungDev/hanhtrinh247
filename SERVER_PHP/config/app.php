@@ -45,6 +45,7 @@ return [
     'tax_code_date'   => env('TAX_CODE_DATE'),
     'text_about_us'   => env('TEXT_ABOUT_US'),
     'text_my_service' => env('TEXT_MY_SERVICE'),
+    'site_fb'   => env('SITE_FB'),
 
     /*
     |--------------------------------------------------------------------------

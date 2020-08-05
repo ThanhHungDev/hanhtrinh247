@@ -15,4 +15,8 @@ class ClientController extends Controller
 
         return view('client.index', compact('themes'));
     }
+
+    public function contact(){
+        return 'contact';
+    }
 }

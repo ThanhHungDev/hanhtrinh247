@@ -12,6 +12,9 @@ class ThemeController extends Controller
 
         $themeModel = $this->model->createThemeModel();
         $theme = $themeModel->getThemeBySlug($slug);
+        if( !$theme ){
+            return abort(404);
+        }
 
         return view('client.theme-detail', compact('theme'));
     }
