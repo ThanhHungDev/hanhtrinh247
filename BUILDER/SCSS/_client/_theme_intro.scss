@@ -74,6 +74,9 @@
             bottom: 0px;
             padding: 10px;
           }
+          @include Responsive(XS) {
+            height: 85px;
+          }
   
           .name {
             white-space: nowrap;

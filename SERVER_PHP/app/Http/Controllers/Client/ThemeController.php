@@ -24,8 +24,9 @@ class ThemeController extends Controller
      */
     public function load(){
 
-        $themes   = $this->model->createThemeModel()->getThemesHomePage();
+        $tags   = $this->model->createTagThemeModel()->getAll();
+        $themes = $this->model->createThemeModel()->getThemesHomePage();
 
-        return view('client.index', compact('themes'));
+        return view('client.themes', compact('themes', 'tags'));
     }
 }

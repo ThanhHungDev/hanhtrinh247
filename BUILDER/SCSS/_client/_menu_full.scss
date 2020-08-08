@@ -216,7 +216,7 @@
       right: 0;
       bottom: 0;
       @include render-gradient(0deg, #ffd1d4, #d6ffc6);
-      z-index: 22;
+      z-index: 222222;
       top: 0;
       // left: -767px;
       // right: 767px;
@@ -307,6 +307,11 @@
       text-align: right;
       border-bottom: 1px solid $gray-500;
       padding-bottom: 15px;
+
+      .hero-icon {
+        font-size: 32px;
+        line-height: 1;
+      }
 
       path{
         color: $gray-600

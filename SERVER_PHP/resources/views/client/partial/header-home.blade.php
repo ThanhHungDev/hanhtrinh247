@@ -2,7 +2,7 @@
     <div class="component-menu menu-home-page">
         <ul class="wrapper-link">
             <li><a class="{{ Route::is('HOME_PAGE') ? 'active' : null }}" href="{{ Route('HOME_PAGE') }}">ホームページ</a></li>
-            <li><a class="{{ Route::is('SERVICE') ? 'active' : null }}" href="{{ Route('SERVICE') }}">サービス</a></li>
+            <li><a class="{{ Route::is('SERVICE_LOAD') ? 'active' : null }}" href="{{ Route('SERVICE_LOAD') }}">サービス</a></li>
             <li><a class="{{ Route::is('CHAT') ? 'active' : null }}" href="{{ Route('CHAT') }}">チャット</a></li>
             <li><a class="{{ Route::is('THEME_LOAD') ? 'active' : null }}" href="{{ Route('THEME_LOAD') }}">意匠</a></li>
         </ul>

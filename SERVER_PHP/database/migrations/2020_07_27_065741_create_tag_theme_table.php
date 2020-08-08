@@ -17,6 +17,7 @@ class CreateTagThemeTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
+            $table->string('icon')->nullable();
             $table->string('excerpt')->nullable();
             $table->text('content')->nullable();
             $table->text('catalogue')->nullable();

@@ -4,38 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{ Config::get("app.name") }} </title>
-    <meta name="robots" content="index, follow" />
-
     <meta http-equiv="content-language" content="vi" />
-    <meta property="og:title" content="{{ Config::get("app.name") }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:image" content="@yield('image_seo')" />
-    <meta property="og:description" content="{{ Config::get("app.description") }}" />
-    <meta name="description" content="{{ Config::get("app.description") }}">
-    <meta name="keywords" content="{{ Config::get("app.keywords") }}">
+    <meta name="robots" content="index, follow" />
+    <title> @yield('title') </title>
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
 
-    
-    <link rel="canonical" href="{{ asset('/') }}" />
-    <meta property="og:locale" content="ja_JP" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:description" content="{{ Config::get("app.og_description") }}" />
-    <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:site_name" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:image" content="{{ Config::get("app.image") }}" />
-    <meta property="og:image:secure_url" content="{{ Config::get("app.image") }}" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="{{ Config::get("app.description") }}" />
-    <meta name="twitter:title" content="{{ Config::get("app.og_name") }}" />
-    <meta name="twitter:site" content="@minhnn250385" />
-    <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
+    @yield('meta-seo')
 
-    <meta name="msvalidate.01" content="" />
-    <meta name="google-site-verification" content="" />
-    <meta name="yandex-verification" content="" />
-    <link rel='dns-prefetch' href='' />
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
 
 
@@ -117,17 +93,12 @@
 <body>
     
     <div class="wrapper-page bg-gradient-home-page">
-        @include('client.partial.menu-mini')
-        @include('client.partial.service-intro')
-        @include('client.partial.theme-intro')
+        @include('client.partial.header-home')
+        @yield('content')
         @include('client.partial.footer')
         @include('client.partial.backtop')
         @include('client.partial.alo-now')
     </div>
-    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
-    <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
-
+    @yield('javascripts')
 </body>
 </html>

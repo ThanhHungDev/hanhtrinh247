@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">avatar</h2>
                             <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
                                 <input name="avatar" class="img__outputCKFinder" type="text" value="{{ old('avatar', $rating->avatar) }}" />

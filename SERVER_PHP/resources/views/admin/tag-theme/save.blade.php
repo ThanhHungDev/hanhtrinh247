@@ -53,6 +53,13 @@
                             <input name="slug" type="hidden" value="{{ old('slug', $tag->slug ) }}" />
                         </div>
                     </div>
+
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <h2 class="title">Icon</h2>
+                            <input name="icon" type="text" value="{{ old('icon', $tag->icon) }}" />
+                        </div>
+                    </div>
                     
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
@@ -67,13 +74,13 @@
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">site name SEO</h2>
                             <input name="site_name" type="text" value="{{ old('site_name', $tag->site_name) }}" />
                         </div>
                     </div>
                     <div class="row block-content">
-                        <div class="col-12 bg-color-white shadows-1 px-3 py-3" id="js-check-slug">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">hình ảnh SEO</h2>
                             <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
                                 <input name="image_seo" class="img__outputCKFinder" type="text" value="{{ old('image_seo', $tag->image_seo) }}" />

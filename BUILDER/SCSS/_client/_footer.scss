@@ -3,7 +3,7 @@
 	.head-footer {
 		padding: 60px 60px 15px 60px;
 		@include Responsive(SM) {
-			padding: 20px 0 15px 0;
+			padding: 20px 15px 15px 15px;
 		}
 		.footer-title {
 			font-size: 26px;
@@ -67,12 +67,15 @@
 				.type {
 					a {
 						color: $gray-500;
+						&:hover{
+							color: $gray-700;
+						}
 					}
 				}
 				.link {
 					color: $black;
 					&:hover {
-						color: $gray-700;
+						color: $gray-500;
 					}
 				}
 			}

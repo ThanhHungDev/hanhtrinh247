@@ -26,6 +26,7 @@ class ADMIN_VALIDATE_SAVE_TAG_THEME extends FormRequest
         return [
             'name'            => 'required|max:150',
             'slug'             => 'required|max:150',
+            'icon'             => 'required',
             'excerpt'          => 'required|max:255',
             'content'          => 'required',
             'background'       => 'required|max:510',
@@ -43,6 +44,7 @@ class ADMIN_VALIDATE_SAVE_TAG_THEME extends FormRequest
             'name.max'                => ':attribute vượt quá :max kí tự',
             'slug.required'            => ':attribute phải được nhập',
             'slug.max'                 => ':attribute vượt quá :max kí tự',
+            'icon.required'            => ':attribute phải được nhập',
             'excerpt.required'         => ':attribute phải được nhập',
             'excerpt.max'              => ':attribute vượt quá :max kí tự',
             'content.required'         => ':attribute phải được nhập',

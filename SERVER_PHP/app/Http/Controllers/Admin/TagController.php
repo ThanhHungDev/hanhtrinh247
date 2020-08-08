@@ -37,7 +37,7 @@ class TagController extends Controller
     public function save(ADMIN_VALIDATE_SAVE_TAG $request, $id = 0){
 
         ///setting data insert table tag
-        $tagInput = $request->only( 'name', 'slug', 'excerpt', 
+        $tagInput = $request->only( 'name', 'slug', 'icon', 'excerpt', 
         'content', 'background', 'thumbnail', 'site_name', 
         'image_seo', 'keyword_seo', 'description_seo');
 

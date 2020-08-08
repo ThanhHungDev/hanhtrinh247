@@ -272,6 +272,10 @@ body {
 
 .mobile {
     display: none;
+
+    @include Responsive( SM ){
+      display: unset;
+    }
 }
 
 .small {

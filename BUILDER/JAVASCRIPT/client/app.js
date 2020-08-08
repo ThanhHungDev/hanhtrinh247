@@ -5,9 +5,11 @@ $(document).ready(function () {
     handleDevice(detectDevice())
 
     drawGoogleMap();
+    drawMapContact();
 
     jQuery(window).on("resize", function (e) {
         drawGoogleMap();
+        drawMapContact();
     });
 
     formatHeightHeader()
@@ -194,6 +196,122 @@ function drawGoogleMap(){
     });
     var map = new google.maps.Map(
         document.getElementById("map-canvas"),
+        mapOptions
+    );
+
+    //Associate the styled map with the MapTypeId and set it to display.
+    map.mapTypes.set("map_style", styledMap);
+    map.setMapTypeId("map_style");
+    marker.setMap(map);
+
+    var address_detail =
+        '<div class="address_detail_map">' +
+        '<h4 class="main_color">' +
+        CONFIG_COMPANY_NAME +
+        '</h4>' +
+        CONFIG_COMPANY_ADDRESS +
+        "</div>";
+
+    address_detail = address_detail.split("\n").join("<br />");
+    var infowindow = new google.maps.InfoWindow({
+        content: address_detail,
+    });
+
+    marker.addListener("click", function () {
+        infowindow.open(map, marker);
+    });
+    infowindow.open(map, marker);
+}
+
+
+function closeMenuToggle() {
+    if (window.innerWidth > 767) {
+        return;
+    }
+    document.getElementById('js-toggle-menu-mobile').classList.toggle('open');
+    document.body.classList.remove('neo-scroll')
+}
+function activeMenuMobile() {
+    if (window.innerWidth > 767) {
+        return;
+    }
+    var dropdownClick = event.target.parentElement;
+    if (dropdownClick.classList.contains('active')) {
+        dropdownClick.classList.remove('active');
+    } else {
+        dropdownClick.classList.add('active-temp');
+    }
+    var lstDropDown = document.getElementById('js-toggle-menu-mobile').getElementsByClassName('dropdown-menu');
+    if (lstDropDown.length) {
+        for (var index = 0; index < lstDropDown.length; index++) {
+
+            if (lstDropDown[index].classList.contains('active')) {
+                lstDropDown[index].classList.remove('active');
+            }
+            if (lstDropDown[index].classList.contains('active-temp')) {
+                lstDropDown[index].classList.remove('active-temp');
+                lstDropDown[index].classList.add('active');
+            }
+        }
+    }
+}
+
+function toggleMenu(){
+    
+    var wrapperLink = document.getElementById('js-toggle-menu-mobile');
+    if(wrapperLink){
+
+      wrapperLink.classList.toggle('open');
+      document.body.classList.toggle('neo-scroll')
+    }
+}
+
+
+function drawMapContact() {
+    if(!document.getElementById("map-contact-canvas")){
+        return false
+    }
+
+    var styles = [
+        {
+            stylers: [{ saturation: 0 }],
+        },
+        {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [
+                { lightness: 0 },
+                { visibility: "simplified" },
+            ],
+        },
+        {
+            featureType: "road",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }],
+        },
+    ];
+    // Create a new StyledMapType object, passing it the array of styles,
+    // as well as the name to be displayed on the map type control.
+    var styledMap = new google.maps.StyledMapType(styles, {
+        name: "Google Map",
+    });
+    var myLatlng = new google.maps.LatLng(35.707616, 139.669912);
+    var mapOptions = {
+        zoom: 17,
+        scrollwheel: false,
+        center: myLatlng,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"],
+        },
+    };
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        icon: '/images/map-icon.png'
+    });
+    var map = new google.maps.Map(
+        document.getElementById("map-contact-canvas"),
         mapOptions
     );
 

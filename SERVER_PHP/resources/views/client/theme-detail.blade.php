@@ -32,10 +32,6 @@
     <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
     <meta name="twitter:image" content="{{ $theme->image_seo }}" />
 
-    <meta name="msvalidate.01" content="" />
-    <meta name="google-site-verification" content="" />
-    <meta name="yandex-verification" content="" />
-    <link rel='dns-prefetch' href='' />
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
 
 
@@ -133,7 +129,7 @@
             </div>
             <div id="js-iframe-review-template" class="wrapper-theme-detail-iframe">
                 <div id="js-style-device">
-                    <iframe src="http://hanhtrinh247.dev.com/" 
+                    <iframe src="{{ $theme->url }}" 
                     frameBorder="0" width="100%" height="100%"></iframe>
                 </div>
             </div>
