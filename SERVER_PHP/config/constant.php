@@ -12,5 +12,6 @@ return [
     'TYPE_OPTION'   => [
         'SINGLE' => 1,
         'TEXT-HTML' => 2
-    ]
+    ],
+    'VIEW_COOKIE_THEME' => 'VIEW_COOKIE_THEME'
 ];

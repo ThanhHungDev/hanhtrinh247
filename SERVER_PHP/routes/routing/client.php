@@ -11,7 +11,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     Route::get('/contact','ClientController@contact')->name('CONTACT_PAGE');
     Route::post('/contact','ClientController@mailContact')->name('MAIL_CONTACT');
-    
+    Route::post('/select-theme','ClientController@mailSelectThemeContact')->name('MAIL_SELECT_THEME_CONTACT');
 
     Route::get('/search/{q?}','ClientController@index')->name('SEARCH');
     Route::get('/services','ClientController@index')->name('SERVICE_LOAD');
@@ -19,5 +19,13 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/chats','ClientController@index')->name('CHAT');
 
     Route::get('/themes','Client\ThemeController@load')->name('THEME_LOAD');
-    Route::get('/theme/{slug}','Client\ThemeController@index')->name('THEME_DETAIL');
+    Route::get('/theme/show/{slug}','Client\ThemeController@index')->name('THEME_DETAIL');
+    Route::get('/theme/{slug}','Client\ThemeController@view')->name('THEME_VIEW');
+
+    Route::get('/tag-theme/{slug}','ClientController@tagThemeDetail')->name('TAG_THEME_VIEW');
+
+    Route::get('/tag/{slug}','ClientController@tagDetail')->name('TAG_VIEW');
+
+    
+    Route::get('/theme/search/{q?}', 'ClientController@searchTheme')->name('SEARCH_THEME');
 });

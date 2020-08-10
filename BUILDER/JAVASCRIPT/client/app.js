@@ -338,3 +338,24 @@ function drawMapContact() {
     });
     infowindow.open(map, marker);
 }
+
+
+$.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
+$.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
+$.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
+$.modal.OPEN = 'modal:open';                    // Fires after the modal has finished opening.
+$.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
+$.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
+$.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+
+
+
+$('a.btn-select-theme').click(function(event) {
+    $('#slug-hidden').val($(this).attr('data-slug'))
+    $("#select-theme-model").modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5
+    });
+    return false;
+});
+

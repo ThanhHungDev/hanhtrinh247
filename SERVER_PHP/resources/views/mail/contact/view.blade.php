@@ -10,6 +10,10 @@ Hello <i>{{ $input['name'] }}</i>,
 <div>
 <p><b>Message:</b>&nbsp;{{ $input['message'] }}</p>
 </div>
+
+@if(isset($input['theme']) && $input['theme'] )
+インターフェースを選択しました：{{ ($input['theme'])->title }}
+@endif
  
 Thank You,
 <br/>

@@ -29,36 +29,8 @@
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
 @endsection
 @section('content')
-
-
-<div class="component-intro-theme page-list-theme">
-    <div class="component-categories-theme">
-        @foreach($tags as $index => $tag )
-        <div class="component-category-theme">
-            <a class="link-icon-theme" href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
-                {!! $tag->icon !!}
-            </a>
-            <a class="link-name-theme" href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
-                {{ $tag->name }}
-            </a>
-        </div>
-        @endforeach
-    </div>
-    <div class="component-intro-theme">
-        @foreach ($themes as $theme)
-        <div class="component-item-theme wrapper-item-theme">
-            <figure class="box-modern-figure">
-                <a class="theme-img-scroll" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
-                    <img src="{{ $theme->image_laptop }}" alt="">
-                </a>
-                <figcaption class="box-modern-title">
-                    <h5 class="name">{{ $theme->title }}</h5>
-                    <h6 class="author">by {{ $theme->author }}</h6>
-                    <a class="btn-trial" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">裁判</a>
-                </figcaption>
-            </figure>
-        </div>
-        @endforeach
-    </div>
-</div>
+{{ $theme->description }}
+<a class="theme-img-scroll" href="{{ Route('THEME_DETAIL', ['slug' => $theme->slug]) }}">
+    <img src="{{ $theme->image_laptop }}" alt="">
+</a>
 @endsection

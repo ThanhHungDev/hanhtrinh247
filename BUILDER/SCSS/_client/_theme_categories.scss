@@ -30,6 +30,16 @@
             }
             
         }
+        &.active{
+            .link-icon-theme{
+                color: $custom-danger-color-dark;
+                opacity: 0.7;
+            }
+            .link-name-theme{
+                color: $custom-danger-color-dark;
+                opacity: 0.7;
+            }
+        }
     }
 }
 

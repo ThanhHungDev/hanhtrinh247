@@ -14,9 +14,9 @@ class ThemeEloquentRepository extends EloquentRepository
         return \App\Models\Theme::class;
     }
     
-    public function getThemesHomePage(){
-        $limit = 9;
-        return $this->_model->take( $limit )->get();
+    public function getThemes($limit = 9){
+
+        return $this->_model->take( $limit )->orderBy('view', 'DESC')->get();
     }
 
     public function getThemeBySlug($slug = ''){

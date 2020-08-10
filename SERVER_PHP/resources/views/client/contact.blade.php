@@ -23,8 +23,13 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 @section('javascripts')
+    
+
+
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/validate.contact.min.js' . Config::get('app.version')) }}"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
 @endsection
@@ -75,7 +80,7 @@
             </h3>
         </div>
         <div class="right-form-contact">
-            <form action="{{ Route('MAIL_CONTACT') }}" method="post">
+            <form class="js-validate-form" action="{{ Route('MAIL_CONTACT') }}" method="post">
                 {!! csrf_field() !!}
                 @if (Session::has(Config::get('constant.SAVE_ERROR')))
                 <div class="alert alert-danger">
@@ -83,8 +88,8 @@
                 </div>
                 @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
                 <div class="alert alert-success">
-                    đã liên hệ với quản trị viên thành công. 
-                    Quản Trị viên sẽ liên hệ với bạn sau
+                    管理者に連絡しました。
+                    管理者が後で連絡します
                 </div>
                 @endif
                 @if(!empty($errors->all()))
@@ -110,7 +115,7 @@
                     <label> メッセージ内容 </label>
                     <textarea name="message" class="" >{{ old('message' ) }}</textarea>
                 </div>
-                <button class="btn-send-mail-contact" onclick="contactMe()">メール管理者に送信</button>
+                <button class="btn-send-mail-contact">メール管理者に送信</button>
             </form>
         </div>
     </div>

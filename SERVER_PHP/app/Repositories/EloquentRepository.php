@@ -91,22 +91,24 @@ abstract class EloquentRepository implements RepositoryInterface
      * @param array $attributes
      * @return mixed
      */
-    public function save(array $attributes)
+    public function save(array $attributes = array())
     {
+        if(!empty($attributes)){
 
-        if( isset( $attributes['id'] ) ){
-            $id = $attributes['id'];
-            unset($attributes['id']);
-            if( $id ){
-                $this->_model = $this->_model->find($id);
+            if( isset( $attributes['id'] ) ){
+                $id = $attributes['id'];
+                unset($attributes['id']);
+                if( $id ){
+                    $this->_model = $this->_model->find($id);
+                }
+            }
+            
+            foreach ($attributes as $key => $value){
+    
+                $this->_model->$key = $value;
             }
         }
-        
-        foreach ($attributes as $key => $value){
 
-            $this->_model->$key = $value;
-        }
-        
         return $this->_model->save();
     }
     /**
