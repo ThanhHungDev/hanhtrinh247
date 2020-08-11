@@ -31,11 +31,11 @@ class ThemeController extends Controller
 
     public function view( Request $request, $slug ){
 
-        $DF_COOKIE_NAME = Config::get('constant.VIEW_COOKIE_THEME').$slug;
-        $cookieViewTheme  = $request->cookie($DF_COOKIE_NAME);
+        $DF_COOKIE_NAME  = Config::get('constant.VIEW_COOKIE_THEME').$slug;
+        $cookieViewTheme = $request->cookie($DF_COOKIE_NAME);
 
         $themeModel = $this->model->createThemeModel();
-        $theme = $themeModel->getThemeBySlug($slug);
+        $theme      = $themeModel->getThemeBySlug($slug);
         if( !$theme ){
             return abort(404);
         }
@@ -44,8 +44,11 @@ class ThemeController extends Controller
             $theme->view += 1;
             $theme->save();
         }
+
+        $themes_relation = $this->model->createThemeModel()
+                            ->getThemeRelationThemeId( array($theme->id) )->take(3)->get();
         
-        return view('client.theme-view', compact('theme'));
+        return view('client.theme-view', compact('theme', 'themes_relation'));
     }
 
      /**

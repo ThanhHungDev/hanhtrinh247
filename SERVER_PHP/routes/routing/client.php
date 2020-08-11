@@ -28,4 +28,6 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     
     Route::get('/theme/search/{q?}', 'ClientController@searchTheme')->name('SEARCH_THEME');
+    Route::get('/investor','ClientController@investor')->name('INVESTOR_PAGE');
+    
 });

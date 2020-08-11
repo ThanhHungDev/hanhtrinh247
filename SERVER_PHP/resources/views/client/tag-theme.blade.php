@@ -3,8 +3,8 @@
 @extends('client.layout.main')
 
 @section('title', $tag->name)
-@section('description', $tag->description )
-@section('keywords', $tag->keyword )
+@section('description', $tag->description_seo )
+@section('keywords', $tag->keyword_seo )
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />
@@ -37,7 +37,7 @@
         <h2 class="custommer-intro">{{ SupportDB::getOption('tag-theme-custommer-introduce') }}</h2>
 
         <form class="search-theme" action="{{ Route('SEARCH_THEME') }}" method="GET">
-            {!! csrf_field() !!}
+            
             <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート..">
             <button class="btn-search-theme"><i class="hero-icon hero-magnify-scan"></i></button>
         </form>
@@ -55,21 +55,32 @@
     </h4>
     @endforeach
 </div>
-<div class="component-intro-theme">
+<div class="component-intro-theme clearfix">
 
-    @if (Session::has(Config::get('constant.SAVE_ERROR')))
-    <div class="alert alert-danger">
-        {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
+    <div class="row">
+        <div class="col-12">
+            @if (Session::has(Config::get('constant.SAVE_ERROR')))
+            <div class="alert alert-danger">
+                {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
+            </div>
+            @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
+            <div class="alert alert-success">
+                管理者に連絡しました。
+                管理者が後で連絡します
+            </div>
+            @endif
+            @if(!empty($errors->all()))
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-warning">
+                    {{ $error }}
+                </div>
+                @endforeach
+            @endif
+        </div>
     </div>
-    @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
-    <div class="alert alert-success">
-        管理者に連絡しました。
-        管理者が後で連絡します
-    </div>
-    @endif
 
-    @if($tag->themes)
-    @foreach ($tag->themes as $theme)
+    @if($themes_in_tag)
+    @foreach ($themes_in_tag as $theme)
     <div class="component-item-theme wrapper-item-theme">
         <figure class="box-modern-figure">
             <a class="theme-img-scroll" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
@@ -96,6 +107,42 @@
     @endforeach
     @endif
 </div>
+
+<div class="prominence">
+    <div class="topic-website-selector">
+        <div class="title-topic">関係性のあるデザインの卓越性</div>
+    </div>
+    <div class="component-intro-theme clearfix">
+
+        @if($themes_relation)
+        @foreach ($themes_relation as $theme)
+        <div class="component-item-theme wrapper-item-theme">
+            <figure class="box-modern-figure">
+                <a class="theme-img-scroll" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+                    <img src="{{ $theme->image_laptop }}" alt="">
+                </a>
+                <figcaption class="box-modern-title">
+                    <h5 class="name">{{ $theme->title }}</h5>
+                    <h6 class="author">by {{ $theme->author }}</h6>
+                    <a class="btn-trial" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">裁判</a>
+                </figcaption>
+            </figure>
+            <h4 class="title-theme">{{ $theme->title }}</h4>
+            <div class="group-btn-more">
+                <a href="{{ Route('THEME_DETAIL', ['slug' => $theme->slug]) }}" 
+                    target="_blank"
+                    class="btn-view-page float-left">
+                    詳細を表示
+                </a>
+                <a class="btn-select-theme float-right" data-slug="{{ $theme->slug }}">
+                    このデザインを選択
+                </a>
+            </div>
+        </div>
+        @endforeach
+        @endif
+    </div>
+</div>
 <!-- Modal HTML embedded directly into document -->
 <div id="select-theme-model" class="modal ">
     <form class="js-validate-form component-contact" action="{{ Route('MAIL_SELECT_THEME_CONTACT') }}" method="post">
@@ -118,6 +165,9 @@
                 <label> メッセージ内容 </label>
                 <textarea name="message" class="" ></textarea>
             </div>
+            <!-- Google reCaptcha -->
+            <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
+            <!-- End Google reCaptcha -->
             <button rel="modal:close" class="btn-send-mail-contact">メール管理者に送信</button>
         </div>
     </form>

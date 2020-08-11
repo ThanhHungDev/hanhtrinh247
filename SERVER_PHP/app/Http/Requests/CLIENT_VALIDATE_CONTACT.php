@@ -24,9 +24,10 @@ class CLIENT_VALIDATE_CONTACT extends FormRequest
     public function rules()
     {
         return [
-            'name'   => 'required|max:150',
-            'email'  => 'required|email',
-            'mobile' => 'required|numeric'
+            'name'                 => 'required|max:150',
+            'email'                => 'required|email',
+            'mobile'               => 'required|numeric',
+            'g-recaptcha-response' => ['required', new \App\Rules\ValidRecaptcha]
         ];
     }
 
@@ -38,6 +39,7 @@ class CLIENT_VALIDATE_CONTACT extends FormRequest
             'email.email'     => ':attribute định dạng không đúng',
             'mobile.required' => ':attribute phải được nhập',
             'mobile.numeric'   => ':attribute  phải là số',
+            'g-recaptcha-response.required' => 'chưa nhập recapcha'
         ];
     }
 }

@@ -23,4 +23,23 @@ class ThemeEloquentRepository extends EloquentRepository
         
         return $this->_model->where('slug', $slug )->first();
     }
+
+    public function getThemeByTagIds( $ids, $ignoreIds ){
+
+        return $this->_model
+        ->join('tag_theme_active', 'theme.id', '=', 'tag_theme_active.theme_id')
+        ->whereIn('tag_theme_active.tag_theme_id', $ids )
+        ->whereNotIn('theme.id', $ignoreIds )
+        ->orderBy('view', 'DESC');
+    }
+
+    public function getThemeRelationThemeId( $ids ){
+
+        return $this->_model
+        ->join('tag_theme_active as tta1', 'theme.id', '=', 'tta1.theme_id')
+        ->join('tag_theme_active as tta2', 'tta1.tag_theme_id', '=', 'tta2.tag_theme_id')
+        ->whereIn('tta2.theme_id', $ids )
+        ->whereNotIn('theme.id', $ids )
+        ->orderBy('view', 'DESC');
+    }
 }

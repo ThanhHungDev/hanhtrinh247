@@ -34,7 +34,7 @@ class ClientController extends Controller
 
         try{
             if (Mail::failures()) {
-                throw new Exception('liên hệ thất bại');
+                throw new Exception('連絡できませんでした');
             }
             
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
@@ -42,7 +42,7 @@ class ClientController extends Controller
 
         }catch (\Exception $e){
             return redirect()->back()
-            ->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage())
+            ->with(Config::get('constant.SAVE_ERROR'), 'エラーが発生しました： '.$e->getMessage())
             ->withInput($request->all());
         }
     }
@@ -55,7 +55,7 @@ class ClientController extends Controller
 
         try{
             if (Mail::failures()) {
-                throw new Exception('liên hệ thất bại');
+                throw new Exception('連絡できませんでした');
             }
             
             return redirect()->back()
@@ -63,7 +63,7 @@ class ClientController extends Controller
 
         }catch (\Exception $e){
             return redirect()->back()
-            ->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage())
+            ->with(Config::get('constant.SAVE_ERROR'), 'エラーが発生しました： '.$e->getMessage())
             ->withInput($request->all());
         }
     }
@@ -72,11 +72,21 @@ class ClientController extends Controller
 
         $tags = $this->model->createTagThemeModel()->getAll();
         $tag  = $this->model->createTagThemeModel()->getBySlug($slug);
+
+        $themes_in_tag = $tag->themes;
+        $theme_ids     = $themes_in_tag->pluck('id')->toArray();
+        $themes_relation = $this->model->createThemeModel()
+                            ->getThemeRelationThemeId( $theme_ids )->take(3)->get();
+        // $tag_theme_ids = $this->model->createTagThemeActiveModel()
+        //                     ->getTagThemeByThemeIds($theme_ids)->pluck('tag_theme_id')->toArray();
+        // $themes_relation = $this->model->createThemeModel()
+        //                     ->getThemeByTagIds( $tag_theme_ids, $theme_ids )->take(3)->get();
         // 
         if( !$tag ){
             return abort(404);
         }
-        return view('client.tag-theme', compact('tag', 'tags'));
+        return view('client.tag-theme', compact('tag', 'tags', 'themes_in_tag', 'themes_relation'));
+        // return "tag theme nha";
     }
 
     public function tagDetail( $slug ){

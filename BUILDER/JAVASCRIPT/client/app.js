@@ -30,6 +30,14 @@ $(document).ready(function () {
     });
 
 
+    $('a.btn-select-theme').click(function(event) {
+        $('#slug-hidden').val($(this).attr('data-slug'))
+        $("#select-theme-model").modal({
+            fadeDuration: 250,
+            fadeDelay: 1.5
+        });
+        return false;
+    });
     
 })
 
@@ -339,23 +347,29 @@ function drawMapContact() {
     infowindow.open(map, marker);
 }
 
+function toggleCatalogue(e){
 
-$.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
-$.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
-$.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
-$.modal.OPEN = 'modal:open';                    // Fires after the modal has finished opening.
-$.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
-$.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
-$.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+    if( $(e).attr('data-toggle') == 1 ){
+        $(e).text('show')
+        $(e).attr('data-toggle', 0)
+        $(e).closest('.catalogue').find('.catalogue__body').addClass('d-none')
+    }else{
+        $(e).text('hide')
+        $(e).attr('data-toggle', 1)
+        $(e).closest('.catalogue').find('.catalogue__body').removeClass('d-none')
+    }
+}
+
+
+// $.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
+// $.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
+// $.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
+// $.modal.OPEN = 'modal:open';                    // Fires after the modal has finished opening.
+// $.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
+// $.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
+// $.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
 
 
 
-$('a.btn-select-theme').click(function(event) {
-    $('#slug-hidden').val($(this).attr('data-slug'))
-    $("#select-theme-model").modal({
-        fadeDuration: 250,
-        fadeDelay: 1.5
-    });
-    return false;
-});
+
 

@@ -26,4 +26,9 @@ class TagThemeActiveEloquentRepository extends EloquentRepository
         return $this->_model->where('theme_id', $postId)->pluck('tag_theme_id');
     }
 
+    public function getTagThemeByThemeIds( $ids = array()){
+        
+        return $this->_model->whereIn('theme_id', $ids);
+    }
+
 }

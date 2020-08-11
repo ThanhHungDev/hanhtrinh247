@@ -32,6 +32,8 @@
     <script src="{{ asset('js/validate.contact.min.js' . Config::get('app.version')) }}"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 @section('content')
 <div class="component-contact">
@@ -75,8 +77,8 @@
                 </div>
             </div>
             <h3 class="intro-chat-contact">
-            アカウントを作成したり、管理者を通じてチャットページで匿名でアクセスしたりすると、無料サービスを利用できるようになります
-            <a href="/chat" >チャットページに行く</a>
+                あなたは私たちのチャットアカウントを作成し、管理者からインセンティブを受け取ることができます
+                <a href="/chat" >チャットページに行く</a>
             </h3>
         </div>
         <div class="right-form-contact">
@@ -115,6 +117,9 @@
                     <label> メッセージ内容 </label>
                     <textarea name="message" class="" >{{ old('message' ) }}</textarea>
                 </div>
+                <!-- Google reCaptcha -->
+                <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
+                <!-- End Google reCaptcha -->
                 <button class="btn-send-mail-contact">メール管理者に送信</button>
             </form>
         </div>

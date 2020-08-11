@@ -1,4 +1,6 @@
 .component-intro-theme {
+  @include clearfix(); 
+
   .component-intro-theme {
     max-width: 1180px;
     margin: 0 auto;

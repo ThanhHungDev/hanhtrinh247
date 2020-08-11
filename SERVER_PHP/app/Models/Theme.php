@@ -35,5 +35,15 @@ class Theme extends Model
         }
         return null;
     }
+
+    /**
+     * là mối quan hệ dạng nhiều nhiều ví dụ : 
+     * product -> activity -> style thì thứ tự sẽ là như dưới
+     */
+    public function tags(){
+
+        return $this->belongsToMany(
+            TagTheme::class, 'tag_theme_active', 'theme_id', 'tag_theme_id');
+    }
     
 }

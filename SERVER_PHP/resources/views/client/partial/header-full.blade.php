@@ -41,6 +41,11 @@
                 <a class="{{ Route::is('CONTACT_PAGE') ? 'active': null }}"
                 href="{{ Route('CONTACT_PAGE') }}">お問い合わせ</a>
             </li>
+            <li>
+                <a class="{{ Route::is('INVESTOR_PAGE') ? 'active': null }}"
+                href="{{ Route('INVESTOR_PAGE') }}">投資家</a>
+            </li>
+            
         </ul>
     </div>
     <div class="component-button-hambeger mobile" onclick="toggleMenu()">
