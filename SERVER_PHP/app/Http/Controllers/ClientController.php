@@ -86,7 +86,6 @@ class ClientController extends Controller
             return abort(404);
         }
         return view('client.tag-theme', compact('tag', 'tags', 'themes_in_tag', 'themes_relation'));
-        // return "tag theme nha";
     }
 
     public function tagDetail( $slug ){
@@ -97,6 +96,18 @@ class ClientController extends Controller
             return abort(404);
         }
         return view('client.tag', compact('tag'));
+    }
+
+    public function searchTheme( Request $request){
+
+        $limit = 10;
+        $query = null;
+        if($request->has('q')) {
+            $query = $request->query('q');
+        }
+        $search = $this->model->createDBModel()->searchTheme($query)->paginate($limit);
+        
+        return view('client.search-theme', compact('search'));
     }
     
 }

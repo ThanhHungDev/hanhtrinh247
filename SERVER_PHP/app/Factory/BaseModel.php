@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Factory\FactoryModelInterface;
+use App\Repositories\DB\DBEloquentRepository;
 use App\Repositories\Option\OptionEloquentRepository;
 use App\Repositories\Post\PostEloquentRepository;
 use App\Repositories\PostTagActive\PostTagActiveEloquentRepository;
@@ -34,7 +35,7 @@ class BaseModel implements FactoryModelInterface{
     public function createDBModel(){
 
         if(!self::$DBModel){
-            self::$DBModel = DB::class;
+            self::$DBModel = new DBEloquentRepository();
         }
         
         return self::$DBModel;

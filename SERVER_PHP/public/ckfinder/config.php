@@ -103,7 +103,8 @@ $config['images'] = array(
         'medium' => array('width' => 600, 'height' => 480, 'quality' => 80),
         'large'  => array('width' => 800, 'height' => 600, 'quality' => 80),
         'banner'  => array('width' => 720, 'height' => 660, 'quality' => 80),
-        'product'  => array('width' => 720, 'height' => 960, 'quality' => 80)
+        'product'  => array('width' => 720, 'height' => 960, 'quality' => 80),
+        'background-theme'  => array('width' => 160, 'height' => 100, 'quality' => 80),
     )
 );
 

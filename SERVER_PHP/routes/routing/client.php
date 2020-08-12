@@ -27,7 +27,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/tag/{slug}','ClientController@tagDetail')->name('TAG_VIEW');
 
     
-    Route::get('/theme/search/{q?}', 'ClientController@searchTheme')->name('SEARCH_THEME');
+    Route::get('/search-theme', 'ClientController@searchTheme')->name('SEARCH_THEME');
     Route::get('/investor','ClientController@investor')->name('INVESTOR_PAGE');
     
 });
