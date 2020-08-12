@@ -9,7 +9,7 @@ Route::get('/404', function(){
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
     Route::get('/','ClientController@index')->name('HOME_PAGE');
 
-    Route::get('/contact','ClientController@contact')->name('CONTACT_PAGE');
+    Route::get('/contact/{slug_theme?}','ClientController@contact')->name('CONTACT_PAGE');
     Route::post('/contact','ClientController@mailContact')->name('MAIL_CONTACT');
     Route::post('/select-theme','ClientController@mailSelectThemeContact')->name('MAIL_SELECT_THEME_CONTACT');
 

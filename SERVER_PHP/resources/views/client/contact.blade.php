@@ -82,8 +82,9 @@
             </h3>
         </div>
         <div class="right-form-contact">
-            <form class="js-validate-form" action="{{ Route('MAIL_CONTACT') }}" method="post">
+            <form class="js-validate-form" action="{{ isset($slug_theme)? Route('MAIL_SELECT_THEME_CONTACT'): Route('MAIL_CONTACT') }}" method="post">
                 {!! csrf_field() !!}
+                <input id="slug-hidden" name="slug" type="hidden" value="{{ $slug_theme }}">
                 @if (Session::has(Config::get('constant.SAVE_ERROR')))
                 <div class="alert alert-danger">
                     {{ Session::get(Config::get('constant.SAVE_ERROR')) }}

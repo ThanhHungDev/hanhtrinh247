@@ -66,44 +66,44 @@
             </div>
             <hr class="hr-divide-description">
             <h6>サポート機器</h6>
-            <ul id="js-handle-device" class="component-menu-detail-theme-responsive">
+            <ul class="view-theme-responsive">
 
-                <li id="js-icon-laptop-device" onClick="handleDevice('laptop-device')"><i class="hero-icon hero-laptop"></i></li>
-                <li id="js-icon-tablet-device" onClick="handleDevice('tablet-device')"><i class="hero-icon hero-tablet-ipad"></i></li>
-                <li id="js-icon-mobile-device" onClick="handleDevice('mobile-device')"><i class="hero-icon hero-cellphone"></i></li>
+                <li id="js-icon-laptop-device" onClick="viewDevice('laptop-device')"><i class="hero-icon hero-laptop"></i></li>
+                <li id="js-icon-tablet-device" onClick="viewDevice('tablet-device')"><i class="hero-icon hero-tablet-ipad"></i></li>
+                <li id="js-icon-mobile-device" onClick="viewDevice('mobile-device')"><i class="hero-icon hero-cellphone"></i></li>
             </ul>
-
-            <h6>
-                tag: 
-                @foreach ($theme->tags as $tag)
-                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
-                    {{ $tag->name }}
-                </a>
-                ,
-                @endforeach
-            </h6>
+            
         </div>
-        <div class="wrapper-view-theme">
-            <figure class="box-modern-figure">
-                <a class="theme-img-scroll" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+        <div class="wrapper-view-theme"  id="js-type-view">
+            <figure class="box-modern-figure" >
+                <a class="theme-img-scroll laptop-device-img" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
                     <img src="{{ $theme->image_laptop }}" alt="">
                 </a>
-                <a class="theme-img-scroll d-none" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+                <a class="theme-img-scroll tablet-device-img" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
                     <img src="{{ $theme->image_tablet }}" alt="">
                 </a>
-                <a class="theme-img-scroll d-none" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+                <a class="theme-img-scroll mobile-device-img" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
                     <img src="{{ $theme->image_mobile }}" alt="">
                 </a>
             </figure>
         </div>
-        
+        <div class="group-btn-more">
+            <a href="{{ Route('THEME_DETAIL', ['slug' => $theme->slug]) }}" 
+                target="_blank"
+                class="btn-view-page">
+                詳細を表示
+            </a>
+            <a class="btn-select-theme" data-slug="{{ $theme->slug }}">
+                このデザインを選択
+            </a>
+        </div>
     </div>
 
     <div class="content-view-theme">
         <h1>{{ $theme->title }}</h1>
         <div class="excerpt">
             <blockquote>
-                <p>{{ $theme->excerpt }}</p>
+                <p class="excerpt-content">{{ $theme->excerpt }}</p>
                 <small>{{ $theme->author }}</small>
             </blockquote>
         </div>
@@ -131,6 +131,17 @@
                 <i class="hero-icon hero-eye-outline text-color-blue"></i>
                 {{ $theme->view }} 表示モード
             </span>
+        </div>
+
+        <div class="hash-tag">
+            <p class="title">Tag liên quan</p>
+            @foreach ($theme->tags as $tag)
+            <h6>
+                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                    {{ $tag->name }}
+                </a>
+            </h6>
+            @endforeach
         </div>
 
         <div class="main-view-theme-content">

@@ -119,7 +119,7 @@
                             </a>
                         </span>
                         <span>
-                            <a href="{{ Route('CONTACT_PAGE') }}" class="btn-select-design-here">
+                            <a href="{{ Route('CONTACT_PAGE', ['slug_theme' => $theme->slug]) }}" class="btn-select-design-here">
                                 <i class="hero-icon hero-hand-pointing-right"></i> 
                                 このデザインを選択 
                             </a>

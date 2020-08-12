@@ -1,8 +1,9 @@
 
 
 $(document).ready(function () {
-    console.log("hùng đẹp trai sửa lần 3", detectDevice())
+    
     handleDevice(detectDevice())
+    viewDevice(detectDevice())
 
     drawGoogleMap();
     drawMapContact();
@@ -34,7 +35,9 @@ $(document).ready(function () {
         $('#slug-hidden').val($(this).attr('data-slug'))
         $("#select-theme-model").modal({
             fadeDuration: 250,
-            fadeDelay: 1.5
+            fadeDelay: 1.5,
+            escapeClose: false,
+            clickClose: false,
         });
         return false;
     });
@@ -97,6 +100,28 @@ function handleDevice( device ){
         domStyle.classList.remove("tablet-device")
         domStyle.classList.remove("mobile-device")
         domStyle.classList.add(device)
+    }
+    
+    $("#js-icon-laptop-device").removeClass('active')
+    $("#js-icon-tablet-device").removeClass('active')
+    $("#js-icon-mobile-device").removeClass('active')
+    $("#js-icon-" + device).addClass('active')
+}
+function viewDevice( device ){
+
+    if( typeof device == 'undefined' ){
+        device = detectDevice()
+    }
+    var typeView = document.getElementById("js-type-view")
+    if( typeView ){
+        /// handle class
+        if(typeView.classList.contains(device)){
+            return;
+        }
+        typeView.classList.remove("laptop-device")
+        typeView.classList.remove("tablet-device")
+        typeView.classList.remove("mobile-device")
+        typeView.classList.add(device)
     }
     
     $("#js-icon-laptop-device").removeClass('active')

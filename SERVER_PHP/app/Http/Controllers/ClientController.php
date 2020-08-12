@@ -21,9 +21,9 @@ class ClientController extends Controller
         return view('client.home', compact('themes'));
     }
 
-    public function contact(){
+    public function contact( $slug_theme = null ){
         
-        return view('client.contact');
+        return view('client.contact', compact('slug_theme'));
     }
 
     public function mailContact(CLIENT_VALIDATE_CONTACT $request){
