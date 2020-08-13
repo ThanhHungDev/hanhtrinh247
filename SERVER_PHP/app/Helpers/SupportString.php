@@ -10,9 +10,7 @@ class SupportString{
         return str_replace('\n', '', strip_tags($content));
     }
 
-    public static function createSlug( $str ){
-
-        $str = trim(mb_strtolower($str));
+    public static function createSlug( $str, $replace = '-' ){
 
         //Đổi ký tự có dấu thành không dấu
         $str = trim(mb_strtolower($str));
@@ -24,9 +22,9 @@ class SupportString{
         $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
         $str = preg_replace('/(đ)/', 'd', $str);
         $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
-        $str = preg_replace('/([\s]+)/', '-', $str);
+        $str = preg_replace('/([\s]+)/', $replace, $str);
 
-        return $str;
+        return trim($str, $replace );
     }
 }
 

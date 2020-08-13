@@ -163,3 +163,13 @@ WHERE search_tsv @@ to_tsquery('mau|hang');
 -- 	setweight(to_tsvector(coalesce(vn_unaccent(theme.title))), 'A') ||
 -- 	setweight(to_tsvector(coalesce(vn_unaccent(theme.excerpt))), 'B') ||
 -- 	setweight(to_tsvector(coalesce(vn_unaccent(theme.content))), 'D')
+
+-- CREATE OR REPLACE FUNCTION add_space_character(text)
+--   RETURNS text AS
+-- $func$
+-- SELECT trim(regexp_replace($1, '(.{1,2})', E'\\1 ', 'g')); --- {1,2} có thể có 1-2 kí tự
+-- $func$ LANGUAGE sql IMMUTABLE;
+
+
+
+-- select add_space_character('検索ウェブサイトテンプレート.....');

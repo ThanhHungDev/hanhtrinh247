@@ -100,7 +100,7 @@
     </div>
 
     <div class="content-view-theme">
-        <h1>{{ $theme->title }}</h1>
+        <h1 class="title__content-view-theme">{{ $theme->title }}</h1>
         <div class="excerpt">
             <blockquote>
                 <p class="excerpt-content">{{ $theme->excerpt }}</p>

@@ -5,6 +5,7 @@
   padding: 10px;
 
   .theme-detail-intro{
+    padding-bottom: 30px;
     @include clearfix();
   }
   .group-btn-more{
@@ -189,6 +190,15 @@
     }
   }
 
+  .title__content-view-theme{
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 15px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+  }
   .excerpt{
     max-width: 800px;
     margin: 0 auto;

@@ -40,27 +40,65 @@
 
         <form class="search-theme" action="{{ Route('SEARCH_THEME') }}" method="GET">
             
-            <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート..">
+            <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート.." 
+        value="{{ $query }}"/>
             <button type="button" class="btn-search-theme"><i class="hero-icon hero-magnify-scan"></i></button>
         </form>
     </div>
 </div>
 
 <div class="search-detail">
-    @foreach ($search as $theme)
-        <div class="wrapper-search-detail-block">
-            <div class="background">
-                <img src="{{ $theme->background }}" alt="background-theme-{{ $theme->title }}">
+    <div class="topic-website-selector">
+        <div class="title-topic">kết quả tìm kiếm </div>
+    </div>
+    <div class="result-search">
+        <div class="result-search__left">
+            @if($search->isEmpty())
+                検索結果はありません
+            @else
+            @foreach ($search as $theme)
+            <div class="wrapper-search-detail-block">
+                <div class="background">
+                    <a href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+                        <img src="{{ $theme->background }}" alt="background-theme-{{ $theme->title }}">
+                    </a>
+                </div>
+                <div class="infor-theme-search">
+                    <h3>
+                        <a class="title-search-detail" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
+                            {!! $theme->title !!}
+                        </a>
+                    </h3>
+                    <small class="create-search-detail">
+                        <span>
+                            <i class="hero-icon hero-calendar"></i>
+                            <i>{{ date('Y-m-d', strtotime($theme->created_at ))}}</i>
+                        </span>
+                        <span>
+                            <i class="hero-icon hero-account-tie-outline"></i>
+                            <i>{{ date('Y-m-d', strtotime($theme->created_at ))}}</i>
+                        </span>
+                    </small>
+                    <h6 class="content-search-document">
+                        {!! $theme->search_document !!}
+                    </h6>                    
+                </div>
             </div>
-            <div class="infor-theme-search">
-                <h3 class="title-search-detail" >{{ $theme->title }}</h3>
-                <small class="create-search-detail">
-                    <i class="hero-icon hero-calendar"></i>
-                    <i>{{ date('Y-m-d', strtotime($theme->created_at ))}}</i>
-                </small>
+            @endforeach
+            @endif
+        </div>
+        <div class="result-search__right">
+            <div class="wrapper__r-search">
+                <div class="title__r-search">
+                    <i class="hero-icon hero-tag-heart"></i>関連タグ
+                </div>
+                <div class="description__r-search">
+                    tag 1
+                    
+                </div>
             </div>
         </div>
-    @endforeach
+    </div>
 </div>
 
 @endsection

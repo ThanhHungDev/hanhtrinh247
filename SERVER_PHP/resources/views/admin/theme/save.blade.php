@@ -154,7 +154,7 @@
                                         Select background
                                     </button>
                                 </div>
-                                <div>
+                                <div class="group-control-img-ckfinder">
                                     <input name="background" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('background', $theme->background) }}" />
                                 </div>
@@ -171,7 +171,7 @@
                                         Select image laptop
                                     </button>
                                 </div>
-                                <div>
+                                <div class="group-control-img-ckfinder">
                                     <input name="image_laptop" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('image_laptop', $theme->image_laptop) }}" />
                                 </div>
@@ -188,7 +188,7 @@
                                         Select image tablet
                                     </button>
                                 </div>
-                                <div>
+                                <div class="group-control-img-ckfinder">
                                     <input name="image_tablet" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('image_tablet', $theme->image_tablet) }}" />
                                 </div>
@@ -205,7 +205,7 @@
                                         Select image mobile
                                     </button>
                                 </div>
-                                <div>
+                                <div class="group-control-img-ckfinder">
                                     <input name="image_mobile" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('image_mobile', $theme->image_mobile) }}" />
                                 </div>

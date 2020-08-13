@@ -125,7 +125,7 @@
                                         Select background
                                     </button>
                                 </div>
-                                <div id="thumbnail-topic">
+                                <div class="group-control-img-ckfinder">
                                     <input name="background" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('background', $tag->background) }}" />
                                 </div>
@@ -142,7 +142,7 @@
                                         Select Thumbnail
                                     </button>
                                 </div>
-                                <div id="thumbnail-topic">
+                                <div class="group-control-img-ckfinder">
                                     <input name="thumbnail" class="img__outputCKFinder thumbnail-topic pb-2" 
                                         type="text" value="{{ old('thumbnail', $tag->thumbnail) }}" />
                                 </div>

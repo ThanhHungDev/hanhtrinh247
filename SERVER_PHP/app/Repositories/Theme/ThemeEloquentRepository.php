@@ -40,6 +40,8 @@ class ThemeEloquentRepository extends EloquentRepository
         ->join('tag_theme_active as tta2', 'tta1.tag_theme_id', '=', 'tta2.tag_theme_id')
         ->whereIn('tta2.theme_id', $ids )
         ->whereNotIn('theme.id', $ids )
-        ->orderBy('view', 'DESC');
+        ->groupby('theme.id')
+        ->orderBy('theme.view', 'DESC')
+        ->select("theme.*");
     }
 }

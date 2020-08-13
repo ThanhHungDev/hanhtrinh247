@@ -107,7 +107,7 @@ class ClientController extends Controller
         }
         $search = $this->model->createDBModel()->searchTheme($query)->paginate($limit);
         
-        return view('client.search-theme', compact('search'));
+        return view('client.search-theme', compact('search', 'query'));
     }
     
 }
