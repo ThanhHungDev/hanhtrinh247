@@ -53,4 +53,20 @@ class Post extends Model
     //         Cache::forget(implode(".", $keys ));
     //     });
     // }
+
+    /**
+     * là mối quan hệ dạng nhiều nhiều ví dụ : 
+     * product -> activity -> style thì thứ tự sẽ là như dưới
+     */
+    public function tags(){
+
+        return $this->belongsToMany(
+            Tag::class, 'post_tag_active', 'post_id', 'tag_id');
+    }
+
+    public function rateAuthor(){
+
+        return $this->belongsTo(
+            Rating::class, 'rating_id');
+    }
 }

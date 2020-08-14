@@ -15,5 +15,9 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
         return Post::class;
     }
 
+    public function getPostBySlug( $slug ){
+        
+        return $this->_model->where('slug', $slug )->first();
+    }
     
 }

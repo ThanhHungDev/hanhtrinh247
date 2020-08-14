@@ -3,8 +3,8 @@
 @extends('client.layout.main')
 
 @section('title', 'search theme | ' . Config::get("app.name"))
-@section('description', Config::get("app.description"))
-@section('keywords', Config::get("app.keywords"))
+@section('description', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
+@section('keywords', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 
 
 @section('meta-seo')
@@ -87,35 +87,36 @@
             @endforeach
             @endif
 
-            <div class="pagi">
+            <div class="pagination">
                 {{ $search->onEachSide(3)->links() }}
             </div>
         </div>
+        
         <div class="result-search__right">
-            <div class="wrapper__r-search">
-                <div class="title__r-search">
+            <div class="wrapper__right-item">
+                <div class="title__right-item">
                     <i class="hero-icon hero-tag-heart"></i>関連タグ
                 </div>
-                <div class="description__r-search">
+                <div class="description__r-tag">
                     @foreach ($tags as $tag)
                     <div class="tag__relate">
-                        <div class="background__relate-tag-search">
+                        <div class="background__relate-tag">
                             <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
                                 <img src="{{ $tag->background }}" alt="bg-tag-theme-{{ $tag->name }}">
                             </a>
                         </div>
-                        <div class="content__relate-tag-search">
-                            <h4 class="title_content__relate-tag-search">
+                        <div class="content__relate-tag">
+                            <h4 class="title_content__relate-tag">
                                 <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
                                     {{-- {!! $tag->icon !!}  --}}
                                     {{ $tag->name }}
                                 </a>
                             </h4>
-                            <h5 class="create__relate-tag-search">
+                            <h5 class="create__relate-tag">
                                 <i class="hero-icon hero-calendar"></i>
                                 <i>{{ date('Y-m-d', strtotime($tag->created_at ))}}</i>
                             </h5>
-                            <h6 class="excerpt_content__relate-tag-search">
+                            <h6 class="excerpt_content__relate-tag">
                                 <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
                                     {{ SupportString::limitText( $tag->excerpt, 50, "..." ) }}
                                 </a>

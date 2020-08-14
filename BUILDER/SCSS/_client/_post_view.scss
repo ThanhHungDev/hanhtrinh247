@@ -1,0 +1,130 @@
+.headfull__post-view {
+    
+    padding: 40px 0;
+    background-size: cover !important;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    display: block;
+    color: $white;
+
+    &:after{
+        content: ".";
+        color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0.6;
+        background-color: $gray-800;
+    }
+}
+
+.wrapper-intro-search__post-view{
+    position: relative;
+    z-index: 2;
+    padding: 0 15px;
+
+    .introduce__post-view{
+        font-size: 18px;
+        visibility: visible;
+        animation-name: bounceInLeft;
+        color: $white;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .custommer-intro{
+        text-align: center;
+        margin-top: 0px;
+        visibility: visible;
+        animation-name: bounceInRight;
+        font-weight: 100;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    .search__post-view{
+        outline: 0;
+        margin: 20px auto 0 auto;
+        max-width: 500px;
+        position: relative;
+
+        .form-control{
+            display: block;
+            width: 100%!important;
+            height: calc(2.25rem + 2px);
+            padding: 12px 50px 12px 15px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0;
+
+            &:hover, &:focus{
+                color: $custom-primary-color-dark;
+                border-color: $custom-primary-color-dark;
+            }
+        }
+        .btn-search__post-view{
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            bottom: 2px;
+            background-color: $custom-primary-color-dark;
+            border: none;
+            border-radius: 0;
+            outline: none;
+            padding: 0 15px;
+
+            .hero-icon{
+                font-size: 22px;
+                color: $gray-300;
+            }
+        }
+    }
+}
+
+.post-view-detail{
+
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 0;
+
+    
+    .result__post-view{
+        padding: 15px;
+        @include clearfix();
+        .result__post-view-left{
+            float: left;
+            width: 70%;
+            padding-right: 15px;
+        }
+        .result__post-view-right{
+            float: left;
+            width: 30%;
+        }
+    }
+    @include Responsive(SM){
+        .result__post-view{
+            .result__post-view-left, .result__post-view-right{
+                float: none;
+                width: 100%;
+                padding: 0
+            }
+        }
+        
+    }
+    
+}
+
+// .result__post-view-left{
+
+//     .title__post-view-left{
+
+//     }
+// }

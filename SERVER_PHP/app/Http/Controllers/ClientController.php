@@ -73,9 +73,10 @@ class ClientController extends Controller
         $tags = $this->model->createTagThemeModel()->getAll();
         $tag  = $this->model->createTagThemeModel()->getBySlug($slug);
 
-        $themes_in_tag = $tag->themes;
-        $theme_ids     = $themes_in_tag->pluck('id')->toArray();
-        $themes_relation = $this->model->createThemeModel()
+        $themes_in_tag_obj = $tag->themes();
+        $themes_in_tag     = $themes_in_tag_obj->paginate(10);
+        $theme_ids         = $themes_in_tag_obj->pluck('id')->toArray();
+        $themes_relation   = $this->model->createThemeModel()
                             ->getThemeRelationThemeId( $theme_ids )->take(3)->get();
         // $tag_theme_ids = $this->model->createTagThemeActiveModel()
         //                     ->getTagThemeByThemeIds($theme_ids)->pluck('tag_theme_id')->toArray();

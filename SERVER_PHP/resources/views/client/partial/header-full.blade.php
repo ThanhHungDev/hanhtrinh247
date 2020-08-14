@@ -19,9 +19,9 @@
                 <a class="{{ Route::is('SERVICE_LOAD', 'SERVICE_POST') }}" href="{{ Route('SERVICE_LOAD') }}">サービス</a>
                 <i class='hero-icon hero-plus-outline' onclick="activeMenuMobile()"></i>
                 <ul class="sub-link">
-                    <li><a href="{{ Route('SERVICE_POST', [ 'slug' => 'system' ]) }}">サービス</a></li>
-                    <li><a href="{{ Route('SERVICE_POST', [ 'slug' => 'hung' ]) }}">hùng</a></li>
-                    <li><a href="{{ Route('SERVICE_POST', [ 'slug' => 'nhin' ]) }}">sdfs</a></li>
+                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'mau-ueb-thuong-mai-dien-tu-chuyen-nghiep' ]) }}">サービス</a></li>
+                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'hung' ]) }}">hùng</a></li>
+                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'nhin' ]) }}">sdfs</a></li>
                 </ul>
             </li>
             <li class='dropdown-menu'>

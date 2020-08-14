@@ -64,6 +64,9 @@
       font-size: 18px;
       font-weight: 300;
       text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &.laptop-device{
@@ -228,82 +231,86 @@
     }
   }
 
-  .publisher{
-    margin: 0 auto;
+  
+  .main-view-theme-content{
+    padding-top: 15px;
+    h1, h2, h3, h4, h5{
+      line-height: 1;
+      padding: 15px 0;
+    }
+    h1{
 
-    span{
-      margin-right: 30px;
-      .hero-icon{
-        font-size: 20px;
-        vertical-align: -0.08em;
-      }
     }
   }
-  
-  .catalogue{
-    margin: 15px 0;
-    max-width: 800px;
-    border: 1px solid $gray-500;
-    padding: 6px 15px;
+}
 
-    ul{
-      padding-left: 15px;
-      li{
+.hash-tag{
+  .title{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: $gray-900;
+    padding: 15px 0 0 5px;
+
+    &:before{
+      content: "\F12F7";
+      color: $custom-red-light;
+      font: normal normal normal 24px/1 "HERO Icons";
+      font-size: inherit;
+      text-rendering: auto;
+      line-height: inherit;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      top: 12%;
+    }
+  }
+  a{
+    font-size: 14px;
+    color: $custom-primary-color-dark;
+    &:hover{
+      color: $custom-info-color-dark
+    }
+    &:before {
         
-  
-        &:before {
-          
-          content: "\F0F2A";
-          color: #01923e;
-          font: normal normal normal 24px/1 "HERO Icons";
-          font-size: inherit;
-          text-rendering: auto;
-          line-height: inherit;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          font-size: 10px;
-          top: 12%;
-        }
-        a{
-          color: #024602;
-          &:hover{
-            color: red;
-          }
-        }
-      }
+      content: "\F0F2A";
+      color: $custom-info-color-dark;
+      font: normal normal normal 24px/1 "HERO Icons";
+      font-size: inherit;
+      text-rendering: auto;
+      line-height: inherit;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 10px;
+      top: 12%;
     }
   }
+}
+.publisher{
+  margin: 0 auto;
 
-  .hash-tag{
-    .title{
+  span{
+    margin-right: 30px;
+    .hero-icon{
       font-size: 20px;
-      font-weight: bold;
-      text-transform: capitalize;
-      color: $gray-900;
-      padding: 15px 0 0 5px;
-
-      &:before{
-        content: "\F12F7";
-        color: $custom-red-light;
-        font: normal normal normal 24px/1 "HERO Icons";
-        font-size: inherit;
-        text-rendering: auto;
-        line-height: inherit;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        top: 12%;
-      }
+      vertical-align: -0.08em;
     }
-    a{
-      font-size: 14px;
-      color: $custom-primary-color-dark;
-      &:hover{
-        color: $custom-info-color-dark
-      }
+  }
+}
+.catalogue{
+  margin: 15px 0;
+  max-width: 800px;
+  border: 1px solid $gray-500;
+  padding: 6px 15px;
+
+  ul{
+    padding-left: 15px;
+    li{
+      
+
       &:before {
-          
+        
         content: "\F0F2A";
-        color: $custom-info-color-dark;
+        color: #01923e;
         font: normal normal normal 24px/1 "HERO Icons";
         font-size: inherit;
         text-rendering: auto;
@@ -313,16 +320,12 @@
         font-size: 10px;
         top: 12%;
       }
-    }
-  }
-  .main-view-theme-content{
-    padding-top: 15px;
-    h1, h2, h3, h4, h5{
-      line-height: 1;
-      padding: 15px 0;
-    }
-    h1{
-
+      a{
+        color: #024602;
+        &:hover{
+          color: red;
+        }
+      }
     }
   }
 }

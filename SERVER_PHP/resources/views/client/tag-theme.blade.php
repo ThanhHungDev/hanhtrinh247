@@ -106,6 +106,10 @@
     </div>
     @endforeach
     @endif
+    
+</div>
+<div class="pagination">
+    {{ $themes_in_tag->onEachSide(3)->links() }}
 </div>
 
 <div class="prominence">

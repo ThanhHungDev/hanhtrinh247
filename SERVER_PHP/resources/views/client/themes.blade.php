@@ -71,5 +71,8 @@
         </div>
         @endforeach
     </div>
+    <div class="pagination">
+        {{ $themes->onEachSide(3)->links() }}
+    </div>
 </div>
 @endsection
