@@ -106,8 +106,9 @@ class ClientController extends Controller
             $query = $request->query('q');
         }
         $search = $this->model->createDBModel()->searchTheme($query)->paginate($limit);
-        
-        return view('client.search-theme', compact('search', 'query'));
+        $tags = $this->model->createTagThemeModel()
+        ->getTagByThemeId($search->pluck('id')->toArray())->take(10)->get();
+        return view('client.search-theme', compact('search', 'query', 'tags'));
     }
     
 }

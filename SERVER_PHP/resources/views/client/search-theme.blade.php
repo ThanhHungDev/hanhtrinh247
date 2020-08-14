@@ -86,6 +86,10 @@
             </div>
             @endforeach
             @endif
+
+            <div class="pagi">
+                {{ $search->onEachSide(3)->links() }}
+            </div>
         </div>
         <div class="result-search__right">
             <div class="wrapper__r-search">
@@ -93,8 +97,32 @@
                     <i class="hero-icon hero-tag-heart"></i>関連タグ
                 </div>
                 <div class="description__r-search">
-                    tag 1
-                    
+                    @foreach ($tags as $tag)
+                    <div class="tag__relate">
+                        <div class="background__relate-tag-search">
+                            <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                                <img src="{{ $tag->background }}" alt="bg-tag-theme-{{ $tag->name }}">
+                            </a>
+                        </div>
+                        <div class="content__relate-tag-search">
+                            <h4 class="title_content__relate-tag-search">
+                                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                                    {{-- {!! $tag->icon !!}  --}}
+                                    {{ $tag->name }}
+                                </a>
+                            </h4>
+                            <h5 class="create__relate-tag-search">
+                                <i class="hero-icon hero-calendar"></i>
+                                <i>{{ date('Y-m-d', strtotime($tag->created_at ))}}</i>
+                            </h5>
+                            <h6 class="excerpt_content__relate-tag-search">
+                                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                                    {{ SupportString::limitText( $tag->excerpt, 50, "..." ) }}
+                                </a>
+                            </h6>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
