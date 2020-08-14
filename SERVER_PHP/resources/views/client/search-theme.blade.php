@@ -49,7 +49,7 @@
 
 <div class="search-detail">
     <div class="topic-website-selector">
-        <div class="title-topic">kết quả tìm kiếm </div>
+        <div class="title-topic">の検索結果 </div>
     </div>
     <div class="result-search">
         <div class="result-search__left">
