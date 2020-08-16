@@ -35,4 +35,14 @@ class Topic extends Model
         }
         return null;
     }
+
+    /**
+     * là mối quan hệ dạng 1 nhiều ví dụ : 
+     * product -> activity -> style thì thứ tự sẽ là như dưới
+     */
+    public function posts(){
+
+        return $this->hasMany(
+            Post::class, 'topic_id');
+    }
 }

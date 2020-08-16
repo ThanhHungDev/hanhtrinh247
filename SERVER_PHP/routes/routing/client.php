@@ -14,7 +14,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::post('/select-theme','ClientController@mailSelectThemeContact')->name('MAIL_SELECT_THEME_CONTACT');
 
     Route::get('/search/{q?}','ClientController@index')->name('SEARCH');
-    Route::get('/services','ClientController@index')->name('SERVICE_LOAD');
+    Route::get('/services','ClientController@service')->name('SERVICE_LOAD');
     Route::get('/service/{slug}','ClientController@index')->name('SERVICE_POST');
     Route::get('/chats','ClientController@index')->name('CHAT');
 
@@ -23,10 +23,10 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/theme/{slug}','Client\ThemeController@view')->name('THEME_VIEW');
 
     Route::get('/tag-theme/{slug}','ClientController@tagThemeDetail')->name('TAG_THEME_VIEW');
-
     Route::get('/tag/{slug}','ClientController@tagDetail')->name('TAG_VIEW');
+    Route::get('/topic/{slug}','ClientController@topicDetail')->name('TOPIC_VIEW');
 
-    Route::get('/search-post', 'ClientController@searchTheme')->name('SEARCH_POST');
+    Route::get('/search-post', 'ClientController@searchPost')->name('SEARCH_POST');
     Route::get('/search-theme', 'ClientController@searchTheme')->name('SEARCH_THEME');
     Route::get('/investor','ClientController@investor')->name('INVESTOR_PAGE');
     

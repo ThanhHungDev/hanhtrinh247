@@ -38,7 +38,7 @@
         <h2 class="introduce-tag">{{ SupportDB::getOption('tag-theme-title-introduce') }}</h2>
         <h2 class="custommer-intro">{{ SupportDB::getOption('tag-theme-custommer-introduce') }}</h2>
 
-        <form class="search-post-type" action="{{ Route('SEARCH_THEME') }}" method="GET">
+        <form class="search-post-type" action="{{ Route('SEARCH_POST') }}" method="GET">
             
             <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート.." 
         value="{{ $query }}"/>
@@ -56,31 +56,27 @@
             @if($search->isEmpty())
                 検索結果はありません
             @else
-            @foreach ($search as $theme)
+            @foreach ($search as $post)
             <div class="wrapper-search-detail-block">
                 <div class="background">
-                    <a href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
-                        <img src="{{ $theme->background }}" alt="background-theme-{{ $theme->title }}">
+                    <a href="{{ Route('POST_VIEW', ['slug' => $post->slug]) }}">
+                        <img src="{{ $post->background }}" alt="background-theme-{{ $post->title }}">
                     </a>
                 </div>
                 <div class="infor-theme-search">
                     <h3>
-                        <a class="title-search-detail" href="{{ Route('THEME_VIEW', ['slug' => $theme->slug]) }}">
-                            {!! $theme->title !!}
+                        <a class="title-search-detail" href="{{ Route('POST_VIEW', ['slug' => $post->slug]) }}">
+                            {!! $post->title !!}
                         </a>
                     </h3>
                     <small class="create-search-detail">
                         <span>
                             <i class="hero-icon hero-calendar"></i>
-                            <i>{{ date('Y-m-d', strtotime($theme->created_at ))}}</i>
-                        </span>
-                        <span>
-                            <i class="hero-icon hero-account-tie-outline"></i>
-                            <i>{{ $theme->author }}</i>
+                            <i>{{ date('Y-m-d', strtotime($post->created_at ))}}</i>
                         </span>
                     </small>
                     <h6 class="content-search-document">
-                        {!! $theme->search_document !!}
+                        {!! $post->search_document !!}
                     </h6>                    
                 </div>
             </div>
@@ -89,11 +85,11 @@
                 {{ $search->onEachSide(3)->links() }}
             </div>
             @endif
-
-
+            
         </div>
         
         <div class="result-search__right">
+            @if(!$tags->isEmpty())
             <div class="wrapper__right-item">
                 <div class="title__right-item">
                     <i class="hero-icon hero-tag-heart"></i>関連タグ
@@ -102,13 +98,13 @@
                     @foreach ($tags as $tag)
                     <div class="tag__relate">
                         <div class="background__relate-tag">
-                            <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                            <a href="{{ Route('TAG_VIEW', ['slug' => $tag->slug ]) }}">
                                 <img src="{{ $tag->background }}" alt="bg-tag-theme-{{ $tag->name }}">
                             </a>
                         </div>
                         <div class="content__relate-tag">
                             <h4 class="title_content__relate-tag">
-                                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                                <a href="{{ Route('TAG_VIEW', ['slug' => $tag->slug ]) }}">
                                     {{-- {!! $tag->icon !!}  --}}
                                     {{ $tag->name }}
                                 </a>
@@ -118,7 +114,7 @@
                                 <i>{{ date('Y-m-d', strtotime($tag->created_at ))}}</i>
                             </h5>
                             <h6 class="excerpt_content__relate-tag">
-                                <a href="{{ Route('TAG_THEME_VIEW', ['slug' => $tag->slug ]) }}">
+                                <a href="{{ Route('TAG_VIEW', ['slug' => $tag->slug ]) }}">
                                     {{ SupportString::limitText( $tag->excerpt, 50, "..." ) }}
                                 </a>
                             </h6>
@@ -127,6 +123,44 @@
                     @endforeach
                 </div>
             </div>
+            @endif
+
+            @if(!$postMaxView->isEmpty())
+            <div class="wrapper__right-item">
+                <div class="title__right-item">
+                    <i class="hero-icon hero-file-document-edit-outline"></i>興味があるかもしれません
+                </div>
+                <div class="description__r-tag">
+                    @foreach ($postMaxView as $post)
+                    <div class="tag__relate">
+                        <div class="background__relate-tag">
+                            <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}">
+                                <img src="{{ $post->background }}" alt="bg-tag-theme-{{ $post->name }}">
+                            </a>
+                        </div>
+                        <div class="content__relate-tag">
+                            <h4 class="title_content__relate-tag">
+                                <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}">
+                                    {{-- {!! $tag->icon !!}  --}}
+                                    {{ $post->title }}
+                                </a>
+                            </h4>
+                            <h5 class="create__relate-tag">
+                                <i class="hero-icon hero-calendar"></i>
+                                <i>{{ date('Y-m-d', strtotime($post->created_at ))}}</i>
+                            </h5>
+                            <h6 class="excerpt_content__relate-tag">
+                                <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}">
+                                    {{ SupportString::limitText( $post->excerpt, 50, "..." ) }}
+                                </a>
+                            </h6>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
         </div>
     </div>
 </div>

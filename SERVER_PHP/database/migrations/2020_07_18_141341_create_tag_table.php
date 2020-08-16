@@ -21,6 +21,7 @@ class CreateTagTable extends Migration
             $table->string('excerpt')->nullable();
             $table->text('content')->nullable();
             $table->text('catalogue')->nullable();
+            $table->integer('view')->default(1);
             $table->string('background')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('site_name')->nullable();

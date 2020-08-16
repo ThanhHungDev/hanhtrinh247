@@ -32,6 +32,7 @@
 .wrapper__right-item{
 
     padding: 0;
+    margin-bottom: 15px;
     border: 1px solid $gray-400;
 
     .title__right-item{
@@ -50,7 +51,28 @@
 
 .wrapper-search-detail-block{
     padding: 15px;
+    position: relative;
     @include clearfix();
+    &::before{
+        content: ".";
+        color: transparent;
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 15px;
+        right: 15px;
+        height: 1px;
+        border-bottom: 1px solid $gray-500;
+        
+    }
+    &:first-child{
+        &::before{
+            content: none;
+            border-bottom: 1px solid transparent;
+            
+        }
+        
+    }
 
     // &:first-child{
     //     .background{
@@ -63,21 +85,7 @@
     //         padding-left: 210px;
     //     }
     // }
-    &:nth-child(2){
-        padding-top: 20px;
-        position: relative;
-        &::before{
-            content: ".";
-            color: transparent;
-            display: block;
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            right: 15px;
-            height: 1px;
-            border-bottom: 1px solid $gray-500;
-        }
-    }
+    
 
     .background{
         float: left;

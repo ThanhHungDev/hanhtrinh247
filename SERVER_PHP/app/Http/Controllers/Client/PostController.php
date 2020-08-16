@@ -27,8 +27,14 @@ class PostController extends Controller
             $post->save();
         }
         $rateAuthor = $post->rateAuthor()->first();
-        
-        return view('client.post-view', compact('post', 'tags', 'rateAuthor'));
+
+        $conditionPost = [
+            'ignore' => [ $post->id ],
+            'orderby' => [ 'field' => 'view', 'type' => 'DESC' ]
+        ];
+        $postMaxView = $postModel->getPostByCondition($conditionPost)->take( 6 )->get();
+        $topic = $post->topic()->first();
+        return view('client.post-view', compact('post', 'tags', 'topic', 'rateAuthor', 'postMaxView'));
     }
 
 

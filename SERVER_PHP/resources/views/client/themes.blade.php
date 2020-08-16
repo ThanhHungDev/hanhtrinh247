@@ -29,15 +29,15 @@
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
 @endsection
 @section('content')
-<div class="headfull" style="background: url('images/background/bg-developer-pc.jpg') no-repeat scroll center top;">
+<div class="headfull" style="background: url('/images/background/bg-developer-pc.jpg') no-repeat scroll center top;">
     <div class="wrapper-intro-search">
         <h2 class="introduce-tag">{{ SupportDB::getOption('tag-theme-title-introduce') }}</h2>
         <h2 class="custommer-intro">{{ SupportDB::getOption('tag-theme-custommer-introduce') }}</h2>
 
-        <form class="search-theme" action="{{ Route('SEARCH_THEME') }}" method="GET">
+        <form class="search-post-type" action="{{ Route('SEARCH_THEME') }}" method="GET">
             
             <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート..">
-            <button type="button" class="btn-search-theme"><i class="hero-icon hero-magnify-scan"></i></button>
+            <button type="button" class="btn-search-post-type"><i class="hero-icon hero-magnify-scan"></i></button>
         </form>
     </div>
 </div>
@@ -56,6 +56,7 @@
         @endforeach
     </div>
     <div class="component-intro-theme">
+        @if(!$themes->isEmpty())
         @foreach ($themes as $theme)
         <div class="component-item-theme wrapper-item-theme">
             <figure class="box-modern-figure">
@@ -70,9 +71,13 @@
             </figure>
         </div>
         @endforeach
+        @endif
     </div>
+    @if(!$themes->isEmpty())
     <div class="pagination">
         {{ $themes->onEachSide(3)->links() }}
     </div>
+    @endif
+    
 </div>
 @endsection

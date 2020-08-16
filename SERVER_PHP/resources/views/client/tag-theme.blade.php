@@ -36,10 +36,10 @@
         <h2 class="introduce-tag">{{ SupportDB::getOption('tag-theme-title-introduce') }}</h2>
         <h2 class="custommer-intro">{{ SupportDB::getOption('tag-theme-custommer-introduce') }}</h2>
 
-        <form class="search-theme" action="{{ Route('SEARCH_THEME') }}" method="GET">
+        <form class="search-post-type" action="{{ Route('SEARCH_THEME') }}" method="GET">
             
             <input class="form-control" name="q" placeholder="検索ウェブサイトテンプレート..">
-            <button class="btn-search-theme"><i class="hero-icon hero-magnify-scan"></i></button>
+            <button class="btn-search-post-type"><i class="hero-icon hero-magnify-scan"></i></button>
         </form>
     </div>
 </div>
@@ -108,9 +108,11 @@
     @endif
     
 </div>
+@if($themes_in_tag)
 <div class="pagination">
     {{ $themes_in_tag->onEachSide(3)->links() }}
 </div>
+@endif
 
 <div class="prominence">
     <div class="topic-website-selector">

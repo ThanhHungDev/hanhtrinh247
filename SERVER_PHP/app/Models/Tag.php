@@ -36,4 +36,16 @@ class Tag extends Model
         }
         return null;
     }
+
+
+    
+    /**
+     * là mối quan hệ dạng nhiều nhiều ví dụ : 
+     * product -> activity -> style thì thứ tự sẽ là như dưới
+     */
+    public function posts(){
+
+        return $this->belongsToMany(
+            Post::class, 'post_tag_active', 'tag_id', 'post_id');
+    }
 }

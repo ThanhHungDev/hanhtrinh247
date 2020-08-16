@@ -49,4 +49,58 @@ class SupportDB{
         
         return $key;
     }
+
+    public static function getTopicByCondition($condition){
+
+        $baseModel   = new BaseModel();
+        $topicModel = $baseModel->createTopicModel();
+
+        return $topicModel->getTopicByCondition($condition);
+    }
+    public static function getTagByCondition($condition){
+
+        $baseModel   = new BaseModel();
+        $tagModel = $baseModel->createTagModel();
+
+        return $tagModel->getTagByCondition($condition);
+    }
+
+    public static function getPostByCondition($condition){
+
+        $baseModel   = new BaseModel();
+        $postModel = $baseModel->createPostModel();
+
+        return $postModel->getPostByCondition($condition);
+    }
+    public static function getMenuFullService(){
+
+        $menuFull = [];
+
+        $condition = [
+            'orderby' => [ 'field' => 'view', 'type' => 'DESC' ]
+        ];
+        $topic = static::getTopicByCondition($condition)->first();
+        $menuFull[] = (object) [
+            'text' => $topic->name,
+            'slug' => $topic->slug,
+            'route' => 'TOPIC_VIEW'
+        ];
+        $tag = static::getTagByCondition($condition)->first();
+        $menuFull[] = (object) [
+            'text' => $tag->name,
+            'slug' => $tag->slug,
+            'route' => 'TAG_VIEW'
+        ];
+        $posts = static::getPostByCondition($condition)->take(4)->get();
+        foreach ($posts as $post) {
+            $menuFull[] = (object) [
+                'text' => $post->title,
+                'slug' => $post->slug,
+                'route' => 'POST_VIEW'
+            ];
+        }
+        
+        return $menuFull;
+    }
+
 }

@@ -13,5 +13,20 @@ class TopicEloquentRepository extends EloquentRepository
     {
         return \App\Models\Topic::class;
     }
+
+    
+    public function getTopicByCondition( $condition ){
+
+        $filter = $this->_model;
+        if( isset($condition['ignore']) ){
+            $filter = $filter->whereNotIn('id', $condition['ignore'] );
+        }
+        if( isset($condition['orderby']) ){
+
+            $filter = $filter->orderBy($condition['orderby']['field'], $condition['orderby']['type']);
+        }
+
+        return $filter;
+    }
     
 }

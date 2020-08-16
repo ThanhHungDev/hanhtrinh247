@@ -15,13 +15,14 @@
                 <a class="{{ Route::is('HOME_PAGE') ? 'active': null }}"
                     href="{{ Route('HOME_PAGE') }}" >ホームページ</a>
             </li>
+            @php $services = SupportDB::getMenuFullService(); @endphp
             <li class='dropdown-menu'>
                 <a class="{{ Route::is('SERVICE_LOAD', 'SERVICE_POST') }}" href="{{ Route('SERVICE_LOAD') }}">サービス</a>
                 <i class='hero-icon hero-plus-outline' onclick="activeMenuMobile()"></i>
                 <ul class="sub-link">
-                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'mau-ueb-thuong-mai-dien-tu-chuyen-nghiep' ]) }}">サービス</a></li>
-                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'hung' ]) }}">hùng</a></li>
-                    <li><a href="{{ Route('POST_VIEW', [ 'slug' => 'nhin' ]) }}">sdfs</a></li>
+                    @foreach ($services as $item)
+                    <li><a href="{{ Route($item->route, [ 'slug' => $item->slug ]) }}">{{ $item->text }}</a></li>
+                    @endforeach
                 </ul>
             </li>
             <li class='dropdown-menu'>

@@ -12,6 +12,15 @@ class SupportString{
 
     public static function createSlug( $str, $replace = '-' ){
 
+        $str = static::convertLang($str);
+        $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+        $str = preg_replace('/([\s]+)/', $replace, $str);
+
+        return trim($str, $replace );
+    }
+
+    public static function convertLang( $str ){
+
         //Đổi ký tự có dấu thành không dấu
         $str = trim(mb_strtolower($str));
         $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
@@ -21,10 +30,8 @@ class SupportString{
         $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
         $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
         $str = preg_replace('/(đ)/', 'd', $str);
-        $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
-        $str = preg_replace('/([\s]+)/', $replace, $str);
 
-        return trim($str, $replace );
+        return $str;
     }
 }
 

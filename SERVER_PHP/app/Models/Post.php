@@ -69,4 +69,12 @@ class Post extends Model
         return $this->belongsTo(
             Rating::class, 'rating_id');
     }
+
+    /**
+     * là mối quan hệ dạng nhiều tới 1 ví dụ : 
+     */
+    public function topic(){
+
+        return $this->belongsTo( Topic::class, 'topic_id');
+    }
 }
