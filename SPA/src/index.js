@@ -26,8 +26,18 @@ import 'raf/polyfill';
 /// for webpack import
 import React from 'react'
 import ReactDOM from "react-dom"
-// import { createStore } from 'redux'
-// import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Reducer from './reducer'
+
+import './../../BUILDER/SCSS/chat.scss'
+
+const store = createStore(Reducer);
+store.subscribe(function(){
+    console.log('có thay đổi trong Redux!!')
+    console.log(store.getState());
+});
+
 /// my component
 import App from './component/App.jsx'
 const wrapper = document.getElementById("ROOT");
@@ -35,9 +45,9 @@ const wrapper = document.getElementById("ROOT");
 if (typeof (Storage) !== 'undefined' && wrapper) {
     
     ReactDOM.render(
-        // <Provider store={store}>
+        <Provider store={store}>
             <App />
-        // </Provider>
+        </Provider>
     , wrapper)
 }else{
     alert("このブラウザでは、アプリケーションは正常に動作しません。 アップグレードしてください")

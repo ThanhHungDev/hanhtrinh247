@@ -16,7 +16,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/search/{q?}','ClientController@index')->name('SEARCH');
     Route::get('/services','ClientController@service')->name('SERVICE_LOAD');
     Route::get('/service/{slug}','ClientController@index')->name('SERVICE_POST');
-    Route::get('/chats','ClientController@index')->name('CHAT');
+    Route::get('/chat/{slug?}','ClientController@chat')->name('CHAT');
 
     Route::get('/themes','Client\ThemeController@load')->name('THEME_LOAD');
     Route::get('/theme/show/{slug}','Client\ThemeController@index')->name('THEME_DETAIL');

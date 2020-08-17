@@ -204,4 +204,9 @@ class ClientController extends Controller
         
         return view('client.service', compact('posts', 'tags', 'topics'));
     }
+
+    public function chat( Request $request, $slug = null ){
+
+        return view('client.chat', compact('slug'));
+    }
 }

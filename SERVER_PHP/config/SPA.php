@@ -1,0 +1,37 @@
+<?php
+
+return [
+
+    'name'                     => env('APP_NAME', 'Laravel'),
+    'keywords'                 => env('APP_KEYWORD', ''),
+    'description'              => env('APP_DESCRIPTION', ''),
+    'og_name'                  => env('APP_OG_NAME', ''),
+    'og_keywords'              => env('APP_OG_KEYWORD', ''),
+    'og_description'           => env('APP_OG_DESCRIPTION', ''),
+    'alternate_name'           => env('APP_ALTERNATE_NAME', ''),
+    'version'                  => env('APP_VERSION'),
+    'company'                  => env('COMPANY'),
+    'company_name'             => env('COMPANY_NAME'),
+    'price_range'              => env('PRICE_RANGE'),
+    'logo'                     => env('LOGO'),
+    'image'                    => env('IMAGE'),
+    'founder'                  => env('FOUNDER'),
+    'company_mail'             => env('COMPANY_MAIL'),
+    'phone_one'                => env('PHONE_ONE'),
+    'phone_two'                => env('PHONE_TWO'),
+    'map_lat'                  => env('MAP_LAT'),
+    'map_long'                 => env('MAP_LONG'),
+    'rate_value'               => env('RATE_VALUE'),
+    'rate_max'                 => env('RATE_MAX'),
+    'rate_view'                => env('RATE_VIEW'),
+    'company_postcode'         => env('COMPANY_POSTCODE'),
+    'company_address_street'   => env('COMPANY_ADDRESS_STREET'),
+    'company_address_region'   => env('COMPANY_ADDRESS_REGION'),
+    'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
+    'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
+    'tax_code_date'            => env('TAX_CODE_DATE'),
+    'text_about_us'            => env('TEXT_ABOUT_US'),
+    'text_my_service'          => env('TEXT_MY_SERVICE'),
+    'url_realtime'             => env('URL_REALTIME'),
+
+];

@@ -10,7 +10,8 @@ const MessageSchema = new Schema(
             ref : 'channel'
         },
         user: { 
-            type   : String,
+            type: Schema.Types.ObjectId,
+            required: [ true, 'Message of user is required' ]
         },
         body: {
             type: String,
@@ -34,60 +35,6 @@ const MessageSchema = new Schema(
         timestamps: true
     }
 )
-MessageSchema.statics.AdminCountMessageAdminUnreadOfUser = function(){
-    
-    return this
-    .aggregate([
-        { $match: { readAdmin: false } },
-        {
-            $lookup: {
-                from: 'channels',
-                let: { channelId: '$channel' },
-                as: "channel",
-                pipeline: [
-                    { $match: { $expr: { $eq: ["$$channelId", "$_id"] }}},
-                    { $match: { user: { $ne : CONFIG.ID_ADMIN.toString() } } },
-                    { $limit : 100 },
-                ]
-            }
-        },
-        { $match: { "channel.0": { "$exists": true } } },
-        {   
-            $project: {
-                id : true
-            }
-        },
-        { $limit : 10 }
-    ])
-}
-
-MessageSchema.statics.AdminCountMessageAdminUnreadOfAdmin = function(){
-    
-    return this
-    .aggregate([
-        { $match: { readAdmin: false } },
-        {
-            $lookup: {
-                from: 'channels',
-                let: { channelId: '$channel' },
-                as: "channel",
-                pipeline: [
-                    { $match: { $expr: { $eq: ["$$channelId", "$_id"] }}},
-                    { $match: { user: CONFIG.ID_ADMIN.toString() } },
-                    { $limit : 100 },
-                ]
-            }
-        },
-        { $match: { "channel.0": { "$exists": true } } },
-        {   
-            $project: {
-                id : true
-            }
-        },
-        { $limit : 10 }
-    ])
-}
-
 
 module.exports = mongoose.model("message", MessageSchema)
 

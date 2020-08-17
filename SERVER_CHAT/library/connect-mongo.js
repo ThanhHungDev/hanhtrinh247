@@ -38,39 +38,4 @@ mongoose.connection.on('open', function () {
     console.log('Mongoose default connection is open');
     console.log('===================================');
     
-    // var Postgre = require("../model/Postgre.js")
-    // Postgre.USER.findOne({ where: { email : 'thanhhung.code@gmail.com' } })
-    // .then( user => {
-
-    //     console.log( user, "userssss" )
-    // })
-    // .catch(err => {
-    //     console.log(err, " có lỗi db")
-    // })
-
-    // myTokenAccess = new TokenAccess({
-    //     token : "tokenAccess",
-    //     user  : 1,
-    //     online: false,
-    //     detect: "ahihi"
-    // })
-
-    // myTokenAccess.save()
-    // .then( token => {
-        
-    //     console.log("vào đc")
-    // })
-    // .catch( err => {
-    //     console.log( err.message )
-    // })
-
-
-    // TokenAccess.find({ user  : 1 })
-    // .then( token => {
-    //     console.log( token )
-    // })
-    // .catch( err => {
-    //     console.log( err.message , "catching")
-    // })
-    
 });

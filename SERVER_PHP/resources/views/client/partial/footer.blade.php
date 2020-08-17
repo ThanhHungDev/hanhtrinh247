@@ -20,11 +20,11 @@
             <i class="hero-icon hero-message-cog-outline"></i>
             <div class="option-contact-content">
                 <h6 class="type">
-                    <a href="/chat/advisory-system">
+                    <a href="{{ Route('CHAT', ['slug' => 'consulting-web-design']) }}">
                         {{ SupportDB::getOption('text-link-consulting-web-design') }}
                     </a>
                 </h6>
-                <a class="link" href="/chat/advisory-system">
+                <a class="link" href="{{ Route('CHAT', ['slug' => 'consulting-web-design']) }}">
                     {{ SupportDB::getOption('footer-go-to-chat') }}
                 </a>
             </div>
@@ -33,11 +33,11 @@
             <i class="hero-icon hero-certificate-outline"></i>
             <div class="option-contact-content">
                 <h6 class="type">
-                    <a href="/chat/advisory-system">
+                    <a href="{{ Route('CHAT', ['slug' => 'technical-support']) }}">
                         {{ SupportDB::getOption('text-link-advisory-system') }}
                     </a>
                 </h6>
-                <a class="link" href="/chat/advisory-system">
+                <a class="link" href="{{ Route('CHAT', ['slug' => 'technical-support']) }}">
                     {{ SupportDB::getOption('footer-go-to-chat') }}
                 </a>
             </div>
@@ -46,11 +46,11 @@
             <i class="hero-icon hero-email-edit-outline"></i>
             <div class="option-contact-content">
                 <h6 class="type">
-                    <a href="/chat/advisory-system">
+                    <a href="{{ Route('CHAT', ['slug' => 'submit-web-request']) }}">
                         {{ SupportDB::getOption('text-link-submit-web-request') }}
                     </a>
                 </h6>
-                <a class="link" href="/chat/advisory-system">
+                <a class="link" href="{{ Route('CHAT', ['slug' => 'submit-web-request']) }}">
                     {{ SupportDB::getOption('footer-go-to-chat') }}
                 </a>
             </div>

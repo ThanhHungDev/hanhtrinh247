@@ -26,12 +26,24 @@
                 </ul>
             </li>
             <li class='dropdown-menu'>
-                <a href="/chat">チャット</a>
+                <a class="{{ Route::is('CHAT') ? 'active' : null }}" href="{{ Route('CHAT') }}">チャット</a>
                 <i class='hero-icon hero-plus-outline' onclick="activeMenuMobile()"></i>
                 <ul class="sub-link">
-                    <li><a href="/chat/consulting-web-design">コンサルティングウェブデザイン</a></li>
-                    <li><a href="/chat/technical-support">技術サポート</a></li>
-                    <li><a href="/chat/submit-web-request">ウェブサイト作成依頼</a></li>
+                    <li>
+                        <a href="{{ Route('CHAT', ['slug' => 'consulting-web-design']) }}">
+                            {{ SupportDB::getOption('text-link-consulting-web-design') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ Route('CHAT', ['slug' => 'technical-support']) }}">
+                            {{ SupportDB::getOption('text-link-advisory-system') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ Route('CHAT', ['slug' => 'submit-web-request']) }}">
+                            {{ SupportDB::getOption('text-link-submit-web-request') }}
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
