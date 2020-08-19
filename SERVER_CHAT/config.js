@@ -48,6 +48,13 @@ var CONFIG = {
     EVENT : {
         CONNECTTION              : 'connection',
         DISCONNECT               : 'disconnect'
+    },
+    ROLE: {
+        
+        CONSULTING_WEB: parseInt(process.env.ROLE_CONSULTING_WEB),
+        TECHNICAL_SUPPORT: parseInt(process.env.ROLE_TECHNICAL_SUPPORT),
+        WEB_REQUEST: parseInt(process.env.ROLE_WEB_REQUEST),
+        USER: parseInt(process.env.ROLE_USER)
     }
 }
 module.exports = CONFIG;

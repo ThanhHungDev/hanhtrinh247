@@ -1,6 +1,5 @@
 var mongoose = require("mongoose"),
-    CONFIG = require("../config"),
-    TokenAccess = require("../model/TokenAccess")
+    CONFIG = require("../config")
     
 
 var IS_PRODUCTION = CONFIG.IS_ENVIROMENT_PRODUCT

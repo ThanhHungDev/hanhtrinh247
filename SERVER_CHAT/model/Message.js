@@ -21,10 +21,6 @@ const MessageSchema = new Schema(
             type: Boolean,
             default: false
         },
-        readAdmin: {
-            type: Boolean,
-            default: false
-        },
         style : {
             type: String
         },

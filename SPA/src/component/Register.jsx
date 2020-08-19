@@ -1,5 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
+
+import { saveAuthLocalStorage } from "../library/service"
+import { setterAuth } from "../action"
 
 class Register extends Component {
     constructor(props){
@@ -10,7 +14,8 @@ class Register extends Component {
     LoginChat = e => {
         var email  = this.email.value,
             name   = this.name.value,
-            mobile = this.mobile.value
+            mobile = this.mobile.value,
+            detect = JSON.stringify(this.props.detect)
 
         this.setState({alert : false , progress : true}, ()=>{
             var action = this.props.config.url_realtime + "/api/register-chat"
@@ -21,21 +26,41 @@ class Register extends Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email , name , mobile })
+                body: JSON.stringify({ email , name , mobile, detect })
             })
-            .then(resp => { return resp.json() })
+            .then(resp => { 
+                
+                if (!resp.ok) {
+                    return resp.json().then((data) => {
+                        throw { message: data.message, status: resp.status, error: data.errors }
+                    })
+                }
+                return resp.json() 
+            })
             .then( response => {
-                console.log(response)
+                
+                this.setState({ alert : false , progress : false }, function(){
+                    if( response.data ){
+                        var auth = {
+                            email, name, mobile, token : response.data.token.toString(), _id: response.data.userId.toString()
+                        }
+                        saveAuthLocalStorage(auth)
+                        this.props.dispatch(setterAuth( auth ))
+                    }
+                });
             })
             .catch(error => {
-                this.setState({ alert : "đã có lỗi, vui lòng thử lại sau" , progress : false });
+                
+                this.setState({ alert : error.message , progress : false })
             });
         });
         e.preventDefault();
     }
 
     render() {
-        
+        if( this.props.auth ){
+            return <Redirect to="/chat/hung" />
+        }
         return (
             <div className="component-register">
                 <div className="left__register">
@@ -85,7 +110,7 @@ class Register extends Component {
                     </h3>
                 </div>
                 <div className="right__register">
-                    { this.state.alertError && <div className="alert alert-danger">{ this.state.alertError }</div> }
+                    { this.state.alert && <div className="alert alert-danger">{ this.state.alert }</div> }
                     <div className="form-input">
                         <label> あなたのフルネーム <i>✵</i></label>
                         <input name="name" type="text" ref={(input) => this.name = input} />
@@ -115,6 +140,7 @@ let mapStateToProps = (state) => {
     return {
         auth  : state.auth,
         config: state.config,
+        detect: state.detect
     }
 }
 export default connect(mapStateToProps)(Register)

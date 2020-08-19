@@ -1,12 +1,12 @@
-var user = null
+var auth = null
 if (typeof(Storage) !== 'undefined') {
-    user = JSON.parse(localStorage.getItem('user'))
+    auth = JSON.parse(localStorage.getItem('auth'))
 }
 
 import TYPE from "../action/type.js";
-export default function (state = user, action) {
+export default function (state = auth, action) {
     switch (action.type) {
-        case TYPE.USER.SETTER_USER:
+        case TYPE.AUTH.SETTER:
             return action.payload
         default:
             return state;

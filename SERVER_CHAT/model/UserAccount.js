@@ -2,10 +2,12 @@
 
 
 var mongoose = require('mongoose'),
-    Schema   = mongoose.Schema
+    Schema   = mongoose.Schema,
+    CONFIG = require('../config.js')
 
-const UserSchema = new Schema(
+const UserAccountSchema = new Schema(
     {
+        
         name: {
             type: String,
             required: [true, 'User Name is required']
@@ -18,21 +20,18 @@ const UserSchema = new Schema(
             type: String,
             required: [true, 'Mobile is required']
         },
-        period: {
-            type : Date
-        },
-        token: {
-            type: String,
-            required: [ true, 'Token is required' ]
-        },
+        role_id: {
+            type: Number,
+            default: CONFIG.ROLE.USER
+        }
     }, {
     timestamps: true
 })
 
-UserSchema.pre('save', function (next) {
+UserAccountSchema.pre('save', function (next) {
     
     this.period = new Date
     return next()
 })
 
-module.exports = mongoose.model("user", UserSchema)
+module.exports = mongoose.model("user_account", UserAccountSchema)

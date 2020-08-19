@@ -20,7 +20,7 @@ class App extends Component {
     render() {
         console.log("draw app")
         return (
-            <div className="AppComponent">
+            <div id="Application" className="AppComponent">
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/chat/register" render={() => <Register />} />

@@ -8,11 +8,13 @@ module.exports.VALIDATE_REGISTER_CHAT = async function( req, res, next ){
     let validate = new Validator(req.body, {
         email : "required",
         name  : "required",
-        mobile: "required"
+        mobile: "required",
+        detect: "required",
     },{
-        'email.required' : "userId is required",
-        'name.required'  : "Refesh is valid",
-        'mobile.required': "Password is required"
+        'email.required' : "Email is required",
+        'name.required'  : "Name is valid",
+        'mobile.required': "Mobile is required",
+        'detect.required': "Detect is required",
     });
      
     var matched = await validate.check()
@@ -21,3 +23,4 @@ module.exports.VALIDATE_REGISTER_CHAT = async function( req, res, next ){
     }
     next();
 }
+
