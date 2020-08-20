@@ -25,8 +25,6 @@ const ChannelSchema = new Schema(
 
 ChannelSchema.statics.getChannelMessageChat = function( _userId ){
     
-    _userId = _userId.toString()
-
     return this
     .aggregate([
         { 

@@ -9,7 +9,7 @@ class ListMessage extends Component {
 
     render() {
 
-        console.log("render ListMessage")
+        
         var { convertations } = this.props
         var convertationActive = convertations.find(convertations => convertations.isActive)
         var messages = []
@@ -20,7 +20,19 @@ class ListMessage extends Component {
             if( messages ){
                 messages = messages.message_data
             }
-            console.log(messages, "sđsfdsfsd")
+            if( !messages.length ){
+                messages = [ 
+                    {
+                        attachment: [],
+                        content: "chúng tôi có thể giúp gì cho bạn",
+                        createdAt: "2020-07-29T06:51:54.963Z",
+                        read: true,
+                        style: "",
+                        sender_id: "ADMIN",
+                        _id: "ADMIN",
+                    }
+                ]
+            }
         }
 
         return (

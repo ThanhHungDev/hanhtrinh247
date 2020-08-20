@@ -16,7 +16,7 @@ function socketConnecting(){
 
     io.sockets.on( EVENT.CONNECTTION ,function(socket){ 
 
-        console.log("have connect: " + socket.id + " " + CONFIG.EVENT.REQUEST_GET_CHANEL);
+        console.log("have connect: " + socket.id + " " + EVENT.REQUEST_GET_CHANEL);
         
         try {
             disconnect(socket)
@@ -29,8 +29,7 @@ function socketConnecting(){
 
 function disconnect(socket){
     socket.on( EVENT.DISCONNECT, function () {
-        var idUserDisconnect = 0
-        // listSocket.splice( listSocket.indexOf(socket.id), 1 )
+        
         console.log( EVENT.DISCONNECT + " đang set user không online")
         socket.leaveAll()
     })

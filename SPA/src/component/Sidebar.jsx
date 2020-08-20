@@ -14,16 +14,15 @@ class Sidebar extends Component {
         if(sidebar && message){
             sidebar.style.height = message.clientHeight + "px"
         }
-
-
         if( this.props.auth ){
-            console.log( this.props.auth , "ssdfdsfsd auth ")
+            
             var { token } = this.props.auth
             if( token ){
                 fetchAPIChannels(token, this)
             }
         }
     }
+
 
     render() {
         console.log("render sidebar")

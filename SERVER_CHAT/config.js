@@ -55,6 +55,15 @@ var CONFIG = {
         TECHNICAL_SUPPORT: parseInt(process.env.ROLE_TECHNICAL_SUPPORT),
         WEB_REQUEST: parseInt(process.env.ROLE_WEB_REQUEST),
         USER: parseInt(process.env.ROLE_USER)
-    }
+    },
+    DF_MESSAGE: {
+        CONSULTING_WEB: process.env.DF_MESSAGE_CONSULTING_WEB,
+        TECHNICAL_SUPPORT: process.env.DF_MESSAGE_TECHNICAL_SUPPORT,
+        WEB_REQUEST: process.env.DF_MESSAGE_WEB_REQUEST,
+    },
+    CHANNEL:{
+        DF_NAME_SINGLE: "SINGLE"
+    },
+    AVATAR: "http://babysitter.trust-growth.co.jp/storage/uploads/avatars/thumbnail/1597294935img_avatar2.png",
 }
 module.exports = CONFIG;

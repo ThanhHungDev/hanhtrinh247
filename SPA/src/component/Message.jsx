@@ -13,7 +13,7 @@ class Message extends Component {
         if (!convActive) {
             return null
         }
-        console.log(message, "messagemessagemessagemessage")
+        
         return (
             <div className="component-message-chat" >
 

@@ -5,7 +5,8 @@ var express               = require('express')
 var router                = express.Router()
 
 
-var { registerChat, channels, registerAdmin } = require("../controller/user"),
+var { registerChat, registerAdmin } = require("../controller/user"),
+    { channels } = require("../controller/channel"),
 
     { VALIDATE_REGISTER_CHAT } = require("../middleware/request/register-chat")
     

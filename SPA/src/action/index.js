@@ -36,3 +36,21 @@ export function changeActiveConvertation( id ){
         payload : id
     }
 }
+
+
+
+export function addMessage( message ){
+    console.log(message , " addMessage ")
+    return {
+        type : TYPE.MESSAGE.ADD_MESSAGE,
+        payload : message
+    }
+}
+
+export function addMessageSendToMe( message ){
+    console.log(message , " addMessageSendToMe ")
+    return {
+        type : TYPE.CHANNEL.ADD_MESSAGE_SEND_TO_ME,
+        payload : message
+    }
+}

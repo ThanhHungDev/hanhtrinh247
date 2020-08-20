@@ -391,8 +391,12 @@
         }
       }
       .EMOJI{
-        padding: 10px;
-        background: none!important
+        
+        background: transparent !important;
+        font-size: 40px;
+        padding: 0 2px;
+        line-height: 1;
+        
       }
       .text{
         padding: 10px;
@@ -537,6 +541,7 @@
 
 .component-input-send-chat{
   border: 1px solid $gray-200;
+  border-bottom-color: transparent;
   border-left: none;
   position: relative;
   padding: 5px 80px 0 50px;

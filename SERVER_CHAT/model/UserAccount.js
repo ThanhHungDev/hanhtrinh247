@@ -20,6 +20,10 @@ const UserAccountSchema = new Schema(
             type: String,
             required: [true, 'Mobile is required']
         },
+        avatar: {
+            type: String,
+            default: CONFIG.AVATAR
+        },
         role_id: {
             type: Number,
             default: CONFIG.ROLE.USER

@@ -4,6 +4,8 @@ crypto      = require('crypto'),
 TokenAccess = require("../model/TokenAccess"),
 CONFIG = require("../config")
 
+var { createChannelName } = require("../library/helper.js")
+
 module.exports.registerChat = function( req, res ){
     var globalUser = null
 
@@ -50,19 +52,27 @@ module.exports.registerChat = function( req, res ){
             var newTokenAccess = new TokenAccess({ token : tokenAccess, user  : newUser._id, detect })
             newTokenAccess.save()
             /// create 3 channel 
-            UserAccount.findOne({ role_id: parseInt(CONFIG.ROLE.CONSULTING_WEB)}).then( user => {
-                user && (new Channel({ user: [newUser._id, ], detect })).save()
+            var ROLES_ADMIN = [
+                parseInt(CONFIG.ROLE.CONSULTING_WEB),
+                parseInt(CONFIG.ROLE.TECHNICAL_SUPPORT),
+                parseInt(CONFIG.ROLE.WEB_REQUEST)
+            ]
+            var saveChannel = ROLES_ADMIN.map(_role_id => {
+                return UserAccount.findOne({ role_id: _role_id}).then( user => {
+
+                    return user && (new Channel({ 
+                        name: createChannelName(newUser._id, user._id), 
+                        user: [newUser._id, user._id], 
+                        detect 
+                    })).save()
+                })
             })
-            UserAccount.findOne({ role_id: parseInt(CONFIG.ROLE.TECHNICAL_SUPPORT)}).then( user => {
-                user && (new Channel({ user: [newUser._id, ], detect })).save()
-            })
-            UserAccount.findOne({ role_id: parseInt(CONFIG.ROLE.WEB_REQUEST)}).then( user => {
-                user && (new Channel({ user: [newUser._id, ], detect })).save()
+            Promise.all(saveChannel).then(channels => {
+                response.message = "thêm mới"
+                response.data = { userId: newUserAccount._id, token: tokenAccess }
+                return res.status(200).json(response)
             })
         })
-        response.message = "thêm mới"
-        response.data = { userId: newUserAccount._id, token: tokenAccess }
-        return res.status(200).json(response)
     })
 }
 
@@ -105,112 +115,4 @@ module.exports.registerAdmin = function( req, res ){
         response.message = "thêm mới fail: " + error.message
         return res.status(200).json(response)
     })
-}
-
-
-
-module.exports.channels = function( req, res ){
-
-    var response = {}
-    response.message          = "チャンネル成功"
-    response.internal_message = "チャンネル成功"
-    response.data           = {
-        online: [],
-        channels: [
-            {
-                _id: "channel1",
-                user: {
-                    _id: "534535345435",
-                    name: "quản trị viên web",
-                    avatar: "http://babysitter.trust-growth.co.jp/storage/uploads/avatars/thumbnail/1597294935img_avatar2.png",
-                    mobile: "435435435",
-                    email: "buitoan0405@gmail.com",
-                    role_id: 1
-                },
-                message: [
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日付：↵2020/08/02 家事代行↵",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "534535345435",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    },
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日付事代行 sdfgfdsgsdgsdg",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "53455435",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    }
-                ],
-            },
-            {
-                _id: "channel2",
-                user: {
-                    _id: "5345356345435",
-                    name: "quản trị viên tư vấn web",
-                    avatar: "http://babysitter.trust-growth.co.jp/storage/uploads/avatars/thumbnail/1597294935img_avatar2.png",
-                    mobile: "435435435",
-                    email: "phamthithuhuong@gmail.com",
-                    role_id: 2
-                },
-                message: [
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日付：↵2020/08/02 家事代行↵",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "53453563454354",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    },
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日付事代行 sdfgfdsgsdgsdg",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "5345356345435",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    }
-                ],
-            },
-            {
-                _id: "channel3",
-                user: {
-                    _id: "53453534545",
-                    name: "quản trị viên chăm sóc khách hàng",
-                    avatar: "http://babysitter.trust-growth.co.jp/storage/uploads/avatars/thumbnail/1597294935img_avatar2.png",
-                    mobile: "435435435",
-                    email: "thanhhung@gmail.com",
-                    role_id: 3
-                },
-                message: [
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日/02 家事代行↵",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "53453534545",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    },
-                    {
-                        attachment: [],
-                        content: "利用者が選んだ日付事代行 sdfgfdsgsdgsdg",
-                        createdAt: "2020-07-29T06:51:54.963Z",
-                        read: false,
-                        style: "",
-                        sender_id: "53453534545fdg",
-                        _id: "5f211c8a54c6bd55c9c7ca67",
-                    }
-                ],
-            }
-        ]
-    }
-    return res.status(200).json(response)
 }

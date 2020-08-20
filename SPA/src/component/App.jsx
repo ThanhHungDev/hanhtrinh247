@@ -23,6 +23,7 @@ class App extends Component {
             <div id="Application" className="AppComponent">
                 <BrowserRouter>
                     <Switch>
+                        <Route exact path="/chat" render={() => <Chat />} />
                         <Route exact path="/chat/register" render={() => <Register />} />
                         <Route path='/chat/:slug' component={ Chat } />
                     </Switch>
