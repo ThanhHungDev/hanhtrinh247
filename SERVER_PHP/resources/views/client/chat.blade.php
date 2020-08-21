@@ -111,8 +111,8 @@
 </script>
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('chat/js/index.bundle.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('chat/js/vendors~main.index.bundle.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/index.bundle.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/vendors~main.index.bundle.js' . Config::get('app.version')) }}"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
 

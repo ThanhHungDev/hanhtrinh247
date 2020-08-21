@@ -25,7 +25,7 @@ module.exports = {
 
 	output: {
 		filename: 'js/' + namePage + '.bundle.js',
-		path: path.join(__dirname, "/../SERVER_PHP/public/chat/"),
+		path: path.join(__dirname, "/../SERVER_PHP/public/"),
 		publicPath: '/', /// <=== khoong cos 
 	},
 	

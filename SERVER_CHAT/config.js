@@ -31,6 +31,7 @@ var CONFIG = {
             return protocol + local + port_url;
         }
     }, 
+    MOBILE: "080.3387.0674",
     mailler: {
         email: "managementpartners.hospital@gmail.com",
         password: "mp@123456"

@@ -13,10 +13,7 @@ class App extends Component {
 
         super(props)
     }
-
-    componentDidUpdate() {
-        console.log("componentDidUpdate")
-    }
+    
     render() {
         console.log("draw app")
         return (
@@ -25,7 +22,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/chat" render={() => <Chat />} />
                         <Route exact path="/chat/register" render={() => <Register />} />
-                        <Route path='/chat/:slug' component={ Chat } />
+                        <Route path='/chat/:slug' render={({ match }) => <Chat match={match} /> } />
                     </Switch>
                     
                 </BrowserRouter>

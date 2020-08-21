@@ -56,7 +56,7 @@ function sendMessageChat(socket){
                 throw { status: 404, message: "lỗi xác thực người dùng" }
             }
             saveMessage(user, message, style, channel._id)
-            console.log(" emit : " + EVENT.RESPONSE_MESSAGE + " / " + channel.name)
+            
             var response = { 
                 _id: channel._id,
                 token: access.token,

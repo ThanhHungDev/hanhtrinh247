@@ -5,8 +5,6 @@ var Channel     = require("../model/Channel"),
     crypto      = require('crypto'),
     CONFIG      = require("../config"),
     mongoose    = require("mongoose")
-const { Promise } = require("mongoose")
-const { Resolver } = require("dns")
 
  
 module.exports.channels = function( req, res ){

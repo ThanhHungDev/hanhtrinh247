@@ -1,5 +1,5 @@
 import { socketListenner } from "./socket_listenner"
-import { setterSocket, setterConvertation, setterMessage, setterAuth  } from "../action"
+import { setterSocket, setterConvertation, setterMessage, setterAuth, changeActiveConvertation } from "../action"
 import { addMessage } from "../action"
 import socketIOClient from "socket.io-client"
 
@@ -37,6 +37,14 @@ export function joinRoomInit(auth){
 
 
 export function fetchAPIChannels( option, component ){
+
+    var { match } = component.props,
+    slug = null, 
+    convertationIdActive = null
+    if( match ){
+        slug = match.params.slug
+    }
+
     var action = component.props.config.url_realtime + "/api/channels?"
     if( option._id ){
         action += "&id=" + option._id
@@ -75,7 +83,14 @@ export function fetchAPIChannels( option, component ){
                 
                 response.data.channels.map(conv => {
                     
-                    var convertation = { ...conv.user[0], user_id: component.props.auth._id, _id: conv._id }
+                    var convertation = { 
+                        ...conv.user[0], 
+                        user_id: component.props.auth._id, 
+                        _id: conv._id 
+                    }
+                    if( slug && convertation.slug == slug){
+                        convertationIdActive = convertation._id
+                    }
                     
                     var message = {
                         _id: conv._id,
@@ -86,6 +101,8 @@ export function fetchAPIChannels( option, component ){
                 })
                 component.props.dispatch(setterConvertation( convertations ))
                 component.props.dispatch(setterMessage( messages ))
+                convertationIdActive && component.props.dispatch(changeActiveConvertation(convertationIdActive))
+                
                 socketInitialConnect(socketIOClient, component )
             }
             if( response.data.token ){
@@ -105,6 +122,7 @@ export function fetchAPIChannels( option, component ){
 
 export function send( message ){
     var { message, style, token, user, channel_id, component } = message
+    message = message.replace(/(\n\s*?\n)\s*\n/, '$1')
     
     socket.emit(EVENT.SEND_MESSAGE, { message, style, token, user, channel_id })
     component.props.dispatch(

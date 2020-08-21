@@ -1,8 +1,8 @@
 const Channel     = require("../model/Channel"),
-UserAccount = require("../model/UserAccount"),
-TokenAccess = require("../model/TokenAccess"),
-
-CONFIG = require("../config")
+      UserAccount = require("../model/UserAccount"),
+      TokenAccess = require("../model/TokenAccess"),
+      crypto      = require('crypto'),
+      CONFIG      = require("../config")
 
 var { createChannelName } = require("../library/helper.js")
 
@@ -51,7 +51,7 @@ module.exports.registerChat = function( req, res ){
             })
             Promise.all(saveChannel).then(channels => {})
             response.message = "thêm mới"
-            response.data = { email: user.email, name: name , mobile: mobile, _id: user._id }
+            response.data = { email: email, name: name , mobile: mobile, _id: newUser._id }
             return res.status(200).json(response)
         })
     })
@@ -59,7 +59,7 @@ module.exports.registerChat = function( req, res ){
 
 module.exports.registerAdmin = function( req, res ){
 
-    var { email, name, mobile, role_id } = req.body
+    var { email, name, mobile, role_id, slug } = req.body
 
     email = email.trim()
 
@@ -82,7 +82,7 @@ module.exports.registerAdmin = function( req, res ){
         if(!isRoleAdmin){
             throw Error('role not exist')
         }
-        var newUserAccount = new UserAccount({ email, name, mobile, role_id: parseInt(role_id) })
+        var newUserAccount = new UserAccount({ email, name, mobile, role_id: parseInt(role_id), slug })
         newUserAccount.save().then(newUser => {
             var newTokenAccess = new TokenAccess({ token : tokenAccess, user: newUser._id })
             newTokenAccess.save()

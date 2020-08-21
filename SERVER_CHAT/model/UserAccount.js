@@ -28,13 +28,19 @@ const UserAccountSchema = new Schema(
             type: Number,
             default: CONFIG.ROLE.USER
         },
-        code: {
+        slug: {
             type: String
         }
     }, {
     timestamps: true
 })
-
+UserAccountSchema.pre('save', function (next) {
+    if(!this.slug){
+        this.slug = this.mobile
+    }
+    
+    return next()
+})
 UserAccountSchema.pre('save', function (next) {
     
     this.period = new Date

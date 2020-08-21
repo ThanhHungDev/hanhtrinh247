@@ -73,7 +73,7 @@ class Register extends Component {
 
     render() {
         if( this.props.auth ){
-            return <Redirect to="/chat" />
+            return <Redirect to="/chat/consulting-web-design" />
         }
         return (
             <div className="component-register">

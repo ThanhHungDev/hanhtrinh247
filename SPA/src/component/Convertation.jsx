@@ -8,6 +8,7 @@ class Convertation extends Component {
     changeActiveUser = (id) => {
 
         this.props.dispatch(changeActiveConvertation(id))
+        document.getElementById("Application").classList.add('convertation-change')
     }
 
     render() {

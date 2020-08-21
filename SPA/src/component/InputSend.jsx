@@ -6,6 +6,11 @@ import $ from "jquery"
 
 class InputSend extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = { sendChat: false }
+    }
+
     componentDidMount() {
         window.onclick = function (event) {
             if (event.target) {
@@ -50,26 +55,30 @@ class InputSend extends Component {
         send(objMess)
     }
 
-    listenKeyDown = event => {
+    btnSendMessage = () => {
         var input = document.getElementById("js-input-chat")
         if (!input) return false
-        
-        /// space character replace emoji
-        if (event.keyCode == 32) {
-            var content = input.value
-            /// get word last
-            var words = content.trim().split(" ")
-            var wordLastest = words[words.length - 1]
-            //// check have sysbol 
-            var emojisCall = CONFIG_EMOJIS.filter(item => item.sign == wordLastest)
-            if(emojisCall.length){
-                /// add icon 
-                var lastIndex = content.trim().lastIndexOf(" ")
-                input.value = content.substring(0, lastIndex) + " " + emojisCall[0].symbol
-            }
+
+        var { convertations, auth } = this.props,
+        convActive = convertations.find(convertations => convertations.isActive)
+
+        var objMess = {
+            message: event.target.value, 
+            style: "", 
+            token: this.props.auth.token,
+            user: auth._id,
+            channel_id: convActive._id,
+            component: this,
         }
+
+        send(objMess)
+        input.value = ''
+        return false
     }
-    listenKeyUp = event => {
+
+
+    handleSendMessageDown = (event) => {
+
         var input = document.getElementById("js-input-chat")
         if (!input) return false
         
@@ -89,28 +98,34 @@ class InputSend extends Component {
 
             send(objMess)
             input.value = ''
+            this.setState({ sendChat: true })
             return false
         }
-    }
-    btnSendMessage = () => {
-        var input = document.getElementById("js-input-chat")
-        if (!input) return false
-
-        var { convertations, auth } = this.props,
-        convActive = convertations.find(convertations => convertations.isActive)
-
-        var objMess = { 
-            message: event.target.value, 
-            style: "", 
-            token: this.props.auth.token,
-            user: auth._id,
-            channel_id: convActive._id,
-            component: this,
+        
+        /// space character replace emoji
+        if (event.keyCode == 32) {
+            var content = input.value
+            /// get word last
+            var words = content.trim().split(" ")
+            var wordLastest = words[words.length - 1]
+            //// check have sysbol 
+            var emojisCall = CONFIG_EMOJIS.filter(item => item.sign == wordLastest)
+            if(emojisCall.length){
+                /// add icon 
+                var lastIndex = content.trim().lastIndexOf(" ")
+                input.value = content.substring(0, lastIndex) + " " + emojisCall[0].symbol
+            }
         }
-
-        send(objMess)
-        input.value = ''
-        return false
+    }
+    handleSendMessageUp = () => {
+        if (this.state.sendChat) {
+            this.setState({ sendChat: false });
+            document.getElementById("js-input-chat").value = "";
+        }
+    }
+    handleSendChatClick = () => {
+        //// send class is write message
+        document.getElementById("js-is-write-message").classList.add("follow-conversation")
     }
 
     render() {
@@ -128,8 +143,9 @@ class InputSend extends Component {
                 ></i>
                 <textarea
                     id="js-input-chat"
-                    onKeyDown={ this.listenKeyDown }
-                    onKeyUp={this.listenKeyUp}
+                    onKeyDown={this.handleSendMessageDown}
+                    onKeyUp={this.handleSendMessageUp}
+                    onClick={this.handleSendChatClick}
                     placeholder="メッセージを書く..."
                 ></textarea>
                 <i className="hero-icon hero-send-outline send" onClick={this.btnSendMessage}></i>

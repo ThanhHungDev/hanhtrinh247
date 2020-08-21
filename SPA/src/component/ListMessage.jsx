@@ -12,6 +12,19 @@ class ListMessage extends Component {
 
         var domScroll = document.getElementById("js-scroll-to-bottom")
         var domWriter = document.getElementById("js-is-write-message")
+
+        if(document.getElementById("Application").classList.contains('convertation-change')){
+            document.getElementById("Application").classList.remove('convertation-change')
+            
+            var domScroll = document.getElementById("js-scroll-to-bottom")
+            var domWriter = document.getElementById("js-is-write-message")
+            domScroll.scrollTop = domScroll.scrollHeight
+        }else if(
+            domScroll && 
+            domWriter && 
+            domWriter.classList.contains('follow-conversation')){
+                domScroll.scrollTop = domScroll.scrollHeight
+        }
         if(domScroll){
             
             $(domScroll).on('scroll', function(){
@@ -24,14 +37,6 @@ class ListMessage extends Component {
                     document.getElementById("js-is-write-message").classList.remove("follow-conversation")
                 } 
             })
-        }
-        if( domWriter && domScroll && domScroll.scrollHeight == domScroll.clientHeight){
-            /// read message
-        }else if(
-            domScroll && 
-            domWriter && 
-            domWriter.classList.contains('follow-conversation')){
-                domScroll.scrollTop = domScroll.scrollHeight
         }
     }
 
