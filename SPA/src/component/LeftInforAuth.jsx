@@ -62,8 +62,7 @@ class LeftInforAuth extends Component {
 let mapStateToProps = (state) => {
     return {
         auth: state.auth,
-        config: state.config,
-        detect: state.detect
+        config: state.config
     }
 }
 export default connect(mapStateToProps)(LeftInforAuth)

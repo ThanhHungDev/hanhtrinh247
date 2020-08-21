@@ -32,8 +32,8 @@ var CONFIG = {
         }
     }, 
     mailler: {
-        email: "jbtruongthanhhung@gmail.com",
-        password: "...."
+        email: "managementpartners.hospital@gmail.com",
+        password: "mp@123456"
     },
     database : {
         
@@ -47,7 +47,20 @@ var CONFIG = {
     },
     EVENT : {
         CONNECTTION              : 'connection',
-        DISCONNECT               : 'disconnect'
+        DISCONNECT               : 'disconnect',
+        SEND_MESSAGE             : 'send-message',
+        RESPONSE_MESSAGE         : 'response-message',
+        RESPONSE_MESSAGE_ERROR   : 'RESPONSE_MESSAGE_ERROR',
+        JOIN_CHANNEL             : "join-channel",
+
+        SEND_TYPING              : "send-typing",
+        RESPONSE_TYPING          : 'response-typing',
+        USER_ONLINE              : "USER_ONLINE",
+        USER_ONLINE_NOTI         : "USER_ONLINE_NOTI",
+        USER_OFFLINE_NOTI        : "USER_OFFLINE_NOTI",
+        DUPLICATION_TAB          : "DUPLICATION_TAB",
+        READ_MESSAGE_ALL         : "READ_MESSAGE_ALL",
+        READ_MESSAGE_ALL_RESPONSE: "READ_MESSAGE_ALL_RESPONSE"
     },
     ROLE: {
         

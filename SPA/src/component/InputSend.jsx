@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ListEmoji from "./ListEmoji.jsx";
 import { send } from "../library/service.js"
+import $ from "jquery"
 
 class InputSend extends Component {
 
@@ -34,14 +35,14 @@ class InputSend extends Component {
 
     handleSendMessageReactSubmit = () => {
         
-        var { convertations } = this.props,
+        var { convertations, auth } = this.props,
         convActive = convertations.find(convertations => convertations.isActive)
 
         var objMess = { 
             message: " 💝 ", 
             style: "EMOJI", 
             token: this.props.auth.token,
-            user_id: convActive.user_id,
+            user: auth._id,
             channel_id: convActive._id,
             component: this,
         }
@@ -74,14 +75,14 @@ class InputSend extends Component {
         
         if (event.keyCode == 13 && !event.shiftKey) {
 
-            var { convertations } = this.props,
+            var { convertations, auth } = this.props,
             convActive = convertations.find(convertations => convertations.isActive)
 
             var objMess = { 
                 message: event.target.value, 
                 style: "", 
                 token: this.props.auth.token,
-                user_id: convActive.user_id,
+                user: auth._id,
                 channel_id: convActive._id,
                 component: this,
             }
@@ -95,14 +96,14 @@ class InputSend extends Component {
         var input = document.getElementById("js-input-chat")
         if (!input) return false
 
-        var { convertations } = this.props,
+        var { convertations, auth } = this.props,
         convActive = convertations.find(convertations => convertations.isActive)
 
         var objMess = { 
             message: event.target.value, 
             style: "", 
             token: this.props.auth.token,
-            user_id: convActive.user_id,
+            user: auth._id,
             channel_id: convActive._id,
             component: this,
         }
@@ -142,7 +143,6 @@ class InputSend extends Component {
 let mapStateToProps = (state) => {
     return {
         auth         : state.auth,
-        detect       : state.detect,
         convertations: state.convertation,
         socket       : state.socket
     }

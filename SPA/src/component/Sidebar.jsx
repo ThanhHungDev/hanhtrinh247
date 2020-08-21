@@ -3,8 +3,6 @@ import { connect } from "react-redux"
 
 import SidebarLstConvertation from "./SidebarLstConvertation.jsx"
 
-import { fetchAPIChannels } from "../library/service.js"
-
 class Sidebar extends Component {
 
     componentDidMount(){
@@ -13,13 +11,6 @@ class Sidebar extends Component {
         message = document.getElementById("js-lst-messages")
         if(sidebar && message){
             sidebar.style.height = message.clientHeight + "px"
-        }
-        if( this.props.auth ){
-            
-            var { token } = this.props.auth
-            if( token ){
-                fetchAPIChannels(token, this)
-            }
         }
     }
 

@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 
 import { Redirect } from "react-router-dom"
-import { socketInitialConnect } from "../library/service"
 /// soccket 
-import socketIOClient from "socket.io-client"
+
+import { fetchAPIChannels } from "../library/service.js"
 
 
 //// define
@@ -15,7 +15,10 @@ class Chat extends Component {
 
     componentDidMount(){
 
-        socketInitialConnect(socketIOClient, this )
+        if( this.props.auth ){
+            
+            fetchAPIChannels(this.props.auth, this)
+        }
     }
     render() {
 
@@ -36,7 +39,8 @@ class Chat extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        config: state.config
     }
 }
 export default connect(mapStateToProps)(Chat)

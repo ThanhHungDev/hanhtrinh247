@@ -6,10 +6,9 @@ import TYPE from "../action/type.js"
 class Message extends Component {
 
     render() {
-        var { message, convertations } = this.props,
+        var { message, convertations, auth } = this.props,
         convActive = convertations.find(convertations => convertations.isActive),
-        classTypeMessage = message.sender_id == convActive.userId ? 'float-right by-me' : 'float-left'
-
+        classTypeMessage = message.user != auth._id ? 'float-left' : 'float-right by-me'
         if (!convActive) {
             return null
         }
@@ -22,16 +21,6 @@ class Message extends Component {
                         <img src={convActive.avatar} alt="" />
                     </figure>
                     <div className="message-content">
-                        {
-                            message.style == "IMAGE" &&
-                            <div className={message.style} >
-                                {message.attachment.map((image, index) => {
-                                    return <div key={"wrapper-attachment" + index + image} className="wrapper-attachment">
-                                        <img src={this.props.config.asset + image} />
-                                    </div>
-                                })}
-                            </div>
-                        }
                         <div className={message.style + " text"} >{message.content}</div>
                     </div>
                 </div>

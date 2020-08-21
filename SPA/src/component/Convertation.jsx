@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-
-import TYPE from "../action/type"
 import { changeActiveConvertation } from "../action"
 
 class Convertation extends Component {

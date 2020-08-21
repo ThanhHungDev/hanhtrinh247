@@ -1,14 +1,11 @@
 import { socketListenner } from "./socket_listenner"
-import { setterSocket, setterConvertation, setterMessage  } from "../action"
+import { setterSocket, setterConvertation, setterMessage, setterAuth  } from "../action"
 import { addMessage } from "../action"
+import socketIOClient from "socket.io-client"
 
 const CONFIG = CONFIG_APP,
 EVENT = CONFIG_EVENT
 var socket = null
-
-export function saveAuthLocalStorage (auth) {
-    localStorage.setItem('auth', JSON.stringify(auth))
-}
 
 
 export function socketInitialConnect(socketIOClient, instanceApp) {
@@ -21,6 +18,8 @@ export function socketInitialConnect(socketIOClient, instanceApp) {
         //// set config
         socketListenner(socket, instanceApp)
         instanceApp.props.dispatch(setterSocket(socket))
+        /// joinRoomInit
+        joinRoomInit(instanceApp.props.auth)
     });
     socket.on('disconnect', function () {
         instanceApp.props.dispatch(setterSocket(null))
@@ -31,10 +30,23 @@ export function socketInitialConnect(socketIOClient, instanceApp) {
     });
 }
 
+export function joinRoomInit(auth){
 
-export function fetchAPIChannels( token, component ){
+    socket.emit(EVENT.JOIN_CHANNEL, auth)
+}
 
-    var action = component.props.config.url_realtime + "/api/channels?token=" + token
+
+export function fetchAPIChannels( option, component ){
+    var action = component.props.config.url_realtime + "/api/channels?"
+    if( option._id ){
+        action += "&id=" + option._id
+    }
+    if( option.email ){
+        action += "&email=" + option.email
+    }
+    if( option.mobile ){
+        action += "&mobile=" + option.mobile
+    }
     console.log(action)
     fetch(action, {
         method: "GET",
@@ -58,21 +70,28 @@ export function fetchAPIChannels( token, component ){
         if( response.data ){
             var convertations = [],
             messages = []
+
             if( response.data.channels ){
                 
                 response.data.channels.map(conv => {
                     
-                    var convertation = { ...conv.user[0], user_id: conv.user[0]._id, _id: conv._id }
+                    var convertation = { ...conv.user[0], user_id: component.props.auth._id, _id: conv._id }
                     
                     var message = {
                         _id: conv._id,
-                        message_data: conv.message
+                        message_data: conv.message || []
                     }
                     convertations.push(convertation)
                     messages.push(message)
                 })
                 component.props.dispatch(setterConvertation( convertations ))
                 component.props.dispatch(setterMessage( messages ))
+                socketInitialConnect(socketIOClient, component )
+            }
+            if( response.data.token ){
+                var auth = component.props.auth
+                auth.token = response.data.token
+                component.props.dispatch(setterAuth( auth ))
             }
         }
     })
@@ -85,11 +104,12 @@ export function fetchAPIChannels( token, component ){
 
 
 export function send( message ){
-    console.log(" send message to channel " , message )
-
-    var { message, style, token, user_id, channel_id, component } = message,
-    { detect } = component.props
-    socket.emit(EVENT.SEND_MESSAGE, { message, style, token, user_id, channel_id, detect: JSON.stringify(detect) })
-    component.props.dispatch(addMessage(
-        { _id: channel_id, message_data:{type: true, read: true, content: message, style, token, user_id}}))
+    var { message, style, token, user, channel_id, component } = message
+    
+    socket.emit(EVENT.SEND_MESSAGE, { message, style, token, user, channel_id })
+    component.props.dispatch(
+        addMessage(
+            { _id: channel_id, message_data:{type: true, read: true, content: message, style, token, user}}
+        )
+    )
 }

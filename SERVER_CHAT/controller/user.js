@@ -1,16 +1,14 @@
 const Channel     = require("../model/Channel"),
 UserAccount = require("../model/UserAccount"),
-crypto      = require('crypto'),
 TokenAccess = require("../model/TokenAccess"),
+
 CONFIG = require("../config")
 
 var { createChannelName } = require("../library/helper.js")
 
 module.exports.registerChat = function( req, res ){
-    var globalUser = null
-
-    var { email, name, mobile, detect } = req.body
-
+    
+    var { email, name, mobile } = req.body
     email = email.trim()
 
     var response = {}
@@ -21,36 +19,21 @@ module.exports.registerChat = function( req, res ){
         response.errors           = [ req.error ]
         return res.status(422).json(response)
     }
-    var tokenAccess = crypto.createHash('md5').update(
-        JSON.stringify({ ... detect, time: (new Date).getTime() })
-    ).digest('hex')
-
+    
     UserAccount.findOne({ email })
     .then( user => {
         if( !user ){
             throw Error('user not exist')
         }
-        return user._id
-    })
-    .then( user_id => {
-        globalUser = user_id
-        return TokenAccess.findOne({  _id: globalUser, detect})
-    })
-    .then( token_access => {
-        if( !token_access ){
-            token_access = new TokenAccess({ token : tokenAccess, user: globalUser, detect })
-            token_access.save()
-        }
+        
         response.message = "tồn tại trong hệ thống"
-        response.data    = { userId: globalUser, token: token_access.token }
+        /// loader = 0 là chưa có verify do server đổ về đại
+        response.data    = { email: user.email, name: name , mobile: mobile, _id: user._id }
         return res.status(200).json(response)
     })
     .catch( error => {
         
-        var newUserAccount = new UserAccount({ email, name, mobile })
-        newUserAccount.save().then(newUser => {
-            var newTokenAccess = new TokenAccess({ token : tokenAccess, user  : newUser._id, detect })
-            newTokenAccess.save()
+        (new UserAccount({ email, name, mobile })).save().then(newUser => {
             /// create 3 channel 
             var ROLES_ADMIN = [
                 parseInt(CONFIG.ROLE.CONSULTING_WEB),
@@ -62,30 +45,28 @@ module.exports.registerChat = function( req, res ){
 
                     return user && (new Channel({ 
                         name: createChannelName(newUser._id, user._id), 
-                        user: [newUser._id, user._id], 
-                        detect 
+                        user: [newUser._id, user._id]
                     })).save()
                 })
             })
-            Promise.all(saveChannel).then(channels => {
-                response.message = "thêm mới"
-                response.data = { userId: newUserAccount._id, token: tokenAccess }
-                return res.status(200).json(response)
-            })
+            Promise.all(saveChannel).then(channels => {})
+            response.message = "thêm mới"
+            response.data = { email: user.email, name: name , mobile: mobile, _id: user._id }
+            return res.status(200).json(response)
         })
     })
 }
 
 module.exports.registerAdmin = function( req, res ){
 
-    var { email, name, mobile, detect, role_id } = req.body
+    var { email, name, mobile, role_id } = req.body
 
     email = email.trim()
 
     var response = {}
 
     var tokenAccess = crypto.createHash('md5').update(
-        JSON.stringify({ ... detect, time: (new Date).getTime() })
+        JSON.stringify({ email, name, mobile, time: (new Date).getTime() })
     ).digest('hex')
 
     UserAccount.findOne({ email })
@@ -103,7 +84,7 @@ module.exports.registerAdmin = function( req, res ){
         }
         var newUserAccount = new UserAccount({ email, name, mobile, role_id: parseInt(role_id) })
         newUserAccount.save().then(newUser => {
-            var newTokenAccess = new TokenAccess({ token : tokenAccess, user: newUser._id, detect })
+            var newTokenAccess = new TokenAccess({ token : tokenAccess, user: newUser._id })
             newTokenAccess.save()
             /// create 3 channel
         })

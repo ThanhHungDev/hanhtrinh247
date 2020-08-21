@@ -79,7 +79,7 @@ if(PORT == 443){
 }
 const io     = socket(server)
 server.listen(PORT,  () => {
-
+    require("./library/socket-event")(io)
     console.log(`server run: ${DOMAIN}`)
 })
 /// set middleware api

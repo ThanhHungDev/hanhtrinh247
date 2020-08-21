@@ -3,9 +3,37 @@ import { connect } from "react-redux"
 import ListMessageHeader from "./ListMessageHeader.jsx"
 import Message from "./Message.jsx"
 import InputSend from "./InputSend.jsx"
+import $ from "jquery"
 // import MessageChatTyping from "./MessageChatTyping.jsx"
 
 class ListMessage extends Component {
+
+    componentDidUpdate() {
+
+        var domScroll = document.getElementById("js-scroll-to-bottom")
+        var domWriter = document.getElementById("js-is-write-message")
+        if(domScroll){
+            
+            $(domScroll).on('scroll', function(){
+                
+                if ($(this).scrollTop() + 
+                    $(this).innerHeight() >=  
+                    $(this)[0].scrollHeight) { 
+                        document.getElementById("js-is-write-message").classList.add("follow-conversation")
+                }else{
+                    document.getElementById("js-is-write-message").classList.remove("follow-conversation")
+                } 
+            })
+        }
+        if( domWriter && domScroll && domScroll.scrollHeight == domScroll.clientHeight){
+            /// read message
+        }else if(
+            domScroll && 
+            domWriter && 
+            domWriter.classList.contains('follow-conversation')){
+                domScroll.scrollTop = domScroll.scrollHeight
+        }
+    }
 
     render() {
 
@@ -23,12 +51,11 @@ class ListMessage extends Component {
             if( !messages.length ){
                 messages = [ 
                     {
-                        attachment: [],
                         content: "chúng tôi có thể giúp gì cho bạn",
                         createdAt: "2020-07-29T06:51:54.963Z",
                         read: true,
                         style: "",
-                        sender_id: "ADMIN",
+                        user: "ADMIN",
                         _id: "ADMIN",
                     }
                 ]

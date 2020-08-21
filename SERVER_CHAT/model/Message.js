@@ -13,7 +13,7 @@ const MessageSchema = new Schema(
             type: Schema.Types.ObjectId,
             required: [ true, 'Message of user is required' ]
         },
-        body: {
+        content: {
             type: String,
             required: [ true, 'Body message is required' ]
         },
@@ -23,10 +23,7 @@ const MessageSchema = new Schema(
         },
         style : {
             type: String
-        },
-        attachment: [
-            { type: Object }
-        ]
+        }
     }, {
         timestamps: true
     }

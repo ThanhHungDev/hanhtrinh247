@@ -27,6 +27,9 @@ const UserAccountSchema = new Schema(
         role_id: {
             type: Number,
             default: CONFIG.ROLE.USER
+        },
+        code: {
+            type: String
         }
     }, {
     timestamps: true

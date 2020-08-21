@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
 import LeftInforAuth from "./LeftInforAuth.jsx"
-import { saveAuthLocalStorage } from "../library/service"
 import { setterAuth } from "../action"
 
 class Register extends Component {
@@ -30,7 +29,6 @@ class Register extends Component {
         var email  = this.email.value,
             name   = this.name.value,
             mobile = this.mobile.value,
-            detect = JSON.stringify(this.props.detect),
             validator = this.invalidLoginChat()
         if( validator ){
             this.setState({ alert : validator.message , progress : false })
@@ -46,7 +44,7 @@ class Register extends Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email , name , mobile, detect })
+                body: JSON.stringify({ email , name , mobile })
             })
             .then(resp => { 
                 
@@ -61,11 +59,7 @@ class Register extends Component {
                 
                 this.setState({ alert : false , progress : false }, function(){
                     if( response.data ){
-                        var auth = {
-                            email, name, mobile, token : response.data.token.toString(), _id: response.data.userId.toString()
-                        }
-                        saveAuthLocalStorage(auth)
-                        this.props.dispatch(setterAuth( auth ))
+                        this.props.dispatch(setterAuth({ ... response.data }))
                     }
                 });
             })
@@ -79,7 +73,7 @@ class Register extends Component {
 
     render() {
         if( this.props.auth ){
-            return <Redirect to="/chat/hung" />
+            return <Redirect to="/chat" />
         }
         return (
             <div className="component-register">
@@ -114,8 +108,7 @@ class Register extends Component {
 let mapStateToProps = (state) => {
     return {
         auth  : state.auth,
-        config: state.config,
-        detect: state.detect
+        config: state.config
     }
 }
 export default connect(mapStateToProps)(Register)

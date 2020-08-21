@@ -10,7 +10,7 @@ export function setterAuth( auth ){
     console.log(auth , " set auth ")
     return {
         type : TYPE.AUTH.SETTER,
-        payload : { auth }
+        payload : auth
     }
 }
 export function setterConvertation( conv ){
