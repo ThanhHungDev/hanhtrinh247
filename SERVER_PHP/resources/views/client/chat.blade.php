@@ -2,7 +2,7 @@
 
 @extends('client.layout.main')
 
-@section('title', 'search theme | ' . Config::get("app.name"))
+@section('title', 'chat | ' . Config::get("app.name"))
 @section('description', Config::get("app.name"))
 @section('keywords', Config::get("app.name"))
 
@@ -25,90 +25,13 @@
 
 @endsection
 @section('javascripts')
-@php $config =  Config::get('SPA'); @endphp
-<script>
-    
-    
-    const CONFIG_APP = {!! json_encode($config, JSON_PRETTY_PRINT) !!};
-    const CONFIG_EVENT = {
-            "CONNECTTION"     : 'connection',
-            "DISCONNECT"      : 'disconnect',
-            "SEND_MESSAGE"    : 'send-message',
-            "RESPONSE_MESSAGE": 'response-message',
-            "JOIN_CHANNEL"    : "join-channel",
-            "SEND_TYPING"     : "send-typing",
-            "RESPONSE_TYPING" : 'response-typing'
-        };
-        const CONFIG_EMOJIS =  [
-            { symbol: "🤭", sign: ":3" },
-            { symbol: "🤣", sign: ":v" },
-            { symbol: "🙂", sign: ":)" },
-            { symbol: "🙂", sign: "=)" },
-            { symbol: "😊", sign: ":^)" },
-            { symbol: "😀", sign: ":}" },
-            { symbol: "😁", sign: ":o)" },
-            { symbol: "😃", sign: ":-D" },
-            { symbol: "😄", sign: ":D" },
-            { symbol: "😆", sign: "X-D" },
-            { symbol: "😍", sign: "B^D" },
-            { symbol: "🙁", sign: ":-(" },
-            { symbol: "😠", sign: ":(" },
-            { symbol: "😡", sign: ":‑<" },
-            { symbol: "😞", sign: ":[" },
-            { symbol: "😟", sign: ">:[" },
-            { symbol: "😣", sign: ":{" },
-            { symbol: "😖", sign: ">:(" },
-            { symbol: "😢", sign: ":'‑(" },
-            { symbol: "😭", sign: ":'(" },
-            { symbol: "😂", sign: ":')" },
-            { symbol: "😨", sign: "D‑':" },
-            { symbol: "😧", sign: "D:<" },
-            { symbol: "😦", sign: "D:" },
-            { symbol: "😱", sign: "D;" },
-            { symbol: "😫", sign: "D=" },
-            { symbol: "😩", sign: "DX" },
-            { symbol: "😮", sign: ":-0" },
-            { symbol: "😯", sign: "8‑0" },
-            { symbol: "😲", sign: ">:O" },
-            { symbol: "😗", sign: ":-*" },
-            { symbol: "😙", sign: ":^*" },
-            { symbol: "😚", sign: ":^-" },
-            { symbol: "😘", sign: ":x" },
-            { symbol: "😍", sign: ":X" },
-            { symbol: "😉", sign: ";‑)" },
-            { symbol: "😜", sign: "*-)" },
-            { symbol: "😘", sign: ";D" },
-            { symbol: "😛", sign: ":P" },
-            { symbol: "😝", sign: "x‑p" },
-            { symbol: "😜", sign: "=p" },
-            { symbol: "🤑", sign: ">:P" },
-            { symbol: "🤔", sign: ":‑/" },
-            { symbol: "😕", sign: ":‑." },
-            { symbol: "😟", sign: ":S" },
-            { symbol: "😐", sign: ":‑|" },
-            { symbol: "😑", sign: ":|" },
-            { symbol: "😳", sign: ":$" },
-            { symbol: "😞", sign: ":b3" },
-            { symbol: "😖", sign: ":‑X" },
-            { symbol: "🤐", sign: ":&" },
-            { symbol: "😶", sign: "O:‑)" },
-            { symbol: "😇", sign: "O:)" },
-            { symbol: "👼", sign: "0;^)" },
-            { symbol: "😈", sign: ">;3" },
-            { symbol: "😎", sign: "|;‑)" },
-            { symbol: "😪", sign: "|‑O" },
-            { symbol: "😏", sign: ":‑J" },
-            { symbol: "😒", sign: "#‑)" },
-            { symbol: "😵", sign: "%‑)" },
-            { symbol: "😕", sign: "%)" },
-            { symbol: "🤒", sign: ":#/" },
-            { symbol: "😷", sign: ":D-" },
-            { symbol: "🤢", sign: ":cR" },
-            { symbol: "🤕", sign: "<:‑/" },
-            { symbol: "🤨", sign: ":-l" },
-            { symbol: "💝", sign: "<3" }
-        ];
-</script>
+
+    <script>
+        
+        const CONFIG_APP = {!! json_encode(Config::get('SPA'), JSON_PRETTY_PRINT) !!};
+        const CONFIG_EVENT = {!! json_encode(Config::get('event-chat'), JSON_PRETTY_PRINT) !!};
+        const CONFIG_EMOJIS = {!! json_encode(Config::get('emoji'), JSON_PRETTY_PRINT) !!};
+    </script>
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/index.bundle.js' . Config::get('app.version')) }}"></script>
@@ -124,6 +47,6 @@
     You need to enable JavaScript to run this app.
 </noscript>
 <div>
-    <div id="ROOT" class="position-relative">loading...</div>
+    <div id="ROOT" class="position-relative text-center">loading...</div>
 </div>
 @endsection

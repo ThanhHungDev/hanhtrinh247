@@ -8,7 +8,9 @@ var { createChannelName } = require("../library/helper.js")
 
 module.exports.registerChat = function( req, res ){
     
-    var { email, name, mobile } = req.body
+    var { email, name, mobile,
+        accessToken, userID, avatar, type
+    } = req.body
     email = email.trim()
 
     var response = {}
@@ -27,13 +29,19 @@ module.exports.registerChat = function( req, res ){
         }
         
         response.message = "tồn tại trong hệ thống"
-        /// loader = 0 là chưa có verify do server đổ về đại
-        response.data    = { email: user.email, name: name , mobile: mobile, _id: user._id }
+        response.data    = { 
+            email: user.email, 
+            name: name , 
+            mobile: mobile, 
+            avatar: user.avatar, 
+            type: user.type, 
+            _id: user._id 
+        }
         return res.status(200).json(response)
     })
     .catch( error => {
         
-        (new UserAccount({ email, name, mobile })).save().then(newUser => {
+        (new UserAccount({ email, name, mobile, accessToken, userID, avatar, type })).save().then(newUser => {
             /// create 3 channel 
             var ROLES_ADMIN = [
                 parseInt(CONFIG.ROLE.CONSULTING_WEB),
@@ -51,7 +59,14 @@ module.exports.registerChat = function( req, res ){
             })
             Promise.all(saveChannel).then(channels => {})
             response.message = "thêm mới"
-            response.data = { email: email, name: name , mobile: mobile, _id: newUser._id }
+            response.data = { 
+                email: newUser.email,
+                name: newUser.name,
+                mobile: newUser.mobile,
+                avatar: newUser.avatar,
+                type: newUser.type,
+                _id: newUser._id,
+            }
             return res.status(200).json(response)
         })
     })

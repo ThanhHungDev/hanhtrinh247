@@ -46,6 +46,15 @@ function validateForm(formJquery){
             description_seo : {
                 required : true,
                 maxlength: 255
+            },
+            type:{
+                required : true
+            },
+            stylesheet: {
+                maxlength: 10000
+            },
+            javascript:{
+                maxlength: 10000
             }
         },
         messages: {
@@ -93,8 +102,16 @@ function validateForm(formJquery){
             description_seo : {
                 required : "cần thêm mô tả seo(description_seo)",
                 maxlength: "phần mô tả (description_seo) không nên vượt quá {0} kí tự "
-            }
-            
+            },
+            type:{
+                required : "cần thêm type post hoặc tag"
+            },
+            stylesheet: {
+                maxlength: "phần stylesheet không nên vượt quá {0} kí tự "
+            },
+            javascript:{
+                maxlength: "phần javascript không nên vượt quá {0} kí tự "
+            },
         }
     });
 }

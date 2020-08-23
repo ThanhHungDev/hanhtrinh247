@@ -30,7 +30,16 @@ const UserAccountSchema = new Schema(
         },
         slug: {
             type: String
-        }
+        },
+        accessToken: {
+            type: String
+        },
+        userID: {
+            type: String
+        },
+        type: {
+            type: String
+        },
     }, {
     timestamps: true
 })
@@ -38,12 +47,6 @@ UserAccountSchema.pre('save', function (next) {
     if(!this.slug){
         this.slug = this.mobile
     }
-    
-    return next()
-})
-UserAccountSchema.pre('save', function (next) {
-    
-    this.period = new Date
     return next()
 })
 

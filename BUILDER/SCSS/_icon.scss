@@ -2334,7 +2334,7 @@ $hero-icons: (
   // "format-list-numbered-rtl": F0D0D,
   "format-list-text": F126F,
   // "format-overline": F0EB3,
-  // "format-page-break": F06D7,
+  "format-page-break": F06D7,
   // "format-paint": F027C,
   // "format-paragraph": F027D,
   // "format-pilcrow": F06D8,
@@ -2511,7 +2511,7 @@ $hero-icons: (
   // "golf-tee": F1083,
   // "gondola": F0686,
   // "goodreads": F0D7B,
-  // "google": F02AD,
+  "google": F02AD,
   "google-ads": F0C87,
   // "google-analytics": F07CC,
   // "google-assistant": F07CD,
@@ -3173,7 +3173,7 @@ $hero-icons: (
   // "message-arrow-left-outline": F12F3,
   // "message-arrow-right": F12F4,
   // "message-arrow-right-outline": F12F5,
-  // "message-bulleted": F06A2,
+  "message-bulleted": F06A2,
   // "message-bulleted-off": F06A3,
   // "message-cog": F06F1,
   "message-cog-outline": F1172,
@@ -5148,17 +5148,17 @@ $hero-icons: (
   // "zodiac-virgo": F0A88
 );
 
-// @font-face {
-// 	font-family: "HERO Icons";
-// 	src: url("/font/IconFont/webfont.eot?v=1.4.57");
-//   src: url("/font/IconFont/webfont.eot?#iefix&v=1.4.57") format("embedded-opentype"), 
-//   url("/font/IconFont/webfont.woff2?v=1.4.57") format("woff2"), 
-//   url("/font/IconFont/webfont.woff?v=1.4.57") format("woff"), 
-//   url("/font/IconFont/webfont.ttf?v=1.4.57") format("truetype"), 
-//   url("/font/IconFont/webfont.svg?v=1.4.57") format("svg");
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
+@font-face {
+	font-family: "HERO Icons";
+	src: url("/font/IconFont/webfont.eot?v=1.4.57");
+  src: url("/font/IconFont/webfont.eot?#iefix&v=1.4.57") format("embedded-opentype"), 
+  url("/font/IconFont/webfont.woff2?v=1.4.57") format("woff2"), 
+  url("/font/IconFont/webfont.woff?v=1.4.57") format("woff"), 
+  url("/font/IconFont/webfont.ttf?v=1.4.57") format("truetype"), 
+  url("/font/IconFont/webfont.svg?v=1.4.57") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
 
 @function char($character-code) {
   @if function-exists("selector-append") {

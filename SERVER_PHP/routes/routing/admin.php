@@ -12,11 +12,20 @@ Route::group(['prefix' => 'admin'], function () {
         
         Route::get('/option','Admin\OptionController@index')->name('ADMIN_STORE_OPTION');
         Route::post('/option','Admin\OptionController@store')->name('ADMIN_SAVE_OPTION');
+
+        /// component chat
+        Route::get('/chat/{slug?}','AdminController@chat')->name('ADMIN_CHAT');
+
         /// component post
         Route::get('/post/{id?}','Admin\PostController@index')->name('ADMIN_STORE_POST');
         Route::post('/post/{id?}','Admin\PostController@save')->name('ADMIN_SAVE_POST');
         Route::get('/posts','Admin\PostController@load')->name('ADMIN_LOAD_POST');
         Route::delete('/post/{id?}','Admin\PostController@delete')->name('ADMIN_DELETE_POST');
+
+        // /// component page
+        // Route::get('/page/{id?}','Admin\PostController@index')->name('ADMIN_STORE_PAGE');
+        // Route::post('/page/{id?}','Admin\PostController@save')->name('ADMIN_SAVE_PAGE');
+        // Route::get('/pages','Admin\PostController@load')->name('ADMIN_LOAD_PAGE');
 
         /// component tag
         Route::get('/tag/{id?}','Admin\TagController@index')->name('ADMIN_STORE_TAG');

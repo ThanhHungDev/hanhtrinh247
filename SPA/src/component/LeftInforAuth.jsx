@@ -1,6 +1,8 @@
 
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import MyLoginFacebook from './MyLoginFacebook.jsx'
+import MyLoginGoogle from "./MyLoginGoogle.jsx"
 
 class LeftInforAuth extends Component {
 
@@ -51,7 +53,11 @@ class LeftInforAuth extends Component {
                 </div>
                 <h3 className="intro-chat-register">
                     チャットを設定するための情報を入力してください。 上記の情報の保護に努めています
-                    </h3>
+                </h3>
+                <div className="text-center">
+                    <MyLoginFacebook/>
+                    <MyLoginGoogle />
+                </div>
             </div>
         );
     }

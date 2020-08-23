@@ -13,6 +13,12 @@
                 <i class="hero-icon hero-segment"></i>Option
             </a>
         </li>
+        <li>
+            <a class="block-session {{ Route::is("ADMIN_CHAT") ? 'active' : null}}" 
+            href="{{ Route('ADMIN_CHAT') }}">
+                <i class="hero-icon hero-message-bulleted"></i>chat
+            </a>
+        </li>
         <li class="{{ Route::is("ADMIN_STORE_POST", "ADMIN_LOAD_POST") ? 'open' : null}}" >
             <a class="block-session">
                 <i class="hero-icon hero-file-document-edit-outline"></i>Post

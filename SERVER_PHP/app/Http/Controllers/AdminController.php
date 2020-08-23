@@ -22,6 +22,13 @@ class AdminController extends Controller
 
         return view('admin.dashboard');
     }
+    /**
+     * ADMIN_CHAT
+     */
+    public function chat(){
+
+        return view('admin.chat');
+    }
     
     public function login(){
         if (Auth::check()){

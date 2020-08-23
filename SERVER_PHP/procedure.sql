@@ -130,3 +130,12 @@ ADD COLUMN "view" INTEGER default 1;
 
 ALTER TABLE topic 
 ADD COLUMN "view" INTEGER default 1;
+
+ALTER TABLE post 
+ADD COLUMN "stylesheet" text;
+
+ALTER TABLE post 
+ADD COLUMN "javascript" text;
+
+ALTER TABLE post 
+ADD COLUMN "type" INTEGER default 1;

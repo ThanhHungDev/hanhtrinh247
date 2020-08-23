@@ -33,6 +33,29 @@ class SupportString{
 
         return $str;
     }
+
+    public static function minimizeCSSsimple($css){
+        
+        try {
+            $css = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $css); // negative look ahead
+            $css = preg_replace('/\s{2,}/', ' ', $css);
+            $css = preg_replace('/\s*([:;{}])\s*/', '$1', $css);
+            $css = preg_replace('/;}/', '}', $css);
+            return $css;
+        } catch (\Throwable $th) {
+            return $css;
+        }
+    }
+
+    public static function minimizeJavascriptSimple($javascript){
+        try {
+            return preg_replace(array("/\s+\n/", "/\n\s+/", "/ +/"), array("\n", "\n ", " "),
+            $javascript);
+        } catch (\Throwable $th) {
+            return $javascript;
+        }
+        
+    }
 }
 
 

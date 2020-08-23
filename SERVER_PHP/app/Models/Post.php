@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\SupportString;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 
 class Post extends Model
 {
@@ -12,7 +13,15 @@ class Post extends Model
 
     protected $fillable = ['id', 'topic_id', 'rating_id', 'title', 'slug', 'excerpt', 
     'content', 'background', 'thumbnail', 'public', 'site_name', 
-    'image_seo', 'keyword_seo', 'description_seo'];
+    'image_seo', 'keyword_seo', 'description_seo', 'type', 'stylesheet', 'javascript'];
+
+    public function getType(){
+
+        if( $this->type && $this->type == Config::get('constant.TYPE-POST.POST') ){
+            return 'POST';
+        }
+        return 'PAGE';
+    }
 
     public function getTitle( $limit = 10, $ellipsis = '...' ){
 

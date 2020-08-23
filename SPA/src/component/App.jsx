@@ -23,6 +23,10 @@ class App extends Component {
                         <Route exact path="/chat" render={() => <Chat />} />
                         <Route exact path="/chat/register" render={() => <Register />} />
                         <Route path='/chat/:slug' render={({ match }) => <Chat match={match} /> } />
+
+                        <Route exact path="/admin/chat" render={() => <Chat />} />
+                        <Route exact path="/admin/chat/register" render={() => <Register />} />
+                        <Route path='/admin/chat/:slug' render={({ match }) => <Chat match={match} /> } />
                     </Switch>
                     
                 </BrowserRouter>

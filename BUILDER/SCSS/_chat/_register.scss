@@ -19,6 +19,12 @@
         width: 60%;
         padding: 10px
     }
+    @include Responsive(SM){
+        .left__register, .right__register{
+            float: none;
+            width: 100%;
+        }
+    }
 
     .conpany{
         line-height: 1;

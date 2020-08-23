@@ -13,5 +13,9 @@ return [
         'SINGLE' => 1,
         'TEXT-HTML' => 2
     ],
-    'VIEW_COOKIE_THEME' => 'VIEW_COOKIE_THEME'
+    'VIEW_COOKIE_THEME' => 'VIEW_COOKIE_THEME',
+    'TYPE-POST' => [
+        'PAGE' => 2,
+        'POST'  => 1,
+    ]
 ];

@@ -49,19 +49,21 @@
             <div class="row block-content">
                 <div class="col-12 bg-white shadows-1 px-3 py-3 table-list">
                     <div class="row thead-list">
-                        <div class="col-4">title</div>
-                        <div class="col-4">keyword</div>
+                        <div class="col-3">title</div>
+                        <div class="col-2">type</div>
+                        <div class="col-3">keyword</div>
                         <div class="col-3">description</div>
                         <div class="col-1">#remove#</div>
                     </div>
                     @foreach( $posts as $post)
                     <div class="row trow-list">
-                        <div class="col-4">
+                        <div class="col-3">
                             <a href="{{ Route("ADMIN_STORE_POST", ['id' =>  $post->id]) }}">
                                 {{ $post->getTitle(30) }}
                             </a>
                         </div>
-                        <div class="col-4">{{ $post->getKeywordSeo(30) }}</div>
+                        <div class="col-2">{{ $post->getType()  }}</div>
+                        <div class="col-3">{{ $post->getKeywordSeo(30) }}</div>
                         <div class="col-3">{{ $post->getDescriptionSeo(30) }}</div>
                         <div class="col-1">
                             <button type="button"

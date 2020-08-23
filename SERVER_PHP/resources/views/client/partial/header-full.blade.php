@@ -26,7 +26,7 @@
                 </ul>
             </li>
             <li class='dropdown-menu'>
-                <a class="{{ Route::is('CHAT') ? 'active' : null }}" href="{{ Route('CHAT') }}">チャット</a>
+                <a class="{{ Route::is('CHAT') ? 'active' : null }}">チャット</a>
                 <i class='hero-icon hero-plus-outline' onclick="activeMenuMobile()"></i>
                 <ul class="sub-link">
                     <li>
@@ -55,8 +55,8 @@
                 href="{{ Route('CONTACT_PAGE') }}">お問い合わせ</a>
             </li>
             <li>
-                <a class="{{ Route::is('INVESTOR_PAGE') ? 'active': null }}"
-                href="{{ Route('INVESTOR_PAGE') }}">投資家</a>
+                <a class="{{ Route::is('POST_VIEW') ? 'active': null }}"
+                href="{{ Route('POST_VIEW', ['slug' => 'investor']) }}">投資家</a>
             </li>
             
         </ul>

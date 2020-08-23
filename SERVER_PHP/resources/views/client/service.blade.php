@@ -3,7 +3,7 @@
 @extends('client.layout.main')
 
 
-@section('title', 'search theme | ' . Config::get("app.name"))
+@section('title', 'service | ' . Config::get("app.name"))
 @section('description', Config::get("app.name") . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 @section('keywords', Config::get("app.name") . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 

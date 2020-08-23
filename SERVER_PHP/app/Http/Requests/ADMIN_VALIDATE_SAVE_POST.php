@@ -24,18 +24,21 @@ class ADMIN_VALIDATE_SAVE_POST extends FormRequest
     public function rules()
     {
         return [
-            'title'            => 'required|max:150',
-            'slug'             => 'required|max:150',
-            'excerpt'          => 'required|max:255',
-            'content'          => 'required',
-            'background'       => 'required|max:510',
-            'thumbnail'        => 'required|max:510',
-            'public'           => 'required',
-            'topic_id'         => 'required',
-            'site_name'        => 'required|max:150',
-            'image_seo'        => 'required|max:510',
-            'keyword_seo'      => 'required|max:255',
-            'description_seo'  => 'required|max:255'
+            'title'           => 'required|max:150',
+            'slug'            => 'required|max:150',
+            'excerpt'         => 'required|max:255',
+            'content'         => 'required',
+            'background'      => 'required|max:510',
+            'thumbnail'       => 'required|max:510',
+            'public'          => 'required',
+            'topic_id'        => 'required',
+            'site_name'       => 'required|max:150',
+            'image_seo'       => 'required|max:510',
+            'keyword_seo'     => 'required|max:255',
+            'description_seo' => 'required|max:255',
+            'type'            => 'required',
+            'stylesheet'      => 'max:10000',
+            'javascript'      => 'max:10000'
         ];
     }
 
@@ -61,7 +64,10 @@ class ADMIN_VALIDATE_SAVE_POST extends FormRequest
             'keyword_seo.required'     => ':attribute phải được nhập',
             'keyword_seo.max'          => ':attribute vượt quá :max kí tự',
             'description_seo.required' => ':attribute phải được nhập',
-            'description_seo.max'      => ':attribute vượt quá :max kí tự'
+            'description_seo.max'      => ':attribute vượt quá :max kí tự',
+            'type.required'            => ':attribute phải được nhập',
+            'stylesheet'               => ':attribute vượt quá :max kí tự',
+            'javascript'               => ':attribute vượt quá :max kí tự',
         ];
     }
 }

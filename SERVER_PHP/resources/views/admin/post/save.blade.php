@@ -50,7 +50,7 @@
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">title post</h2>
                             <input name="title" type="text" value="{{ old('title', $post->title ) }}" onblur="isExistSlug(this.value)" />
-                            <input name="slug" type="hidden" value="{{ old('slug', $post->slug ) }}" />
+                            <input class="mt-2" name="slug" type="text" value="{{ old('slug', $post->slug ) }}" />
                         </div>
                     </div>
                     
@@ -94,6 +94,18 @@
                             <textarea class="height-80px" name="description_seo" cols="30" rows="10">{{ old('description_seo', $post->description_seo) }}</textarea>
                         </div>
                     </div>
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <h2 class="title">meta css</h2>
+                            <textarea class="height-80px" name="stylesheet" cols="30" rows="10">{{ old('stylesheet', $post->stylesheet) }}</textarea>
+                        </div>
+                    </div>
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <h2 class="title">meta javascript</h2>
+                            <textarea class="height-80px" name="javascript" cols="30" rows="10">{{ old('javascript', $post->javascript) }}</textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="row block-content">
@@ -117,6 +129,19 @@
                                         Lưu
                                     </button>
                                 </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row block-content">
+                        <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                            <section class="pb-4">
+                                <h2 class="title text-center">chọn type category</h2>
+                                <select name="type" class="js__single-select">
+                                    <option @if(old('type', $post->type) == Config::get('constant.TYPE-POST.POST')) {{ 'selected' }} @endif
+                                    value="{{ Config::get('constant.TYPE-POST.POST') }}">post</option>
+                                    <option @if(old('type', $post->type) == Config::get('constant.TYPE-POST.PAGE')) {{ 'selected' }} @endif
+                                    value="{{ Config::get('constant.TYPE-POST.PAGE') }}">page</option>
+                                </select>
                             </section>
                         </div>
                     </div>

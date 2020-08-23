@@ -53,6 +53,16 @@
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
 @endsection
+
+@section('make-up-data')
+@if($post->stylesheet)
+{!! '<style>'. $post->stylesheet . '</style>' !!}
+@endif
+@if($post->javscript)
+{!! '<script>'. $post->javscript . '</script>' !!}
+@endif
+@endsection
+
 @section('content')
 
 <div class="headfull__post-view" style="background: url('{{ $post->background }}') no-repeat scroll center top;">

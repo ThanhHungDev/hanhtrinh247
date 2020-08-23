@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\SupportString;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_POST;
@@ -46,13 +47,17 @@ class PostController extends Controller
         ///setting data insert table post
         $postInput = $request->only('topic_id', 'rating_id', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'public', 'site_name', 
-        'image_seo', 'keyword_seo', 'description_seo');
+        'image_seo', 'keyword_seo', 'description_seo', 'type', 'stylesheet', 'javascript');
 
         /// create catalogue
                    $catalogue   = Catalogue::generate($postInput['content']);
         $postInput['content']   = $catalogue->text;
         $postInput['catalogue'] = $catalogue->catalogue;
 
+        /// create style
+        $postInput['stylesheet'] = SupportString::minimizeCSSsimple($postInput['stylesheet']);
+        /// create javascript
+        $postInput['javascript'] = SupportString::minimizeJavascriptSimple($postInput['javascript']);
         /// set id save post 
         $postInput['id'] = $id;
         

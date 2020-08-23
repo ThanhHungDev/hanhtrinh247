@@ -27,6 +27,9 @@ class CreatePostTable extends Migration
             $table->integer('like')->default(1);
             $table->integer('view')->default(1);
             $table->float('rate_value')->default(3.5);
+            $table->text('stylesheet')->nullable();
+            $table->text('javascript')->nullable();
+            $table->integer('type')->default(1);
             $table->integer('public')->default(1);
             $table->string('site_name', 150)->nullable();
             $table->string('image_seo', 510)->nullable();

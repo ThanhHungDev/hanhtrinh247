@@ -101,5 +101,7 @@
         @include('client.partial.alo-now')
     </div>
     @yield('javascripts')
+    @yield('make-up-data')
+    
 </body>
 </html>

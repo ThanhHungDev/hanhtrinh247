@@ -34,9 +34,16 @@ class PostController extends Controller
         ];
         $postMaxView = $postModel->getPostByCondition($conditionPost)->take( 6 )->get();
         $topic = $post->topic()->first();
+
+        if( $post->type == Config::get('constant.TYPE-POST.PAGE')){
+
+            return view('client.page-view', compact('post', 'tags', 'topic', 'rateAuthor', 'postMaxView'));
+        }
+
         return view('client.post-view', compact('post', 'tags', 'topic', 'rateAuthor', 'postMaxView'));
     }
 
+    
 
      /**
      * CLIENT 
