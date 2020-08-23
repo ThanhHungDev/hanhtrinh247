@@ -83,12 +83,18 @@ module.exports.adminChannels = function( req, res ){
             throw { status: 404, message: "dữ liệu sai" }
         }
         
+        var isQueryMessage = false
+        if( user.type == 'fb' || user.type == 'google' ){
+            var isQueryMessage = true
+        }else{
+            isQueryMessage = userVerify._id.toString() == user._id.toString()
+        }
 
         var condition = {
             user: user._id,
             unwind: "$user",
             ignore: user._id,
-            query_message: userVerify._id.toString() == user._id.toString(),
+            query_message: isQueryMessage,
             query_user_account: true
         }
         return Promise.all([

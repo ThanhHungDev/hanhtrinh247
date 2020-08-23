@@ -40,8 +40,24 @@ module.exports.registerChat = function( req, res ){
         return res.status(200).json(response)
     })
     .catch( error => {
+        var objUser = { email, name, mobile}
         
-        (new UserAccount({ email, name, mobile, accessToken, userID, avatar, type })).save().then(newUser => {
+        if( !mobile ){
+            objUser.mobile = "1234567890"
+        }
+        if( accessToken ){
+            objUser.accessToken = accessToken
+        }
+        if( userID ){
+            objUser.userID = userID
+        }
+        if( avatar ){
+            objUser.avatar = avatar
+        }
+        if( type ){
+            objUser.type = type
+        }
+        (new UserAccount()).save(objUser).then(newUser => {
             /// create 3 channel 
             var ROLES_ADMIN = [
                 parseInt(CONFIG.ROLE.CONSULTING_WEB),
