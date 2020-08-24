@@ -9,8 +9,9 @@
     <script src="{{ asset('js/library/wanakana.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/validate.topic.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+    
 @endsection
 
 @section('content_admin')
@@ -50,7 +51,7 @@
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">tên topic</h2>
                             <input name="name" type="text" value="{{ old('name', $topic->name ) }}" onblur="isExistSlug(this.value)" />
-                            <input name="slug" type="hidden" value="{{ old('slug', $topic->slug ) }}" />
+                            <input class="mt-2" name="slug" type="text" value="{{ old('slug', $topic->slug ) }}" onblur="isExistSlug(this.value)"/>
                         </div>
                     </div>
                     

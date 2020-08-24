@@ -143,7 +143,7 @@
                 }
             }
             &.active{
-                background-color: #007e33
+                background-color: #113a77
             }
             &.show{
                 i.hero-icon.hero-chevron-custom-sidebar::before {
@@ -169,11 +169,11 @@
                     text-transform: capitalize;
                 }
                 &.active{
-                    background-color: #0073aa;
+                    background-color: $custom-primary-color-dark;
                 }
 
                 &:hover{
-                    background-color: #419dc7;
+                    background-color: $custom-primary-color-dark
                 }
             }
 

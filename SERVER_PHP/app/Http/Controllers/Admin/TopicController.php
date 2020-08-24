@@ -78,7 +78,7 @@ class TopicController extends Controller
      * @return View
      */
     public function load(){
-        $limit = 2;
+        $limit = 10;
         $topics = $this->model->createTopicModel()->paginate( $limit );
         return view('admin.topic.load', compact(['topics']));
     }

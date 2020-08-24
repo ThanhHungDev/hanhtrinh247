@@ -9,8 +9,9 @@
     <script src="{{ asset('js/library/wanakana.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/validate.post.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+    
 @endsection
 
 @section('content_admin')
@@ -50,7 +51,7 @@
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                             <h2 class="title">title post</h2>
                             <input name="title" type="text" value="{{ old('title', $post->title ) }}" onblur="isExistSlug(this.value)" />
-                            <input class="mt-2" name="slug" type="text" value="{{ old('slug', $post->slug ) }}" />
+                            <input class="mt-2" name="slug" type="text" value="{{ old('slug', $post->slug ) }}" onblur="isExistSlug(this.value)"/>
                         </div>
                     </div>
                     
@@ -189,6 +190,7 @@
                                     @endforeach
                                 </select>
                                 @endif
+                                <input class="mt-2" name="rate_value" value="{{ old('rate_value', $post->rate_value) }}"/>
                             </section>
                         </div>
                     </div>

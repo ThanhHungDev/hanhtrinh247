@@ -104,11 +104,7 @@ function isExistSlug( title ){
     })
     .then(res => {
         
-        if( !res.ok ){
-            return showResultSlugExisted( false )
-        }else{
-            return showResultSlugExisted( true )
-        }
+        return showResultSlugExisted(!!res.ok)
     })
     .catch(error => {
         alert("có lỗi")

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -18,6 +19,12 @@ class PostController extends Controller
         $post      = $postModel->getPostBySlug($slug);
         if( !$post ){
             return abort(404);
+        }
+        if($post->public == Config::get('constant.TYPE_SAVE.ADMIN_READ')){
+            if (!Auth::check()){
+
+                return abort(403);
+            }
         }
         $tags = $post->tags()->take(10)->get();
 

@@ -31,6 +31,12 @@ function validateForm(formJquery){
             topic_id: {
                 required : true
             },
+            rate_value: {
+                required : true,
+                number: true,
+                min: 3.5,
+                max: 5
+            },
             site_name : {
                 required : true,
                 maxlength: 150
@@ -86,6 +92,12 @@ function validateForm(formJquery){
             },
             topic_id: {
                 required : "bắt buộc nhập topic"
+            },
+            rate_value: {
+                required : "bắt buộc nhập số",
+                number: "bắt buộc nhập số",
+                min: "đánh giá không nên nhỏ hơn 3.5",
+                max: "đánh giá không được phép lớn hơn 5"
             },
             site_name : {
                 required : "cần thêm site_name cho seo",

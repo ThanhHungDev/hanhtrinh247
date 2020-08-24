@@ -9,8 +9,9 @@
     <script src="{{ asset('js/library/wanakana.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/validate.rating.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+    
 @endsection
 
 @section('content_admin')

@@ -45,7 +45,7 @@ class PostController extends Controller
     public function save(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
 
         ///setting data insert table post
-        $postInput = $request->only('topic_id', 'rating_id', 'title', 'slug', 'excerpt', 
+        $postInput = $request->only('topic_id', 'rating_id', 'rate_value', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'public', 'site_name', 
         'image_seo', 'keyword_seo', 'description_seo', 'type', 'stylesheet', 'javascript');
 
