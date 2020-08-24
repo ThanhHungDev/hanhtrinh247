@@ -177,9 +177,21 @@ function showAllImagesCkfinderOnload( imgs ){
 function toggleSidebar(){
     // $(".admin-sidebar .submenu .active").closest('.submenu').closest('li').addClass("open")
     $(".admin-sidebar .block-session").click(function(){
-
-        $(".admin-sidebar>ul>li").removeClass("open")
-        $(this).closest("li").addClass("open")
+        var li = $(this).closest("li"),
+        submenu = li.find(".submenu"),
+        isOpen = true
+        
+        if (submenu.is(':hidden')) {
+            isOpen = false
+        }
+        submenu.slideToggle('fast', function(){
+            if(isOpen) li.removeClass('show')
+            else li.addClass('show')
+        })
+        console.log( isOpen )
+    })
+    $("#hero-chevron-double-left-right-custom").click(function(){
+        $(this).closest(".admin-sidebar").toggleClass("full-sidebar")
     })
 }
 

@@ -128,13 +128,34 @@
         
 
         &>li{
+            -webkit-transition: all 0.25s ease-in-out;
+            -moz-transition: all 0.25s ease-in-out;
+            -o-transition: all 0.25s ease-in-out;
+            -ms-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
+
+            i.hero-icon.hero-chevron-custom-sidebar{
+                position: absolute;
+                right: 10px;
+
+                &:before {
+                    content: "\F013E";
+                }
+            }
+            &.active{
+                background-color: #007e33
+            }
+            &.show{
+                i.hero-icon.hero-chevron-custom-sidebar::before {
+                        content: "\F013C";
+                }
+            }
             
             a{
                 display: block;
                 color: $gray-200;
                 font-size: 13px;
                 padding: 5px;
-                margin-top: 5px;
                 cursor: pointer;
                 text-transform: capitalize;
 
@@ -157,31 +178,26 @@
             }
 
             .submenu{
-                height: 0!important;
-                opacity: 0;
-                visibility: hidden;
+                overflow: hidden;
+                display: none;
                 background-color: #3b5071;
-                -webkit-transition: all 0.25s ease-in-out;
-                -moz-transition: all 0.25s ease-in-out;
-                -o-transition: all 0.25s ease-in-out;
-                -ms-transition: all 0.25s ease-in-out;
-                transition: all 0.25s ease-in-out;
+                // -webkit-transition: all 2s ease;
+                // -moz-transition: all 2s ease;
+                // -o-transition: all 2s ease;
+                // -ms-transition: all 2s ease;
+                // transition: all 2s ease;
                 
                 a{
                     padding-left: 15px;
                     font-size: 12px;
                 }
-            }
 
-            &.open{
-                .submenu{
+                &.open{
                     display: block;
-                    height: 100%!important;
-                    opacity: 1;
-                    visibility: unset;
-                    
                 }
             }
+
+            
         }
     }
 }

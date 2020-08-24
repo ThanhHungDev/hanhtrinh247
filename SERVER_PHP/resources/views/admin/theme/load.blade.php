@@ -4,6 +4,8 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+
     <script>
         var ADMIN_DELETE_THEME = "{{ Route('ADMIN_DELETE_THEME', ['id' => null ])}}";
         function deleteComponent( id, element ){

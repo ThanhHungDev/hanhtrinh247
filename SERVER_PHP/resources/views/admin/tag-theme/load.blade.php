@@ -4,6 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
     <script>
         var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_TAG_THEME', ['id' => null ])}}";
         function deleteComponent( id, element ){
