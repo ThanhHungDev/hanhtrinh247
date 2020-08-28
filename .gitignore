@@ -15,7 +15,6 @@ yarn-error.log
 node_modules
 .vscode/launch.json
 *.DS_Store
-*.json
 /storage/uploads
 .htaccess
 BUILDER\readme.md
