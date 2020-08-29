@@ -4,7 +4,7 @@
 /public/css/app.css
 /public/js/app.min.js
 /storage/*.key
-vendor
+/SERVER_PHP/vendor
 .env
 .env.backup
 .phpunit.result.cache
