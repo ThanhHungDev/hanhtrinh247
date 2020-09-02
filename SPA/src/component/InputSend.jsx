@@ -63,7 +63,7 @@ class InputSend extends Component {
         convActive = convertations.find(convertations => convertations.isActive)
 
         var objMess = {
-            message: event.target.value, 
+            message: input.value, 
             style: "", 
             token: this.props.auth.token,
             user: auth._id,
