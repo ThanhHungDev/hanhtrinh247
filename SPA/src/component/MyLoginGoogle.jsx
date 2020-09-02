@@ -14,10 +14,12 @@ class MyLoginGoogle extends Component {
     componentClicked = () => { }
     
     responseGoogleError = response => {
+        console.log(response, "lỗi responseGoogleError")
         
         alert("can't login google")
     }
     responseGoogle = response => {
+        console.log(response, "đúng responseGoogle")
         
         var authen = {
             accessToken: response.accessToken,
