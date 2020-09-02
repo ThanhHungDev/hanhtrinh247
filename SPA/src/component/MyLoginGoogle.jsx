@@ -68,7 +68,7 @@ class MyLoginGoogle extends Component {
         
         return (
             <GoogleLogin
-                clientId="187185206926-6ge5it03t8kd3vj1nfmfbq32darqvk0i.apps.googleusercontent.com"
+                clientId="187185206926-smqoej8k4aj9k3sdkq46bogdf4eojvn6.apps.googleusercontent.com"
                 render={renderProps => (
                     <button onClick={renderProps.onClick} className="btn-google-login">
                         <i className="hero-icon hero-google"></i>
