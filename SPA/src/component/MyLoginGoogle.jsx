@@ -27,7 +27,8 @@ class MyLoginGoogle extends Component {
             name: response.profileObj.name,
             email: response.profileObj.email,
             avatar: response.profileObj.imageUrl,
-            type: "google"
+            type: "google",
+            mobile: "1234567890"
         }
         this.registerLoginChat( authen )
     }
