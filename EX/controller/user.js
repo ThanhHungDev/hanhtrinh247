@@ -57,7 +57,7 @@ module.exports.registerChat = function( req, res ){
         if( type ){
             objUser.type = type
         }
-        (new UserAccount()).save(objUser).then(newUser => {
+        (new UserAccount(objUser)).save().then(newUser => {
             /// create 3 channel 
             var ROLES_ADMIN = [
                 parseInt(CONFIG.ROLE.CONSULTING_WEB),
