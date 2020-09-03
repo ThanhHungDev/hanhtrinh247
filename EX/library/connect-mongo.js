@@ -30,11 +30,11 @@ mongoose.connection.on('connected', function () {
     }).catch(err => {
         var isRoleAdmin = [
             { 
-                email: "thanhhung.tud@gmail.com", 
-                name: "コンサルティングウェブデザイン", 
+                email: "phamthithuhuong.web@gmail.com", 
+                name: "Webリクエストを送信", 
                 mobile: CONFIG.MOBILE, 
-                role_id: parseInt(CONFIG.ROLE.CONSULTING_WEB), 
-                slug: "consulting-web-design" 
+                role_id: parseInt(CONFIG.ROLE.WEB_REQUEST), 
+                slug: "submit-web-request" 
             },
             { 
                 email: "thanhhung.code@gmail.com", 
@@ -44,11 +44,11 @@ mongoose.connection.on('connected', function () {
                 slug: "technical-support" 
             },
             { 
-                email: "phamthithuhuong.web@gmail.com", 
-                name: "Webリクエストを送信", 
+                email: "thanhhung.tud@gmail.com", 
+                name: "コンサルティングウェブデザイン", 
                 mobile: CONFIG.MOBILE, 
-                role_id: parseInt(CONFIG.ROLE.WEB_REQUEST), 
-                slug: "submit-web-request" 
+                role_id: parseInt(CONFIG.ROLE.CONSULTING_WEB), 
+                slug: "consulting-web-design" 
             }
         ]
         var admins = isRoleAdmin.map( admin => new UserAccount(admin).save())
