@@ -18,7 +18,7 @@ class Sidebar extends Component {
     render() {
         console.log("render sidebar")
         var { auth } = this.props
-        auth.avatar = 'http://babysitter.trust-growth.co.jp/uploads/avatar.jpg'
+        auth.avatar = '/uploads/avatar.jpg'
 
         return (
             <div id="js-sidebar-chat" className="component-sidebar-chat">

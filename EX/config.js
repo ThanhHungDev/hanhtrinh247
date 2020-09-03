@@ -78,6 +78,6 @@ var CONFIG = {
     CHANNEL:{
         DF_NAME_SINGLE: "SINGLE"
     },
-    AVATAR: "http://babysitter.trust-growth.co.jp/storage/uploads/avatars/thumbnail/1597294935img_avatar2.png",
+    AVATAR: "https://ebudezain.com/images/user-avatar.jpg",
 }
 module.exports = CONFIG;
