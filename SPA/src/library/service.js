@@ -24,9 +24,11 @@ export function socketInitialConnect(socketIOClient, instanceApp) {
     socket.on('disconnect', function () {
         instanceApp.props.dispatch(setterSocket(null))
         ApplicationDom && ApplicationDom.classList.add("connect-socket-error")
+        window.location.href = CONFIG.asset
     });
     socket.on('connect_error', function () {
         ApplicationDom && ApplicationDom.classList.add("connect-socket-error")
+        window.location.href = CONFIG.asset
     });
 }
 
@@ -114,7 +116,8 @@ export function fetchAPIChannels( option, component ){
     })
     .catch(error => {
         
-        console.log( error )
+        localStorage.setItem('auth', null)
+        component.props.dispatch(setterAuth( null ))
     })
 }
 

@@ -16,7 +16,7 @@ class MyLoginGoogle extends Component {
     responseGoogleError = response => {
         console.log(response, "lỗi responseGoogleError")
         
-        alert("can't login google")
+        console.log(response, "responseGoogleError")
     }
     responseGoogle = response => {
         console.log(response, "đúng responseGoogle")
@@ -61,7 +61,7 @@ class MyLoginGoogle extends Component {
         })
         .catch(error => {
             
-            alert("have error login google")
+            console.log("fetch err: " + error.message, error)
         })
     }
     

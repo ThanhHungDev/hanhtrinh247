@@ -49,7 +49,7 @@ class MyLoginFacebook extends Component {
         })
         .catch(error => {
             
-            alert("have error login google")
+            console.log("fetch err: " + error.message, error)
         })
     }
 
