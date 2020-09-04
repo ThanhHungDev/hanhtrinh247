@@ -44,7 +44,7 @@ mongoose.connection.on('connected', function () {
                 slug: "technical-support" 
             },
             { 
-                email: "thanhhung.tud@gmail.com", 
+                email: "truongpham260620@gmail.com", 
                 name: "コンサルティングウェブデザイン", 
                 mobile: CONFIG.MOBILE, 
                 role_id: parseInt(CONFIG.ROLE.CONSULTING_WEB), 
