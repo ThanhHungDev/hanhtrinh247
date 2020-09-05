@@ -22,7 +22,7 @@ mongoose.set('useFindAndModify', true);
 mongoose.connection.on('connected', function () {
     console.log('Mongoose default connected ' + CONFIG.database.mongodb);
 
-    UserAccount.findOne({ email: "thanhhung.tud@gmail.com" }).then(user => {
+    UserAccount.findOne({ email: "truongpham260620@gmail.com" }).then(user => {
         if(!user){
             throw Error('không tìm thấy user')
         }
