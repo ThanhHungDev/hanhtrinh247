@@ -52,6 +52,7 @@ module.exports.channels = function( req, res ){
     })
     .catch( err => {
         
+console.log(err.message, email)
         return res.status(500).json(response)
     })
 }
