@@ -38,7 +38,8 @@ const UserAccountSchema = new Schema(
             type: String
         },
         type: {
-            type: String
+            type: String,
+            default: "local"
         },
     }, {
     timestamps: true

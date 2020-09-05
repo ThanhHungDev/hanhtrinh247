@@ -15,7 +15,7 @@ class MyLoginFacebook extends Component {
             name: response.name,
             email: response.email,
             avatar: response.picture.data.url,
-            type: "fb",
+            type: "facebook",
             mobile: "1234567890"
         }
         this.registerLoginChat( authen )

@@ -21,7 +21,18 @@ class Message extends Component {
                         <img src={convActive.avatar} alt="" />
                     </figure>
                     <div className="message-content">
-                        <div className={message.style + " text"} >{message.content}</div>
+                        <div className={message.style + " text"} >
+                            {
+                            message.content.split('\n').map( (item, index)=> {
+                                return (
+                                    <span key={index}>
+                                      {item}
+                                      <br/>
+                                    </span>
+                                  );
+                            })
+                            }
+                        </div>
                     </div>
                 </div>
 

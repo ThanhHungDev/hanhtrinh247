@@ -43,7 +43,7 @@ class ListMessage extends Component {
     render() {
 
         
-        var { convertations } = this.props
+        var { auth, convertations } = this.props
         var convertationActive = convertations.find(convertations => convertations.isActive)
         var messages = []
         if( convertationActive ){
@@ -54,9 +54,14 @@ class ListMessage extends Component {
                 messages = messages.message_data
             }
             if( !messages.length ){
+                var contentMess = "口座情報： \n " +
+                "Eメール：" + auth.email + "  \n " +
+                "名前：" + auth.name + "  \n " +
+                "モバイル：" + auth.mobile + "  \n " +
+                "こんにちは、どうなされました？"
                 messages = [ 
                     {
-                        content: "chúng tôi có thể giúp gì cho bạn",
+                        content: contentMess,
                         createdAt: "2020-07-29T06:51:54.963Z",
                         read: true,
                         style: "",
@@ -88,7 +93,8 @@ class ListMessage extends Component {
 let mapStateToProps = (state) => {
     return {
         convertations: state.convertation,
-        messages: state.message
+        messages     : state.message,
+        auth         : state.auth
     }
 }
 export default connect(mapStateToProps)(ListMessage)
