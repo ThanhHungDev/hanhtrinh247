@@ -7,8 +7,6 @@ var DOMAIN = "https://ebudezain.com";
 const PRECACHE_URLS = [
     '/css/app.css?v=657432',
     "/js/app.min.js?v=657432",
-    'css/app.css?v=657432',
-    "js/app.min.js?v=657432"
 ];
 /// resource will change data time
 const RUNTIME_URLS_IGNORE = [
