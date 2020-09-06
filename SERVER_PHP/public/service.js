@@ -6,7 +6,9 @@ var DOMAIN = "https://ebudezain.com";
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     '/css/app.css?v=657432',
-    "/js/app.min.js?v=657432"
+    "/js/app.min.js?v=657432",
+    'css/app.css?v=657432',
+    "js/app.min.js?v=657432"
 ];
 /// resource will change data time
 const RUNTIME_URLS_IGNORE = [
