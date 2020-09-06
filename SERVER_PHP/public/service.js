@@ -1,24 +1,16 @@
 
 const PRECACHE = 'HERO-CACHE-v1';
 const RUNTIME = 'HERO-RUNTIME-v1';
-var DOMAIN = "http://localhost:7655";
+var DOMAIN = "https://ebudezain.com";
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-    '/',
-    'js/vendors~main.index.bundle.js',
-    'js/index.bundle.js',
-    'library/jquery.min.js',
-    "font/IconFont/webfont.eot",
-    "font/IconFont/webfont.ttf",
-    "font/IconFont/webfont.woff",
-    "font/IconFont/webfont.woff2"
+    '/css/app.css?v=657432',
+    "/js/app.min.js?v=657432"
 ];
 /// resource will change data time
 const RUNTIME_URLS_IGNORE = [
-    '/service.js',
-    "/save-subscription",
-    "/show-noti"
+    '/service.js'
 ];
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {

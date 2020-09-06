@@ -1,26 +1,29 @@
 
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('./service.js')
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service.js')
+}
 
-// document.body.onclick = function(){
-//     getSubscription()
-//     .then(subscription => {
-//         if (subscription) {
-//             /// console.log("đã có subscription")
-//             return subscription
-//         } else {
-//             return getNotificationPermission()
-//             .then(function(){
-//                 return doSubscribe()
-//             })
-//         }
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
+var applicationChat = document.getElementById("Application")
+if( applicationChat ){
+    applicationChat.onclick = function(){
+        getSubscription()
+        .then(subscription => {
+            if (subscription) {
+                /// console.log("đã có subscription")
+                return subscription
+            } else {
+                return getNotificationPermission()
+                .then(function(){
+                    return doSubscribe()
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
 
 function getSubscription() {
     return navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
