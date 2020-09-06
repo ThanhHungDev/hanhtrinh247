@@ -1,0 +1,97 @@
+
+$padding-grid-x : 15px;
+$column-max : 12;
+
+$containers-min-width : (
+  XS : 320px,
+  SM : 540px,
+  MD : 767px,
+  LG : 792px,
+  XL : 1200px,
+  XXL: 1400px
+) !default;
+
+$containers-max-width : (
+  SM: 720px,
+  MD: 960px,
+  LG : 1170px,
+  XL : 1320px
+) !default;
+
+
+.container-fluid {
+  width: 100%;
+  padding-right: $padding-grid-x;
+  padding-left: $padding-grid-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container {
+  width: 100%;
+  padding-right: $padding-grid-x;
+  padding-left: $padding-grid-x;
+  margin-right: auto;
+  margin-left: auto;
+  @each $name, $value in $containers-max-width {
+    @include MobileResponsive($name){
+      max-width: $value;
+    }
+  }
+}
+
+
+// .container {
+//   padding-right: 15px;
+//   padding-left: 15px;
+//   margin-right: auto;
+//   margin-left: auto;
+// }
+// @media (min-width: 768px) {
+//   .container {
+//     width: 750px;
+//   }
+// }
+// @media (min-width: 992px) {
+//   .container {
+//     width: 970px;
+//   }
+// }
+// @media (min-width: 1200px) {
+//   .container {
+//     width: 1170px;
+//   }
+// }
+
+.row{
+  margin-right: 0 - $padding-grid-x;
+  margin-left: 0 - $padding-grid-x;
+
+  @include clearfix();
+}
+
+@for $i from 1 through $column-max {
+  .col-#{$i} {
+    width: (100% * $i) / $column-max;
+    padding-right: $padding-grid-x;
+    padding-left: $padding-grid-x;
+    float: left;
+  }
+}
+@each $name, $value in $containers-min-width {
+  
+  @for $i from 1 through $column-max {
+    @include MinWidthResponsive($name, $value){
+      .col-#{to-lower-case(#{$name})}-#{$i} {
+        width: (100% * $i) / $column-max;
+        padding-right: $padding-grid-x;
+        padding-left: $padding-grid-x; 
+        float: left; 
+      } 
+    } 
+  }
+  
+}
+
+
+
+

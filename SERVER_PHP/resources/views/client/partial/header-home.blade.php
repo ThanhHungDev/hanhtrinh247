@@ -26,7 +26,7 @@
                     </div>
                 </h1>
                 <div class="button-click-interactive">
-                    <a class="btn btn-success btn-create-service animate-support animated tada" href="/service">利用サービス</a>
+                    <a class="btn btn-success btn-create-service animate-support animated tada" href="{{ Route('SERVICE_LOAD') }}">利用サービス</a>
                     <a class="link-create-explore" href="{{ Route('THEME_LOAD') }}">探検する</a>
                 </div>
                 <h4 class="service-description">私たちはプロのウェブサイトデザインユニットです。 エブデザインは、日本企業の成長に対応できることをうれしく思います。</h4>

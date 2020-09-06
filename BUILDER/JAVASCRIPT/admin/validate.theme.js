@@ -1,0 +1,139 @@
+function validateForm(formJquery){
+    formJquery.validate({
+        ignore: ".ignore", // validate all hidden select elements
+        rules: {
+
+            title: {
+                required : true,
+                maxlength: 150
+            },
+            slug: {
+                required : true,
+                maxlength: 150
+            },
+            url: {
+                required : true,
+                maxlength: 255
+            },
+            excerpt : {
+                required : true,
+                maxlength: 255
+            },
+            description: {
+                cke_required : true
+            },
+            content : {
+                cke_required : true
+            },
+            background : {
+                required : true,
+                maxlength: 510
+            },
+            image_laptop : {
+                required : true,
+                maxlength: 510
+            },
+            image_tablet : {
+                required : true,
+                maxlength: 510
+            },
+            image_mobile : {
+                required : true,
+                maxlength: 510
+            },
+            site_name : {
+                required : true,
+                maxlength: 150
+            },
+            image_seo : {
+                required : true,
+                maxlength: 510
+            },
+            keyword_seo : {
+                required : true,
+                maxlength: 255
+            },
+            description_seo : {
+                required : true,
+                maxlength: 255
+            }
+        },
+        messages: {
+            title: {
+                required : "bắt buộc phải nhập title",
+                maxlength: "title có độ dài lớn nhất là {0}"
+            },
+            slug: {
+                required : "bắt buộc nhập title để tạo slug",
+                maxlength: "độ dài slug được tạo ra không vượt quá {0} kí tự"
+            },
+            url: {
+                required : "bắt buộc phải nhập url",
+                maxlength: "title có độ dài lớn nhất là {0}"
+            },
+            excerpt : {
+                required : "bắt buộc nhập đoạn trích(excerpt)",
+                maxlength: "độ dài đoạn trích(excerpt) không vượt quá {0} kí tự"
+            },
+            description: {
+                cke_required : "cần nhập description"
+            },
+            content : {
+                cke_required : "cần nhập nội dung"
+            },
+            background : {
+                required : "bắt buộc nhập background",
+                maxlength: "đường link vượt {0} kí tự"
+            },
+            image_laptop : {
+                required : "bắt buộc nhập thumbnail",
+                maxlength: "đường link vượt {0} kí tự"
+            },
+            image_tablet : {
+                required : "bắt buộc nhập thumbnail",
+                maxlength: "đường link vượt {0} kí tự"
+            },
+            image_mobile : {
+                required : "bắt buộc nhập thumbnail",
+                maxlength: "đường link vượt {0} kí tự"
+            },
+            site_name : {
+                required : "cần thêm site_name cho seo",
+                maxlength: "phần site_name không vượt quá {0} kí tự"
+            },
+            image_seo : {
+                required : "cần nhập hình ảnh (image_seo) để seo tốt hơn",
+                maxlength: "phần hình ảnh (image_seo) không vượt quá {0} kí tự"
+            },
+            keyword_seo : {
+                required : "cần thêm mô tả keyword seo(keyword_seo)",
+                maxlength: "phần keyword (keyword_seo) không vượt quá {0} kí tự"
+            },
+            description_seo : {
+                required : "cần thêm mô tả seo(description_seo)",
+                maxlength: "phần mô tả (description_seo) không nên vượt quá {0} kí tự "
+            }
+            
+        }
+    });
+}
+
+
+function checkCkeditorRequried(element){
+    
+    return CKEDITOR.instances[$(element).attr('id')].getData()
+}
+
+jQuery.validator.addMethod('cke_required', function(value, element) {
+
+    return checkCkeditorRequried(element)
+})
+
+/// dom load success
+$(document).ready(function() {
+
+    var DF_FORM_VALIDATE = $(".js-validate-form")
+    if(DF_FORM_VALIDATE.length){
+        validateForm(DF_FORM_VALIDATE);
+    }
+});
