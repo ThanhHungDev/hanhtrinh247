@@ -46,6 +46,7 @@
             </div>
             <form class="row js-validate-form" action="{{ Route('ADMIN_SAVE_TAG', ['id' => $tag->id]) }}" method="POST">
                 {!! csrf_field() !!}
+                <input type="hidden" name="_slug_old" value="{{ $tag->slug }}">
                 <div class="col-md-8">
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">

@@ -96,6 +96,14 @@ function isExistSlug( title ){
     $("#"+DF_ID_RESULT).remove()
     $("button[type=submit]").attr('disabled', true )
 
+    if($( "input[name=_slug_old]")){
+        var old_slug = $( "input[name=_slug_old]").val()
+        if(old_slug == slug){
+            showResultSlugExisted(old_slug != slug)
+            return true
+        }
+    }
+
     fetch( ACTION_CHECK_SLUG + "/" + slug, {
         method: 'GET',
         headers: {
@@ -118,6 +126,9 @@ function showResultSlugExisted(result){
     if( !result ){
 
         DF_MESSAGE = "slug chưa tồn tại"
+        if($( "input[name=_slug_old]") && $( "input[name=_slug_old]").val() == $( "input[name=slug]").val()){
+            DF_MESSAGE = "slug chưa thay đổi"
+        }
         DF_CLASS_RESULT = 'text-color-success-color-dark'
     }
 

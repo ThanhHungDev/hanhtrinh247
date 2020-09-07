@@ -32,7 +32,7 @@
                     </div>
                     @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
                     <div class="alert alert-success">
-                        lưu bài viết thành công
+                        lưu theme thành công
                     </div>
                     @endif
                     @if(!empty($errors->all()))
@@ -46,6 +46,7 @@
             </div>
             <form class="row js-validate-form" action="{{ Route('ADMIN_SAVE_THEME', ['id' => $theme->id]) }}" method="POST">
                 {!! csrf_field() !!}
+                <input type="hidden" name="_slug_old" value="{{ $theme->slug }}">
                 <div class="col-md-8">
                     <div class="row block-content">
                         <div class="col-12 bg-color-white shadows-1 px-3 py-3">
