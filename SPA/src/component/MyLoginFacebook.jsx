@@ -57,7 +57,7 @@ class MyLoginFacebook extends Component {
         
         return (
             <FacebookLogin
-                appId="618579045460962"
+                appId="2615547528708954"
                 autoLoad={false}
                 fields="name,email,picture"
                 cssClass="my-facebook-button-class"
