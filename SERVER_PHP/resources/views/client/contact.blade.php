@@ -31,7 +31,7 @@
     <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/validate.contact.min.js' . Config::get('app.version')) }}"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCEI4wiuaWtUAmSDRZQKYs2roDEBirY"></script>
+    <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

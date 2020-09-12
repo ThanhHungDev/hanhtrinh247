@@ -28,12 +28,18 @@
     padding: 0 15px;
 
     .introduce__post-view{
-        font-size: 20px;
+        font-size: 16px;
         visibility: visible;
         animation-name: bounceInLeft;
         color: $white;
         max-width: 800px;
         margin: 0 auto;
+        font-weight: 300;
+
+        &.title{
+            font-weight: 600;
+            font-size: 20px;
+        }
     }
     
     .custommer-intro{
@@ -95,7 +101,7 @@
     }
     .wrapper-intro-search__post-view{
         .introduce__post-view{
-            font-size: 20px;
+            font-size: 14px;
         }
         .custommer-intro{
             font-size: 16px;

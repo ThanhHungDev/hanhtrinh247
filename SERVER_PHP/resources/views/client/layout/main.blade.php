@@ -89,6 +89,19 @@
         const CONFIG_COMPANY_NAME = "{{ Config::get("app.company_name") }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}"
     </script>
+
+    @php $analatic_key = Config::get("app.analatic") @endphp
+    @if($analatic_key)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "{{ $analatic_key }}");
+    </script>
+    @endif
+
     @yield('stylesheets')
 </head>
 <body>

@@ -86,6 +86,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'analatic' => env('ANALATIC_TRACKING_KEY', false),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*

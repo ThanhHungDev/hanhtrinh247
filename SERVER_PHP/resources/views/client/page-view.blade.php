@@ -67,7 +67,7 @@
 
 <div class="headfull__post-view" style="background: url('{{ $post->background }}') no-repeat scroll center top;">
     <div class="wrapper-intro-search__post-view">
-        <h1 class="introduce__post-view">{{ $post->title }}</h1>
+        <h1 class="introduce__post-view title">{{ $post->title }}</h1>
         <h2 class="introduce__post-view">{{ $post->excerpt }}</h2>
     </div>
 </div>
@@ -100,7 +100,7 @@
                     {!!  $post->catalogue  !!}
                 </div>
             </div>
-            @if($rateAuthor)
+            @if($rateAuthor && $post->rate_value >= 4)
             <div class="rating__item">
                 <div class="rateit" data-rateit-value="{{ $post->rate_value }}"  data-rateit-readonly="true"></div>
                 <span>{{ $rateAuthor->username }}</span>
