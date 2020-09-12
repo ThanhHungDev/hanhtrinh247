@@ -70,7 +70,7 @@ class Catalogue {
 		$menu_tree = '';
 		foreach($headings as $heading => $subheadings) {
 			$heading = self::cleanText($heading);
-			$id    	 = '#' . SupportString::createSlug($heading);
+			$id    	 = '#' . SupportString::createLinkSlug($heading);
 			$link	 = '<a href="' . $id . '">' . $heading . '</a>';
 			$menu_tree .= '<li>' . $link;
 			if(!empty($subheadings)) {
