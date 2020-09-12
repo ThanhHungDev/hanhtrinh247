@@ -112,6 +112,42 @@
             margin: 10px auto;
         }
     }
+    h1{
+        font-weight: 700;
+    }
+    h2{
+        font-weight: 500;
+    }
+    h3{
+        font-weight: 100;
+    }
+    h4{
+        font-weight: 100;
+    }
+    h5{
+        font-weight: 100;
+    }
+    ul, ol{
+        padding-left: 20px;
+    }
+    ul {
+        list-style-type: circle;
+    }
+    ol{
+        list-style-type: decimal
+    }
+
+    ul.square {
+        list-style-type: square;
+    }
+      
+    ul.upper-roman {
+        list-style-type: upper-roman;
+    }
+      
+    ul.lower-alpha {
+        list-style-type: lower-alpha;
+    }
     @include Responsive(SM) {
         h1{
             font-size: 25px;
