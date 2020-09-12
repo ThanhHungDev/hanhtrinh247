@@ -19,6 +19,15 @@ class SupportString{
         return trim($str, $replace );
     }
 
+    public static function createLinkSlug( $str, $replace = '-' ){
+
+        $str = static::convertLang($str);
+        $str = preg_replace('/[\s]/', ' ', $str);
+        $str = preg_replace('/([\s]+)/', $replace, $str);
+
+        return trim($str, $replace );
+    }
+
     public static function convertLang( $str ){
 
         //Đổi ký tự có dấu thành không dấu
