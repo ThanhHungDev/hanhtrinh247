@@ -109,7 +109,7 @@
 .main-view-theme-content, .result__post-view-left{
     p{
         img{
-            margin: 0 auto;
+            margin: 10px auto;
         }
     }
     @include Responsive(SM) {

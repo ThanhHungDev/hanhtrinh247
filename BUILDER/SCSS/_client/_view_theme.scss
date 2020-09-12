@@ -261,6 +261,11 @@
   
   .main-view-theme-content{
     padding-top: 15px;
+    p{ 
+      img{
+          margin: 10px auto;
+      }
+    }
     h1, h2, h3, h4, h5{
       line-height: 1;
       padding: 15px 0;
