@@ -23,5 +23,5 @@ dist
 node_modules
 SPA/dist
 /SERVER_PHP/composer.lock
-setting.vps.config
-setting.ssl.config
+# setting.vps.config
+# setting.ssl.config
