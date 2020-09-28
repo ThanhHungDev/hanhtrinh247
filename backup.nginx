@@ -19,7 +19,7 @@ server {
 
     # Webroot Directory for ebudezain project
     root /var/www/ebudezain/SERVER_PHP/public;
-    index index.php index.html index.htm;
+    index index.html index.php index.htm;
 
     # Your Domain Name
     server_name ebudezain.com www.ebudezain.com;
@@ -122,9 +122,6 @@ server {
 
     include snippets/ssl-params.conf;
 
-    ###################################
-    ### other vhost configuration #####
-    ###################################
 
     # Log files for Debugging
     access_log /var/log/nginx/ebudezain-access.log;
@@ -132,7 +129,11 @@ server {
 
     # Webroot Directory for ebudezain project
     root /var/www/ebudezain/SERVER_PHP/public;
-    index index.php index.html index.htm;
+    index index.html index.php index.htm;
+
+    ###################################
+    ### other vhost configuration #####
+    ###################################
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
@@ -155,4 +156,100 @@ server {
     location ~ /.well-known {
         allow all;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+server {
+	listen 443 ssl;
+	server_name www.ebudezain.com;
+
+	# SSL
+	ssl_certificate /etc/letsencrypt/live/ebudezain.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/ebudezain.com/privkey.pem;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; 
+	ssl_prefer_server_ciphers on; 
+	ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+
+	rewrite ^(.*) https://ebudezain.com$1 permanent;
+}
+server {
+	listen 80;
+	server_name ebudezain.com www.ebudezain.com;
+	rewrite ^(.*) https://ebudezain.com$1 permanent;
+}
+
+server {
+	listen 443 ssl default_server;
+		
+	# Log files for Debugging
+    access_log /var/log/nginx/ebudezain-access.log;
+    error_log /var/log/nginx/ebudezain-error.log;
+
+	
+    # Webroot Directory for ebudezain project
+    root /var/www/ebudezain/SERVER_PHP/public;
+    index index.html index.php index.htm;
+    
+    # Your Domain Name
+    server_name ebudezain.com;
+	
+	# SSL
+	ssl_certificate /etc/letsencrypt/live/ebudezain.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/ebudezain.com/privkey.pem;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; 
+	ssl_prefer_server_ciphers on; 
+	ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+
+        # Improve HTTPS performance with session resumption
+        ssl_session_cache shared:SSL:50m;
+        ssl_session_timeout 1d;
+
+        # DH parameters
+        ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+        # Enable HSTS
+        add_header Strict-Transport-Security "max-age=31536000" always;
+ 
+    	location / {
+		try_files $uri $uri/ /index.php?$args;
+	}
+	
+    ###################################
+    ### other vhost configuration #####
+    ###################################
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # PHP-FPM Configuration Nginx
+    location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+    
+    location ~ /.well-known {
+        allow all;
+    }
+	
 }
